@@ -1208,26 +1208,16 @@ const CELULARES_INVALIDOS = new Set([
 function setFieldValidity(input, isValid, errorMsg) {
     const parentUnit = input.closest('.form-field-unit, .input-field-group');
     const inputWrapper = input.closest('.form-input-shell, .input-wrapper');
-    if (!parentUnit || !inputWrapper) return;
-
-    let errorSpan = parentUnit.querySelector('.field-error-text');
-    if (!errorSpan) {
-        errorSpan = document.createElement('span');
-        errorSpan.className = 'field-error-text';
-        parentUnit.appendChild(errorSpan);
-    }
+    if (!inputWrapper) return;
 
     if (isValid) {
         inputWrapper.classList.remove('is-invalid');
-        parentUnit.classList.remove('has-error');
         inputWrapper.classList.add('is-valid');
-        errorSpan.style.display = 'none';
+        if (parentUnit) parentUnit.classList.remove('has-error');
     } else {
         inputWrapper.classList.remove('is-valid');
         inputWrapper.classList.add('is-invalid');
-        parentUnit.classList.add('has-error');
-        errorSpan.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${errorMsg || 'Dato no válido'}`;
-        errorSpan.style.display = 'flex';
+        if (parentUnit) parentUnit.classList.add('has-error');
     }
 }
 
@@ -1239,8 +1229,6 @@ function clearFieldStatus(input) {
     }
     if (parentUnit) {
         parentUnit.classList.remove('has-error');
-        const errorSpan = parentUnit.querySelector('.field-error-text');
-        if (errorSpan) errorSpan.style.display = 'none';
     }
 }
 
