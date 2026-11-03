@@ -1147,511 +1147,74 @@
             </div>
         </section>
 
-        <!-- SECCIÓN VACACIONES ÚTILES DETALLADA EN TODAS SUS SUBSECCIONES Y CON REQUISITOS -->
+        <!-- SECCIÓN VACACIONES ÚTILES: HORARIOS OFICIALES SIMPLIFICADOS -->
         <section id="vacaciones">
             <div class="content-wrapper">
                 <div class="card animate-fade-up">
                     <div class="pilares-header">
                         <h2 class="titulo-pilares">Vacaciones Útiles</h2>
                         <div class="linea-pilares"></div>
-                        <p class="text-desktop-only" style="color: #64748B; margin-top: 5px;">Un programa diseñado para reforzar el aprendizaje, desarrollar habilidades y aprovechar las vacaciones con propósito.</p>
-                        <p class="text-mobile-only" style="color: #64748B; margin: 6px auto 0; font-size: 0.88rem; line-height: 1.45;">Refuerzo académico y talleres formativos para aprovechar el verano con propósito.</p>
+                        <p class="text-desktop-only" style="color: #64748B; margin-top: 5px;">Horarios oficiales y talleres formativos presenciales para aprovechar el verano con propósito.</p>
+                        <p class="text-mobile-only" style="color: #64748B; margin: 6px auto 0; font-size: 0.88rem; line-height: 1.45;">Horarios oficiales y talleres formativos para aprovechar el verano con propósito.</p>
                     </div>
 
-                    <div class="canales-primaria-tabs" style="margin-bottom: 25px;">
-                        <button class="canal-primaria-tab active" type="button" onclick="showVacacionesPanel('vacaciones-primaria-menor', this)"><i class="fas fa-shapes"></i> 1.&ordm; a 3.&ordm; Primaria</button>
-                        <button class="canal-primaria-tab" type="button" onclick="showVacacionesPanel('vacaciones-primaria-mayor', this)"><i class="fas fa-book-reader"></i> 4.&ordm; a 6.&ordm; Primaria</button>
-                        <button class="canal-primaria-tab" type="button" onclick="showVacacionesPanel('vacaciones-sec-menor', this)"><i class="fas fa-user-graduate"></i> 1.&ordm; a 2.&ordm; Secundaria</button>
-                        <button class="canal-primaria-tab" type="button" onclick="showVacacionesPanel('vacaciones-sec-mayor', this)"><i class="fas fa-university"></i> 3.&ordm; a 5.&ordm; Secundaria</button>
+                    <!-- SELECTOR DE NIVELES: PRIMARIA Y SECUNDARIA -->
+                    <div class="canales-primaria-tabs" style="margin-bottom: 25px; max-width: 680px; margin-left: auto; margin-right: auto;">
+                        <button class="canal-primaria-tab active" type="button" onclick="showVacacionesPanel('vacaciones-primaria', this)">
+                            <i class="fas fa-child"></i> Nivel Primaria (1.° a 6.° Grado)
+                        </button>
+                        <button class="canal-primaria-tab" type="button" onclick="showVacacionesPanel('vacaciones-secundaria', this)">
+                            <i class="fas fa-graduation-cap"></i> Nivel Secundaria (1.° a 5.° Año)
+                        </button>
                     </div>
 
-                    <!-- SUBSECCIÓN 1: 1° A 3° PRIMARIA -->
-                    <div id="vacaciones-primaria-menor" class="vacaciones-panel active">
-                        <div class="vacaciones-hero-banner">
-                            <div class="vacaciones-hero-img-wrap">
-                                <img src="assets/images/primaria_tutoria_personal.jpg" alt="Talleres Primaria Menor Genes">
-                            </div>
-                            <div class="vacaciones-hero-info">
-                                <div>
-                                    <span style="color: var(--crimson-red); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">1.° a 3.° de Primaria</span>
-                                    <h3 style="color: var(--bg-dark-navy); font-size: 1.35rem; font-weight: 800; margin: 4px 0 6px;">Talleres Presenciales de Verano</h3>
-                                    <p style="color: #64748B; font-size: 0.88rem; margin: 0;">Refuerzo académico y desarrollo integral con atención personalizada.</p>
-                                </div>
-                                <div style="display: flex; align-items: center; gap: 20px; background: #FFFFFF; padding: 12px 20px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-                                    <div style="text-align: center;"><span style="color: #64748B; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">Inicio</span><br><strong style="color: var(--crimson-red); font-size: 1.1rem; font-weight: 800;">05 Ene</strong></div>
-                                    <div style="width: 1px; height: 28px; background: #CBD5E1;"></div>
-                                    <div style="text-align: center;"><span style="color: #64748B; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">Fin</span><br><strong style="color: var(--bg-dark-navy); font-size: 1.1rem; font-weight: 800;">03 Feb</strong></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="vacaciones-talleres-grid" style="margin-bottom: 25px;">
-                            <div class="vacaciones-taller-card academico">
-                                <h4 style="color: var(--bg-dark-navy); margin-bottom: 8px; font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-                                    <i class="fas fa-book-reader" style="color: #DC2626;"></i> Cursos Académicos
-                                </h4>
-                                <p style="font-size: 0.9rem; color: #475569; margin: 0; line-height: 1.5;">Matemática, Razonamiento Matemático, Comunicación y Taller de Lectura comprensiva.</p>
-                            </div>
-                            <div class="vacaciones-taller-card complementario">
-                                <h4 style="color: var(--bg-dark-navy); margin-bottom: 8px; font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-                                    <i class="fas fa-palette" style="color: #202682;"></i> Talleres Complementarios
-                                </h4>
-                                <p style="font-size: 0.9rem; color: #475569; margin: 0; line-height: 1.5;">Oratoria y expresión corporal, xilófono y danza-festejo.</p>
-                            </div>
-                        </div>
-
+                    <!-- PANEL 1: HORARIO OFICIAL PRIMARIA (1° A 6° GRADO) -->
+                    <div id="vacaciones-primaria" class="vacaciones-panel active">
                         <div style="text-align: center; margin-bottom: 25px;">
-                            <h4 style="color: var(--bg-dark-navy); margin-bottom: 14px; font-weight: 800; font-size: 1.15rem;"><i class="fas fa-calendar-alt" style="color: #DC2626; margin-right: 8px;"></i>Horarios Oficiales del Taller</h4>
-                            <div class="horario-img-box" onclick="openIngresanteModal('assets/images/vacaciones/horario_primaria_1.png?v=20260907', 'Horarios 1° a 3° Primaria - Vacaciones Útiles')" title="Toca para ampliar horario en pantalla completa" style="max-width: 780px; margin: 0 auto 8px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #E2E8F0; background: #FFFFFF; padding: 12px; cursor: pointer;">
-                                <img src="assets/images/vacaciones/horario_primaria_1.png?v=20260907" alt="Horarios 1° a 3° Primaria Vacaciones Útiles" style="width: 100%; height: auto; display: block; border-radius: 10px;">
+                            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(220, 38, 38, 0.08); color: var(--crimson-red); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 800; margin-bottom: 10px;">
+                                <i class="fas fa-calendar-alt"></i> LUNES · MIÉRCOLES · VIERNES
                             </div>
-                            <button type="button" class="horario-zoom-badge" onclick="openIngresanteModal('assets/images/vacaciones/horario_primaria_1.png?v=20260907', 'Horarios 1° a 3° Primaria - Vacaciones Útiles')">
+                            <h3 style="color: var(--bg-dark-navy); font-size: 1.35rem; font-weight: 800; margin: 0 0 8px;">Horario Referencial: Nivel Primaria (1.° a 6.° Grado)</h3>
+                            <p style="color: #64748B; font-size: 0.95rem; max-width: 720px; margin: 0 auto 18px; line-height: 1.5;">
+                                Refuerzo en Matemática, Comunicación, Taller de Xilófono, Taller de Oratoria y Baile Moderno.
+                            </p>
+                            
+                            <div class="horario-img-box" onclick="openIngresanteModal('assets/images/vacaciones/horario_primaria_nuevo.jpg', 'Horario Oficial Nivel Primaria (1° a 6° Grado) - Vacaciones Útiles')" title="Toca para ampliar horario en pantalla completa" style="max-width: 980px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #E2E8F0; background: #FFFFFF; padding: 12px; cursor: pointer;">
+                                <img src="assets/images/vacaciones/horario_primaria_nuevo.jpg" alt="Horario Referencial 1° a 6° de Primaria Vacaciones Útiles Colegio Genes" style="width: 100%; height: auto; display: block; border-radius: 10px;">
+                            </div>
+                            <button type="button" class="horario-zoom-badge" onclick="openIngresanteModal('assets/images/vacaciones/horario_primaria_nuevo.jpg', 'Horario Oficial Nivel Primaria (1° a 6° Grado) - Vacaciones Útiles')">
                                 <i class="fas fa-search-plus"></i> Toca para ampliar horario en alta resolución
                             </button>
                         </div>
-
-                        <h4 style="color: var(--bg-dark-navy); margin-bottom: 14px; font-weight: 800;">Requisitos del Estudiante</h4>
-                        <div class="vacaciones-requisitos-grid">
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge puntualidad">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div>
-                                    <h5>Puntualidad</h5>
-                                    <p>Estar listo y organizado desde antes del inicio de clases.</p>
-                                </div>
-                            </div>
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge disciplina">
-                                    <i class="fas fa-user-check"></i>
-                                </div>
-                                <div>
-                                    <h5>Disciplina</h5>
-                                    <p>Participación activa, respeto por el horario y compromiso constante.</p>
-                                </div>
-                            </div>
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge valores">
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <div>
-                                    <h5>Valores</h5>
-                                    <p>Respeto, responsabilidad y muchas ganas de aprender.</p>
-                                </div>
-                            </div>
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge materiales">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </div>
-                                <div>
-                                    <h5>Materiales</h5>
-                                    <p>Cuadernos, útiles básicos y disposición para trabajar en cada taller.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h4 style="color: var(--bg-dark-navy); margin-bottom: 15px; font-weight: 800; display: flex; align-items: center; gap: 8px;"><i class="fas fa-star" style="color: #DC2626;"></i>Beneficios del Programa</h4>
-                        <div class="vacaciones-beneficios-grid">
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_profesores.jpg" alt="Profesores dinámicos Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Profesores dinámicos</h5>
-                                    <p>Docentes comprometidos con el avance y motivación del alumno.</p>
-                                </div>
-                            </div>
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_videos.jpg" alt="Videos tutoriales Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Videos tutoriales</h5>
-                                    <p>Refuerzo adicional para seguir practicando fuera de clase.</p>
-                                </div>
-                            </div>
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_material.jpg" alt="Material académico Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Material académico</h5>
-                                    <p>Contenido teórico y práctico para cada sesión de aprendizaje.</p>
-                                </div>
-                            </div>
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_rendimiento.jpg" alt="Informe de rendimiento Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Informe de rendimiento</h5>
-                                    <p>Seguimiento del progreso académico y formativo del estudiante.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
-                    <!-- SUBSECCIÓN 2: 4° A 6° PRIMARIA -->
-                    <div id="vacaciones-primaria-mayor" class="vacaciones-panel">
-                        <div class="vacaciones-hero-banner">
-                            <div class="vacaciones-hero-img-wrap">
-                                <img src="assets/images/primaria_docente_clase.jpg" alt="Talleres Primaria Mayor Genes">
-                            </div>
-                            <div class="vacaciones-hero-info">
-                                <div>
-                                    <span style="color: var(--crimson-red); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">4.° a 6.° de Primaria</span>
-                                    <h3 style="color: var(--bg-dark-navy); font-size: 1.35rem; font-weight: 800; margin: 4px 0 6px;">Talleres Presenciales de Verano</h3>
-                                    <p style="color: #64748B; font-size: 0.88rem; margin: 0;">Fortalecimiento de bases analíticas y transición formativa a secundaria.</p>
-                                </div>
-                                <div style="display: flex; align-items: center; gap: 20px; background: #FFFFFF; padding: 12px 20px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-                                    <div style="text-align: center;"><span style="color: #64748B; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">Inicio</span><br><strong style="color: var(--crimson-red); font-size: 1.1rem; font-weight: 800;">05 Ene</strong></div>
-                                    <div style="width: 1px; height: 28px; background: #CBD5E1;"></div>
-                                    <div style="text-align: center;"><span style="color: #64748B; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">Fin</span><br><strong style="color: var(--bg-dark-navy); font-size: 1.1rem; font-weight: 800;">03 Feb</strong></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="vacaciones-talleres-grid" style="margin-bottom: 25px;">
-                            <div class="vacaciones-taller-card academico">
-                                <h4 style="color: var(--bg-dark-navy); margin-bottom: 8px; font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-                                    <i class="fas fa-square-root-alt" style="color: #DC2626;"></i> Cursos Académicos
-                                </h4>
-                                <p style="font-size: 0.9rem; color: #475569; margin: 0; line-height: 1.5;">Aritmética, Álgebra, Geometría, Raz. Matemático, Castellano y Taller de lectura crítica.</p>
-                            </div>
-                            <div class="vacaciones-taller-card complementario">
-                                <h4 style="color: var(--bg-dark-navy); margin-bottom: 8px; font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-                                    <i class="fas fa-drum" style="color: #202682;"></i> Talleres Complementarios
-                                </h4>
-                                <p style="font-size: 0.9rem; color: #475569; margin: 0; line-height: 1.5;">Oratoria y liderazgo, percusión / cajón peruano y danza-festejo.</p>
-                            </div>
-                        </div>
-
+                    <!-- PANEL 2: HORARIO OFICIAL SECUNDARIA (1° A 5° DE SECUNDARIA) -->
+                    <div id="vacaciones-secundaria" class="vacaciones-panel">
                         <div style="text-align: center; margin-bottom: 25px;">
-                            <h4 style="color: var(--bg-dark-navy); margin-bottom: 14px; font-weight: 800; font-size: 1.15rem;"><i class="fas fa-calendar-alt" style="color: #DC2626; margin-right: 8px;"></i>Horarios Oficiales del Taller</h4>
-                            <div class="horario-img-box" onclick="openIngresanteModal('assets/images/vacaciones/horario_primaria_2.png?v=20260907', 'Horarios 4° a 6° Primaria - Vacaciones Útiles')" title="Toca para ampliar horario en pantalla completa" style="max-width: 780px; margin: 0 auto 8px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #E2E8F0; background: #FFFFFF; padding: 12px; cursor: pointer;">
-                                <img src="assets/images/vacaciones/horario_primaria_2.png?v=20260907" alt="Horarios 4° a 6° Primaria Vacaciones Útiles" style="width: 100%; height: auto; display: block; border-radius: 10px;">
+                            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(32, 38, 130, 0.08); color: var(--bg-dark-navy); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 800; margin-bottom: 10px;">
+                                <i class="fas fa-calendar-alt"></i> LUNES · MIÉRCOLES · VIERNES
                             </div>
-                            <button type="button" class="horario-zoom-badge" onclick="openIngresanteModal('assets/images/vacaciones/horario_primaria_2.png?v=20260907', 'Horarios 4° a 6° Primaria - Vacaciones Útiles')">
+                            <h3 style="color: var(--bg-dark-navy); font-size: 1.35rem; font-weight: 800; margin: 0 0 8px;">Horario Referencial: Nivel Secundaria (1.° a 5.° de Secundaria)</h3>
+                            <p style="color: #64748B; font-size: 0.95rem; max-width: 720px; margin: 0 auto 18px; line-height: 1.5;">
+                                Preparación preuniversitaria en Ciencias, Matemáticas, Miscelánea, Taller de Oratoria y Baile Moderno.
+                            </p>
+                            
+                            <div class="horario-img-box" onclick="openIngresanteModal('assets/images/vacaciones/horario_secundaria_nuevo.jpg', 'Horario Oficial Nivel Secundaria (1° a 5° Año) - Vacaciones Útiles')" title="Toca para ampliar horario en pantalla completa" style="max-width: 980px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #E2E8F0; background: #FFFFFF; padding: 12px; cursor: pointer;">
+                                <img src="assets/images/vacaciones/horario_secundaria_nuevo.jpg" alt="Horario Referencial 1° a 5° de Secundaria Vacaciones Útiles Colegio Genes" style="width: 100%; height: auto; display: block; border-radius: 10px;">
+                            </div>
+                            <button type="button" class="horario-zoom-badge" onclick="openIngresanteModal('assets/images/vacaciones/horario_secundaria_nuevo.jpg', 'Horario Oficial Nivel Secundaria (1° a 5° Año) - Vacaciones Útiles')">
                                 <i class="fas fa-search-plus"></i> Toca para ampliar horario en alta resolución
                             </button>
                         </div>
-
-                        <h4 style="color: var(--bg-dark-navy); margin-bottom: 14px; font-weight: 800;">Requisitos del Estudiante</h4>
-                        <div class="vacaciones-requisitos-grid">
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge puntualidad">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div>
-                                    <h5>Puntualidad</h5>
-                                    <p>Estar listo y organizado desde antes del inicio de clases.</p>
-                                </div>
-                            </div>
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge disciplina">
-                                    <i class="fas fa-user-check"></i>
-                                </div>
-                                <div>
-                                    <h5>Disciplina</h5>
-                                    <p>Participación activa, respeto por el horario y compromiso constante.</p>
-                                </div>
-                            </div>
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge valores">
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <div>
-                                    <h5>Valores</h5>
-                                    <p>Respeto, responsabilidad y muchas ganas de aprender.</p>
-                                </div>
-                            </div>
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge materiales">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </div>
-                                <div>
-                                    <h5>Materiales</h5>
-                                    <p>Cuadernos, útiles básicos y disposición para trabajar en cada taller.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h4 style="color: var(--bg-dark-navy); margin-bottom: 15px; font-weight: 800; display: flex; align-items: center; gap: 8px;"><i class="fas fa-star" style="color: #DC2626;"></i>Beneficios del Programa</h4>
-                        <div class="vacaciones-beneficios-grid">
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_profesores.jpg" alt="Profesores dinámicos Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Profesores dinámicos</h5>
-                                    <p>Docentes comprometidos con el avance y motivación del alumno.</p>
-                                </div>
-                            </div>
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_videos.jpg" alt="Videos tutoriales Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Videos tutoriales</h5>
-                                    <p>Refuerzo adicional para seguir practicando fuera de clase.</p>
-                                </div>
-                            </div>
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_material.jpg" alt="Material académico Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Material académico</h5>
-                                    <p>Contenido teórico y práctico para cada sesión de aprendizaje.</p>
-                                </div>
-                            </div>
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_rendimiento.jpg" alt="Informe de rendimiento Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Informe de rendimiento</h5>
-                                    <p>Seguimiento del progreso académico y formativo del estudiante.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
-                    <!-- SUBSECCIÓN 3: 1° A 2° SECUNDARIA -->
-                    <div id="vacaciones-sec-menor" class="vacaciones-panel">
-                        <div class="vacaciones-hero-banner">
-                            <div class="vacaciones-hero-img-wrap">
-                                <img src="assets/images/secundaria_oratoria_debate.jpg" alt="Talleres Secundaria Menor Genes">
-                            </div>
-                            <div class="vacaciones-hero-info">
-                                <div>
-                                    <span style="color: var(--crimson-red); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">1.° a 2.° de Secundaria</span>
-                                    <h3 style="color: var(--bg-dark-navy); font-size: 1.35rem; font-weight: 800; margin: 4px 0 6px;">Talleres Presenciales de Verano</h3>
-                                    <p style="color: #64748B; font-size: 0.88rem; margin: 0;">Consolidación en ciencias, letras y razonamiento con metodología de alta exigencia.</p>
-                                </div>
-                                <div style="display: flex; align-items: center; gap: 20px; background: #FFFFFF; padding: 12px 20px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-                                    <div style="text-align: center;"><span style="color: #64748B; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">Inicio</span><br><strong style="color: var(--crimson-red); font-size: 1.1rem; font-weight: 800;">05 Ene</strong></div>
-                                    <div style="width: 1px; height: 28px; background: #CBD5E1;"></div>
-                                    <div style="text-align: center;"><span style="color: #64748B; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">Fin</span><br><strong style="color: var(--bg-dark-navy); font-size: 1.1rem; font-weight: 800;">03 Feb</strong></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="vacaciones-taller-card academico" style="margin-bottom: 25px;">
-                            <h4 style="color: var(--bg-dark-navy); margin-bottom: 8px; font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-                                <i class="fas fa-atom" style="color: #DC2626;"></i> Cursos Especializados
-                            </h4>
-                            <p style="font-size: 0.92rem; color: #475569; margin: 0; line-height: 1.5;">Aritmética, Álgebra, Geometría, Trigonometría, Física, Química, Biología, Raz. Matemático, Raz. Verbal y Castellano.</p>
-                        </div>
-
-                        <div style="text-align: center; margin-bottom: 25px;">
-                            <h4 style="color: var(--bg-dark-navy); margin-bottom: 14px; font-weight: 800; font-size: 1.15rem;"><i class="fas fa-calendar-alt" style="color: #DC2626; margin-right: 8px;"></i>Horarios Oficiales del Taller</h4>
-                            <div class="horario-img-box" onclick="openIngresanteModal('assets/images/vacaciones/horario_secundaria_1.png?v=20260907', 'Horarios 1° a 2° Secundaria - Vacaciones Útiles')" title="Toca para ampliar horario en pantalla completa" style="max-width: 780px; margin: 0 auto 8px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #E2E8F0; background: #FFFFFF; padding: 12px; cursor: pointer;">
-                                <img src="assets/images/vacaciones/horario_secundaria_1.png?v=20260907" alt="Horarios 1° a 2° Secundaria Vacaciones Útiles" style="width: 100%; height: auto; display: block; border-radius: 10px;">
-                            </div>
-                            <button type="button" class="horario-zoom-badge" onclick="openIngresanteModal('assets/images/vacaciones/horario_secundaria_1.png?v=20260907', 'Horarios 1° a 2° Secundaria - Vacaciones Útiles')">
-                                <i class="fas fa-search-plus"></i> Toca para ampliar horario en alta resolución
-                            </button>
-                        </div>
-
-                        <h4 style="color: var(--bg-dark-navy); margin-bottom: 14px; font-weight: 800;">Requisitos del Estudiante</h4>
-                        <div class="vacaciones-requisitos-grid">
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge puntualidad">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div>
-                                    <h5>Puntualidad</h5>
-                                    <p>Estar listo y organizado desde antes del inicio de clases.</p>
-                                </div>
-                            </div>
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge disciplina">
-                                    <i class="fas fa-user-check"></i>
-                                </div>
-                                <div>
-                                    <h5>Disciplina</h5>
-                                    <p>Participación activa, respeto por el horario y compromiso constante.</p>
-                                </div>
-                            </div>
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge valores">
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <div>
-                                    <h5>Valores</h5>
-                                    <p>Respeto, responsabilidad y muchas ganas de aprender.</p>
-                                </div>
-                            </div>
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge materiales">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </div>
-                                <div>
-                                    <h5>Materiales</h5>
-                                    <p>Cuadernos, útiles básicos y disposición para trabajar en cada taller.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h4 style="color: var(--bg-dark-navy); margin-bottom: 15px; font-weight: 800; display: flex; align-items: center; gap: 8px;"><i class="fas fa-star" style="color: #DC2626;"></i>Beneficios del Programa</h4>
-                        <div class="vacaciones-beneficios-grid">
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_profesores.jpg" alt="Profesores dinámicos Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Profesores dinámicos</h5>
-                                    <p>Docentes comprometidos con el avance y motivación del alumno.</p>
-                                </div>
-                            </div>
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_videos.jpg" alt="Videos tutoriales Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Videos tutoriales</h5>
-                                    <p>Refuerzo adicional para seguir practicando fuera de clase.</p>
-                                </div>
-                            </div>
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_material.jpg" alt="Material académico Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Material académico</h5>
-                                    <p>Contenido teórico y práctico para cada sesión de aprendizaje.</p>
-                                </div>
-                            </div>
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_rendimiento.jpg" alt="Informe de rendimiento Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Informe de rendimiento</h5>
-                                    <p>Seguimiento del progreso académico y formativo del estudiante.</p>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- BOTÓN DE CONTACTO DIRECTO / INSCRIBIRSE -->
+                    <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #E2E8F0;">
+                        <a href="#admision" class="btn-submit-contacto" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; max-width: 320px; margin: 0 auto; justify-content: center; padding: 13px 24px; border-radius: 10px; font-weight: 800; background: var(--crimson-red); color: #FFFFFF; box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25);">
+                            <i class="fas fa-paper-plane"></i> Solicitar Vacante de Verano
+                        </a>
                     </div>
 
-                    <!-- SUBSECCIÓN 4: 3° A 5° SECUNDARIA -->
-                    <div id="vacaciones-sec-mayor" class="vacaciones-panel">
-                        <div class="vacaciones-hero-banner">
-                            <div class="vacaciones-hero-img-wrap">
-                                <img src="assets/images/secundaria_pizarra_resolucion.jpg" alt="Talleres Secundaria Mayor Genes">
-                            </div>
-                            <div class="vacaciones-hero-info">
-                                <div>
-                                    <span style="color: var(--crimson-red); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">3.° a 5.° de Secundaria</span>
-                                    <h3 style="color: var(--bg-dark-navy); font-size: 1.35rem; font-weight: 800; margin: 4px 0 6px;">Talleres Presenciales de Verano</h3>
-                                    <p style="color: #64748B; font-size: 0.88rem; margin: 0;">Enfoque riguroso preuniversitario y preparación para exámenes de admisión.</p>
-                                </div>
-                                <div style="display: flex; align-items: center; gap: 20px; background: #FFFFFF; padding: 12px 20px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-                                    <div style="text-align: center;"><span style="color: #64748B; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">Inicio</span><br><strong style="color: var(--crimson-red); font-size: 1.1rem; font-weight: 800;">05 Ene</strong></div>
-                                    <div style="width: 1px; height: 28px; background: #CBD5E1;"></div>
-                                    <div style="text-align: center;"><span style="color: #64748B; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">Fin</span><br><strong style="color: var(--bg-dark-navy); font-size: 1.1rem; font-weight: 800;">03 Feb</strong></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="vacaciones-taller-card academico" style="margin-bottom: 25px;">
-                            <h4 style="color: var(--bg-dark-navy); margin-bottom: 8px; font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-                                <i class="fas fa-graduation-cap" style="color: #DC2626;"></i> Cursos Especializados
-                            </h4>
-                            <p style="font-size: 0.92rem; color: #475569; margin: 0; line-height: 1.5;">Aritmética, Álgebra, Geometría, Trigonometría, Física, Química, Biología, Raz. Matemático, Raz. Verbal y Castellano.</p>
-                        </div>
-
-                        <div style="text-align: center; margin-bottom: 25px;">
-                            <h4 style="color: var(--bg-dark-navy); margin-bottom: 14px; font-weight: 800; font-size: 1.15rem;"><i class="fas fa-calendar-alt" style="color: #DC2626; margin-right: 8px;"></i>Horarios Oficiales del Taller</h4>
-                            <div class="horario-img-box" onclick="openIngresanteModal('assets/images/vacaciones/horario_secundaria_2.png?v=20260907', 'Horarios 3° a 5° Secundaria - Vacaciones Útiles')" title="Toca para ampliar horario en pantalla completa" style="max-width: 780px; margin: 0 auto 8px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #E2E8F0; background: #FFFFFF; padding: 12px; cursor: pointer;">
-                                <img src="assets/images/vacaciones/horario_secundaria_2.png?v=20260907" alt="Horarios 3° a 5° Secundaria Vacaciones Útiles" style="width: 100%; height: auto; display: block; border-radius: 10px;">
-                            </div>
-                            <button type="button" class="horario-zoom-badge" onclick="openIngresanteModal('assets/images/vacaciones/horario_secundaria_2.png?v=20260907', 'Horarios 3° a 5° Secundaria - Vacaciones Útiles')">
-                                <i class="fas fa-search-plus"></i> Toca para ampliar horario en alta resolución
-                            </button>
-                        </div>
-
-                        <h4 style="color: var(--bg-dark-navy); margin-bottom: 14px; font-weight: 800;">Requisitos del Estudiante</h4>
-                        <div class="vacaciones-requisitos-grid">
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge puntualidad">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div>
-                                    <h5>Puntualidad</h5>
-                                    <p>Estar listo y organizado desde antes del inicio de clases.</p>
-                                </div>
-                            </div>
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge disciplina">
-                                    <i class="fas fa-user-check"></i>
-                                </div>
-                                <div>
-                                    <h5>Disciplina</h5>
-                                    <p>Participación activa, respeto por el horario y compromiso constante.</p>
-                                </div>
-                            </div>
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge valores">
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <div>
-                                    <h5>Valores</h5>
-                                    <p>Respeto, responsabilidad y muchas ganas de aprender.</p>
-                                </div>
-                            </div>
-                            <div class="requisito-card-item">
-                                <div class="requisito-icon-badge materiales">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </div>
-                                <div>
-                                    <h5>Materiales</h5>
-                                    <p>Cuadernos, útiles básicos y disposición para trabajar en cada taller.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h4 style="color: var(--bg-dark-navy); margin-bottom: 15px; font-weight: 800; display: flex; align-items: center; gap: 8px;"><i class="fas fa-star" style="color: #DC2626;"></i>Beneficios del Programa</h4>
-                        <div class="vacaciones-beneficios-grid">
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_profesores.jpg" alt="Profesores dinámicos Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Profesores dinámicos</h5>
-                                    <p>Docentes comprometidos con el avance y motivación del alumno.</p>
-                                </div>
-                            </div>
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_videos.jpg" alt="Videos tutoriales Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Videos tutoriales</h5>
-                                    <p>Refuerzo adicional para seguir practicando fuera de clase.</p>
-                                </div>
-                            </div>
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_material.jpg" alt="Material académico Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Material académico</h5>
-                                    <p>Contenido teórico y práctico para cada sesión de aprendizaje.</p>
-                                </div>
-                            </div>
-                            <div class="vacaciones-beneficio-card">
-                                <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_rendimiento.jpg" alt="Informe de rendimiento Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                </div>
-                                <div class="beneficio-body">
-                                    <h5>Informe de rendimiento</h5>
-                                    <p>Seguimiento del progreso académico y formativo del estudiante.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
