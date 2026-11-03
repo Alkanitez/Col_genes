@@ -1113,31 +1113,146 @@ function initAnchorNavigation() {
     });
 }
 
+const GRADOS_POR_NIVEL = {
+    'Primaria': [
+        '1er. Grado de Primaria',
+        '2do. Grado de Primaria',
+        '3er. Grado de Primaria',
+        '4to. Grado de Primaria',
+        '5to. Grado de Primaria',
+        '6to. Grado de Primaria'
+    ],
+    'Secundaria': [
+        '1er. Año de Secundaria',
+        '2do. Año de Secundaria',
+        '3er. Año de Secundaria',
+        '4to. Año de Secundaria',
+        '5to. Año de Secundaria'
+    ]
+};
+
+function initDynamicGrades() {
+    const nivelSelects = document.querySelectorAll('select[name="nivel"]');
+    nivelSelects.forEach(nivelSelect => {
+        const form = nivelSelect.closest('form');
+        if (!form) return;
+        const gradoSelect = form.querySelector('select[name="grado"]');
+        if (!gradoSelect) return;
+
+        function updateGrados() {
+            const rawVal = (nivelSelect.value || '').toLowerCase();
+            let key = null;
+            if (rawVal.includes('primaria')) key = 'Primaria';
+            else if (rawVal.includes('secundaria')) key = 'Secundaria';
+
+            gradoSelect.innerHTML = '';
+            if (!key) {
+                const opt = document.createElement('option');
+                opt.value = '';
+                opt.disabled = true;
+                opt.selected = true;
+                opt.textContent = '← Primero selecciona el nivel (Primaria o Secundaria)';
+                gradoSelect.appendChild(opt);
+                gradoSelect.disabled = true;
+                return;
+            }
+
+            gradoSelect.disabled = false;
+            const promptOpt = document.createElement('option');
+            promptOpt.value = '';
+            promptOpt.disabled = true;
+            promptOpt.selected = true;
+            promptOpt.textContent = `Selecciona el grado de ${key}`;
+            gradoSelect.appendChild(promptOpt);
+
+            GRADOS_POR_NIVEL[key].forEach(grado => {
+                const opt = document.createElement('option');
+                opt.value = grado;
+                opt.textContent = grado;
+                gradoSelect.appendChild(opt);
+            });
+        }
+
+        nivelSelect.addEventListener('change', updateGrados);
+        if (nivelSelect.value) {
+            updateGrados();
+        } else {
+            gradoSelect.disabled = true;
+            gradoSelect.innerHTML = '<option value="" disabled selected>← Primero selecciona el nivel (Primaria o Secundaria)</option>';
+        }
+    });
+}
+
 function initFormFeedback() {
     const forms = document.querySelectorAll('form.formulario-moderno, form.parent-modern-form');
     forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Enviar mensaje';
 
             const nameInput = form.querySelector('input[name="nombres"], input[name="nombre"]');
+            const dniInput = form.querySelector('input[name="dni"]');
             const phoneInput = form.querySelector('input[name="telefono"], input[name="celular"]');
             const emailInput = form.querySelector('input[name="correo"], input[name="email"]');
-            const msgInput = form.querySelector('textarea[name="mensaje"], textarea[name="consulta"]');
+            const estudianteInput = form.querySelector('input[name="estudiante"], input[name="alumno"]');
+            const colegioInput = form.querySelector('input[name="colegio_origen"], input[name="colegio"]');
             const sedeInput = form.querySelector('select[name="sede"]');
+            const nivelInput = form.querySelector('select[name="nivel"]');
             const gradoInput = form.querySelector('select[name="grado"]');
+            const msgInput = form.querySelector('textarea[name="mensaje"], textarea[name="consulta"]');
 
             const nombre = nameInput ? nameInput.value.trim() : '';
+            const dni = dniInput ? dniInput.value.trim() : '';
             const telefono = phoneInput ? phoneInput.value.trim() : '';
-            const mensaje = msgInput ? msgInput.value.trim() : '';
+            const correo = emailInput ? emailInput.value.trim() : '';
+            const estudiante = estudianteInput ? estudianteInput.value.trim() : '';
+            const colegioOrigen = colegioInput ? colegioInput.value.trim() : '';
             const sede = sedeInput ? sedeInput.value : '';
+            const nivel = nivelInput ? nivelInput.value : '';
             const grado = gradoInput ? gradoInput.value : '';
+            const mensaje = msgInput ? msgInput.value.trim() : '';
+            const formType = form.getAttribute('data-form-type') || (form.id === 'form-admision' ? 'inicio' : 'admision');
 
             if (submitBtn) {
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = `<span>Enviando consulta...</span> <i class="fas fa-spinner fa-spin"></i>`;
+                submitBtn.innerHTML = `<span>Procesando y registrando...</span> <i class="fas fa-spinner fa-spin"></i>`;
+            }
+
+            const payload = {
+                fecha: new Date().toISOString(),
+                origen: `Web Genes (${formType.toUpperCase()})`,
+                nombres: nombre,
+                dni: dni,
+                telefono: telefono,
+                correo: correo,
+                estudiante: estudiante,
+                colegio_origen: colegioOrigen,
+                sede: sede,
+                nivel: nivel,
+                grado: grado,
+                mensaje: mensaje
+            };
+
+            const config = window.GENES_CONFIG || {};
+            const googleScriptUrl = config.googleAppsScriptUrl || '';
+            const waPhone = config.whatsappPhone || '51933840074';
+
+            // Despacho a Google Apps Script Webhook (si está configurado)
+            if (googleScriptUrl && googleScriptUrl.trim() !== '') {
+                try {
+                    await fetch(googleScriptUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                } catch (fetchErr) {
+                    console.warn('Registro en segundo plano Google Sheets:', fetchErr);
+                }
             }
 
             setTimeout(() => {
@@ -1146,28 +1261,43 @@ function initFormFeedback() {
                     submitBtn.innerHTML = originalBtnHtml;
                 }
 
-                const waPhone = '51933840074';
-                let waMessageText = `Hola Colegio Genes, soy ${nombre || 'un padre de familia'}. Deseo información sobre el proceso de admisión 2026`;
-                if (sede) waMessageText += ` para la sede ${sede}`;
-                if (grado) waMessageText += ` (${grado})`;
-                if (mensaje) waMessageText += `. Mi consulta: ${mensaje}`;
+                // Mensaje estructurado para WhatsApp
+                let waMessageText = `🎓 *SOLICITUD DE INFORMACIÓN - COLEGIO GENES*\n`;
+                waMessageText += `👤 *Apoderado:* ${nombre || 'No especificado'}\n`;
+                if (dni) waMessageText += `🪪 *DNI:* ${dni}\n`;
+                waMessageText += `📱 *Teléfono:* ${telefono || 'No especificado'}\n`;
+                if (correo) waMessageText += `📧 *Correo:* ${correo}\n`;
+                if (estudiante) waMessageText += `👦 *Estudiante:* ${estudiante}\n`;
+                if (colegioOrigen) waMessageText += `🏫 *Colegio de Procedencia:* ${colegioOrigen}\n`;
+                if (sede) waMessageText += `📍 *Sede:* ${sede}\n`;
+                if (nivel || grado) waMessageText += `📚 *Nivel y Grado:* ${nivel || ''} ${grado ? '(' + grado + ')' : ''}\n`;
+                if (mensaje) waMessageText += `📝 *Consulta:* ${mensaje}\n`;
 
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
-                        title: '¡Consulta enviada con éxito!',
+                        title: '¡Solicitud Registrada con Éxito!',
                         html: `
                             <div style="text-align: left; padding: 6px 2px; font-size: 0.95rem; color: #334155; line-height: 1.6;">
                                 <p style="margin-bottom: 8px;">¡Muchas gracias, <strong>${nombre || 'estimado(a) padre/madre de familia'}</strong>!</p>
-                                <p style="margin-bottom: 12px;">Hemos registrado tu solicitud para el <strong>Proceso de Admisión 2026</strong>. Un asesor académico se comunicará contigo vía <strong>WhatsApp ${telefono ? '(' + telefono + ')' : ''}</strong> para brindarte vacantes, costos y agendar la evaluación diagnóstica.</p>
+                                <p style="margin-bottom: 12px;">Tus datos han sido registrados en nuestro <strong>Sistema Institucional de Admisión 2026</strong>. Para atención inmediata y vacantes por sede, puedes chatear directamente con el área de admisiones.</p>
+                                
+                                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.88rem;">
+                                    ${dni ? `<div><strong>DNI Apoderado:</strong> ${dni}</div>` : ''}
+                                    ${estudiante ? `<div><strong>Estudiante:</strong> ${estudiante}</div>` : ''}
+                                    ${sede ? `<div><strong>Sede elegida:</strong> ${sede}</div>` : ''}
+                                    ${grado ? `<div><strong>Grado:</strong> ${grado}</div>` : ''}
+                                    ${colegioOrigen ? `<div><strong>Colegio de procedencia:</strong> ${colegioOrigen}</div>` : ''}
+                                </div>
+
                                 <div style="background: #F1F5F9; border-left: 4px solid #10B981; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; color: #1E293B;">
-                                    <i class="fas fa-clock" style="color: #10B981; margin-right: 6px;"></i> Tiempo estimado de respuesta: <strong>Menos de 15 minutos</strong> en horario de atención.
+                                    <i class="fas fa-clock" style="color: #10B981; margin-right: 6px;"></i> Tiempo estimado de respuesta: <strong>Menos de 15 minutos</strong> en horario escolar.
                                 </div>
                             </div>
                         `,
                         icon: 'success',
                         iconColor: '#10B981',
                         showCancelButton: true,
-                        confirmButtonText: '<i class="fab fa-whatsapp"></i> Chatear al WhatsApp Ahora',
+                        confirmButtonText: '<i class="fab fa-whatsapp"></i> Chatear al WhatsApp Oficial',
                         cancelButtonText: 'Cerrar',
                         confirmButtonColor: '#25D366',
                         cancelButtonColor: '#202682',
@@ -1183,7 +1313,7 @@ function initFormFeedback() {
                         }
                     });
                 } else {
-                    alert('¡Consulta enviada con éxito! Te contactaremos al WhatsApp en breve.');
+                    alert('¡Solicitud registrada con éxito! Te contactaremos a la brevedad.');
                 }
 
                 let feedbackBanner = form.querySelector('.form-inline-success');
@@ -1192,15 +1322,16 @@ function initFormFeedback() {
                     feedbackBanner.className = 'form-inline-success';
                     form.appendChild(feedbackBanner);
                 }
-                feedbackBanner.innerHTML = `<i class="fas fa-check-circle"></i> ¡Consulta registrada con éxito! Un asesor académico te contactará al WhatsApp en breve.`;
+                feedbackBanner.innerHTML = `<i class="fas fa-check-circle"></i> ¡Solicitud registrada con éxito en el sistema institucional! Nos comunicaremos al WhatsApp ${telefono} a la brevedad.`;
                 feedbackBanner.style.display = 'flex';
 
                 form.reset();
+                initDynamicGrades();
 
                 setTimeout(() => {
                     if (feedbackBanner) feedbackBanner.style.display = 'none';
                 }, 9000);
-            }, 500);
+            }, 600);
         });
     });
 }
@@ -1212,6 +1343,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderVideosPrimaria('primaria1');
     renderVideosSecundaria('secundaria1');
     initAnchorNavigation();
+    initDynamicGrades();
     initFormFeedback();
     handleHashRouting();
 });
