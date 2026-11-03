@@ -720,11 +720,13 @@ section.active {
 
 .titulo-pilares {
     font-family: 'Montserrat', sans-serif;
-    font-size: 2.1rem;
+    font-size: clamp(1.4rem, 2.5vw, 2.1rem);
     font-weight: 900;
     color: var(--bg-dark-navy);
     text-transform: uppercase;
     letter-spacing: -0.5px;
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
 .linea-pilares {
@@ -1705,6 +1707,14 @@ section.active {
 }
 
 @media (max-width: 480px) {
+    .titulo-pilares {
+        font-size: 1.15rem !important;
+        line-height: 1.25 !important;
+        letter-spacing: -0.2px !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
+    }
+
     #ingresante-modal-title {
         max-width: 125px !important;
         font-size: 0.8rem !important;
@@ -5165,7 +5175,10 @@ p.text-mobile-only, div.text-mobile-only {
 
     /* Section titles */
     .titulo-pilares {
-        font-size: 1.45rem;
+        font-size: 1.32rem !important;
+        line-height: 1.25 !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
     }
 
     /* Grids */
@@ -6172,6 +6185,14 @@ p.text-mobile-only, div.text-mobile-only {
 }
 
 @media (max-width: 480px) {
+    .titulo-pilares {
+        font-size: 1.15rem !important;
+        line-height: 1.25 !important;
+        letter-spacing: -0.2px !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
+    }
+
     .contacto-section-wrapper .content-wrapper {
         padding-left: 10px !important;
         padding-right: 10px !important;
