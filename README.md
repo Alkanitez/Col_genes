@@ -9,27 +9,32 @@ Plataforma web institucional y landing page adaptativa para el **Colegio Genes**
 
 ## 🚀 Características Principales
 
-- **Navegación Fluida por Anclas Semánticas (Smooth Scroll)**: Transición completa de enlaces estáticos a anclas reales (`#inicio`, `#propuesta`, `#sedes`, `#vacaciones`, `#ingresantes`, `#contacto`, `#admision`) con scroll suave continuo (`scroll-behavior: smooth`), `scroll-padding-top` para el navbar sticky y *Scroll Spy* dinámico con `IntersectionObserver`.
-- **Copywriting Auténtico del Sector Preuniversitario Peruano**: Redacción orientada a la realidad académica de Lima (Ciclos Semestral y Anual San Marcos y UNI, simulacros semanales presenciales con preguntas DECO, compendios gratuitos propios, salidas diarias a la pizarra y cómputos generales).
-- **Feedback Interactivo en Formularios (SweetAlert2 & WhatsApp)**: Validación en tiempo real, estados de carga con spinner, alerta modal de confirmación profesional personalizada vía SweetAlert2, derivación directa a WhatsApp con mensaje pre-rellenado y confirmación inline.
-- **Diseño 100% Adaptativo (Responsive)**: Optimización fluida para dispositivos móviles, tablets y monitores de alta resolución.
+- **Captura de Prospectos Institucional Completa**: Formularios homologados al 100% con los requerimientos de matrícula escolar peruana:
+  - Nombres del Apoderado y DNI (validado a 8 dígitos numéricos).
+  - Teléfono / WhatsApp y Correo Electrónico.
+  - Nombres y Apellidos del Estudiante.
+  - Colegio de Procedencia.
+  - Sede de Interés (Los Olivos, Comas, SMP, Puente Piedra, Gamarra).
+  - **Selector Dinámico de Grado**: Opciones dependientes del nivel educativo (Primaria: 1.° a 6.° / Secundaria: 1.° a 5.°).
+- **Backend Institucional Serverless (Google Sheets & Apps Script)**:
+  - Sincronización de leads en tiempo real con Google Sheets para el equipo comercial de admisiones.
+  - Despacho automático de alerta por correo con tarjeta visual HTML.
+  - Confirmación inmediata al apoderado vía correo electrónico.
+  - Respaldo con derivación directa al canal de WhatsApp Oficial con mensaje precargado.
+- **SEO On-Page Avanzado & Schema.org**:
+  - OpenGraph optimizado (`og:image`, `og:title`, `og:description`, `og:url`) y Twitter Cards para vistas previas impecables en WhatsApp y redes sociales.
+  - Datos Estructurados JSON-LD con tipos `School` y `EducationalOrganization`, detallando sedes, geolocalización, coordenadas en Lima, teléfonos y programas de estudio.
+- **Navegación Fluida por Anclas Semánticas (Smooth Scroll)**: Transición completa de enlaces a anclas (`#inicio`, `#propuesta`, `#sedes`, `#vacaciones`, `#ingresantes`, `#contacto`, `#admision`) con *Scroll Spy* dinámico con `IntersectionObserver`.
+- **Diseño 100% Adaptativo (Responsive)**: Optimización fluida para dispositivos móviles, tablets y computadoras de escritorio.
 - **Activos 100% Locales**: Logotipos, imágenes de las 8 sedes, portadas de compendios y horarios de talleres alojados internamente en `assets/images/`.
-- **Canales por Grado Académico (YouTube)**:
-  - **Secundaria**: 1.° a 5.° de secundaria integrados con enlaces a sus canales virtuales.
-  - **Primaria**: Enlaces y canales por grado de 1.° a 6.° de primaria.
-- **Programa Vacaciones Útiles 2026**: Horarios oficiales y talleres presenciales organizados en 4 subsecciones.
-- **Showcase de Ingresantes y Testimonios**: Galería interactiva de afiches de ingresantes a universidades de prestigio (UNMSM, UNI, Callao, PUCP).
-- **Directorio de Sedes**: Tarjetas detalladas de las 8 sedes con mapas y canales de contacto directo.
-- **Widget de WhatsApp Flotante**: Atención rápida e informes en tiempo real.
 
 ---
 
 ## 🛠️ Tecnologías Utilizadas
 
-- **HTML5**: Estructura semántica, accesibilidad y SEO.
-- **CSS3 (Vanilla CSS)**: Sistema de diseño modular, variables CSS, animaciones micro-interactivas, Flexbox y CSS Grid.
-- **JavaScript (ES6+)**: Lógica e interactividad de módulos, control de pestañas y modales.
-- **FontAwesome & Google Fonts**: Iconografía vectorial y tipografía (`Montserrat` y `Cinzel`).
+- **Frontend Core**: HTML5 Semántico, CSS3 Puro (Vanilla CSS con Custom Properties), JavaScript (ES6+ Asíncrono).
+- **Backend / Webhook**: Google Apps Script (Web App REST) integrado con Google Sheets.
+- **Librerías UI**: SweetAlert2 (Notificaciones modales interactivas), FontAwesome 6, Google Fonts (`Montserrat` y `Cinzel`).
 
 ---
 
@@ -46,77 +51,50 @@ colegio-genes/
 │       ├── canales/                # Avatares oficiales de canales por grado
 │       ├── hero_*.jpg              # Banners principales del carrusel
 │       └── ingresantes_*.png       # Afiches de alumnos ingresantes
+├── backend/
+│   └── GoogleAppsScript_Genes.js   # Script para conectar con Google Sheets y correo
 ├── css/
 │   └── styles.css                  # Hoja de estilos principal y responsive
 ├── js/
-│   └── main.js                     # Lógica interactiva
+│   ├── config.js                   # Configuración del frontend (Webhook URL, WhatsApp)
+│   └── main.js                     # Lógica interactiva y envío asíncrono
 ├── index.html                      # Landing page principal
 └── README.md                       # Documentación del proyecto
 ```
 
 ---
 
-## ⚡ Despliegue en Vercel (Producción Activa)
+## ⚙️ Configuración del Backend con Google Sheets
 
-El proyecto se encuentra desplegado y sincronizado con Vercel:
-- **URL de Producción**: [https://colegio-genes.vercel.app](https://colegio-genes.vercel.app)
-- **Comando de despliegue directo**:
-  ```bash
-  npx vercel --prod
-  ```
-
----
-
-## ☁️ Guía Paso a Paso para Despliegue en aaPanel
-
-### Opción A: Despliegue mediante Git en aaPanel (Recomendado)
-
-1. **Iniciar sesión en aaPanel**: Accede a tu panel de control de aaPanel.
-2. **Crear el Sitio Web**:
-   - Ve a la sección **Website** > **Add site**.
-   - Ingresa el dominio registrado: `prueba.clinicasrm.com.pe`.
-   - Selecciona **Pure HTML** o deja **PHP** según preferencia.
-3. **Clonar el Repositorio desde aaPanel**:
-   - Ve a **Website** > haz clic en la carpeta del sitio web (`/www/wwwroot/tu-dominio.com`).
-   - Abre la **Terminal** interna de aaPanel o ejecuta por SSH:
-     ```bash
-     cd /www/wwwroot/tu-dominio.com
-     git clone https://github.com/mfdevelopersupport-spec/mfdevelopersupport-spec.git .
-     ```
-4. **Configurar Permisos**:
-   - Asegúrate de que los archivos tengan permisos `755` y propietario `www:www`.
-5. **Activar Certificado SSL (HTTPS)**:
-   - En aaPanel, ingresa a la configuración del dominio > **SSL** > selecciona **Let's Encrypt** y haz clic en **Apply**.
-
----
-
-### Opción B: Despliegue subiendo Archivo ZIP en aaPanel
-
-1. **Empaquetar el Proyecto**:
-   - Selecciona los archivos `index.html`, `README.md`, carpeta `assets/`, `css/` y `js/` y comprímelos en un archivo `colegio-genes.zip`.
-2. **Subir mediante File Manager de aaPanel**:
-   - Abre **Files** en aaPanel y navega a `/www/wwwroot/tu-dominio.com`.
-   - Haz clic en **Upload**, selecciona `colegio-genes.zip` y sube el archivo.
-3. **Descomprimir**:
-   - Haz clic derecho sobre `colegio-genes.zip` > **Uncompress**.
-4. **Verificación**:
-   - Verifica que `index.html` quede en la raíz de `/www/wwwroot/tu-dominio.com`.
+1. Abre [Google Sheets](https://sheets.new) y crea una hoja nueva (ej: `Leads Colegio Genes 2026`).
+2. En el menú superior, ve a **Extensiones** > **Apps Script**.
+3. Copia y pega el código de [`backend/GoogleAppsScript_Genes.js`](backend/GoogleAppsScript_Genes.js).
+4. Edita el correo de destino en la variable `ADMIN_EMAIL` (por defecto: `admisiones@colegiogenes.edu.pe`).
+5. Haz clic en **Implementar** > **Nueva implementación**:
+   - **Tipo:** Aplicación web.
+   - **Ejecutar como:** Yo (tu cuenta de Google).
+   - **Quién tiene acceso:** Cualquier persona (*Anyone*).
+6. Copia la URL generada (`https://script.google.com/macros/s/.../exec`).
+7. Abre el archivo [`js/config.js`](js/config.js) y pega la URL en:
+   ```javascript
+   window.GENES_CONFIG = {
+       googleAppsScriptUrl: 'TU_URL_DE_APPS_SCRIPT_AQUI',
+       whatsappPhone: '51933840074'
+   };
+   ```
 
 ---
 
 ## 🔧 Ejecución Local para Desarrollo
 
 ```bash
-# 1. Clonar repositorio
-git clone https://github.com/mfdevelopersupport-spec/mfdevelopersupport-spec.git
-
-# 2. Navegar a la carpeta del proyecto
+# 1. Navegar a la carpeta del proyecto
 cd colegio-genes
 
-# 3. Iniciar servidor local HTTP
-python -m http.server 8080
+# 2. Iniciar servidor local HTTP en puerto 5500
+python -m http.server 5500
 ```
-Acceder a: `http://localhost:8080`
+Acceder en el navegador a: `http://localhost:5500`
 
 ---
 
