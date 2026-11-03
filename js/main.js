@@ -1183,12 +1183,282 @@ function initDynamicGrades() {
     });
 }
 
+// ============================================================================
+// VALIDACIÓN Y SANITIZACIÓN ESTRICTA DE FORMULARIOS (CERO INFO BASURA)
+// ============================================================================
+
+const REGEX_SOLO_LETRAS = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]{3,60}$/;
+const REGEX_DNI = /^\d{8}$/;
+const REGEX_CELULAR_PERU = /^9\d{8}$/;
+const REGEX_CORREO = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+const REGEX_COLEGIO = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s\.,\-#°]{3,80}$/;
+
+// Lista de secuencias inválidas comunes de DNI
+const DNI_INVALIDOS = new Set([
+    '00000000', '11111111', '22222222', '33333333', '44444444',
+    '55555555', '66666666', '77777777', '88888888', '99999999',
+    '12345678', '87654321', '01234567'
+]);
+
+// Celulares ficticios comunes
+const CELULARES_INVALIDOS = new Set([
+    '999999999', '987654321', '900000000', '911111111'
+]);
+
+function setFieldValidity(input, isValid, errorMsg) {
+    const parentUnit = input.closest('.form-field-unit, .input-field-group');
+    const inputWrapper = input.closest('.form-input-shell, .input-wrapper');
+    if (!parentUnit || !inputWrapper) return;
+
+    let errorSpan = parentUnit.querySelector('.field-error-text');
+    if (!errorSpan) {
+        errorSpan = document.createElement('span');
+        errorSpan.className = 'field-error-text';
+        parentUnit.appendChild(errorSpan);
+    }
+
+    if (isValid) {
+        inputWrapper.classList.remove('is-invalid');
+        parentUnit.classList.remove('has-error');
+        inputWrapper.classList.add('is-valid');
+        errorSpan.style.display = 'none';
+    } else {
+        inputWrapper.classList.remove('is-valid');
+        inputWrapper.classList.add('is-invalid');
+        parentUnit.classList.add('has-error');
+        errorSpan.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${errorMsg || 'Dato no válido'}`;
+        errorSpan.style.display = 'flex';
+    }
+}
+
+function clearFieldStatus(input) {
+    const parentUnit = input.closest('.form-field-unit, .input-field-group');
+    const inputWrapper = input.closest('.form-input-shell, .input-wrapper');
+    if (inputWrapper) {
+        inputWrapper.classList.remove('is-invalid', 'is-valid');
+    }
+    if (parentUnit) {
+        parentUnit.classList.remove('has-error');
+        const errorSpan = parentUnit.querySelector('.field-error-text');
+        if (errorSpan) errorSpan.style.display = 'none';
+    }
+}
+
+function validateSingleField(input, isSubmitting = false) {
+    const name = input.getAttribute('name');
+    const value = (input.value || '').trim();
+
+    // Si no se está enviando y está vacío, solo limpiamos el estado
+    if (!isSubmitting && value === '' && !input.required) {
+        clearFieldStatus(input);
+        return { valid: true };
+    }
+
+    if (input.required && value === '') {
+        const msg = 'Este campo es obligatorio';
+        setFieldValidity(input, false, msg);
+        return { valid: false, message: msg };
+    }
+
+    // 1. Nombres y Apellidos (Apoderado o Alumno)
+    if (name === 'nombres' || name === 'nombre' || name === 'estudiante' || name === 'alumno') {
+        if (!REGEX_SOLO_LETRAS.test(value)) {
+            const msg = 'Solo letras y espacios (sin números ni símbolos, mín. 3 letras)';
+            setFieldValidity(input, false, msg);
+            return { valid: false, message: msg, label: input.previousElementSibling ? input.previousElementSibling.textContent.replace('*', '').trim() : 'Nombres' };
+        }
+        // Evitar cadenas de una sola letra repetida como "aaaaaa"
+        if (/^(.)\1+$/.test(value.replace(/\s/g, ''))) {
+            const msg = 'Por favor ingrese nombres y apellidos reales';
+            setFieldValidity(input, false, msg);
+            return { valid: false, message: msg, label: 'Nombres' };
+        }
+    }
+
+    // 2. DNI
+    if (name === 'dni') {
+        if (!REGEX_DNI.test(value)) {
+            const msg = 'El DNI debe tener exactamente 8 números';
+            setFieldValidity(input, false, msg);
+            return { valid: false, message: msg, label: 'DNI del Apoderado' };
+        }
+        if (DNI_INVALIDOS.has(value)) {
+            const msg = 'Por favor ingrese un número de DNI válido';
+            setFieldValidity(input, false, msg);
+            return { valid: false, message: msg, label: 'DNI del Apoderado' };
+        }
+    }
+
+    // 3. Teléfono / Celular
+    if (name === 'telefono' || name === 'celular') {
+        if (!REGEX_CELULAR_PERU.test(value)) {
+            const msg = 'El celular debe tener 9 dígitos y empezar con 9 (ej. 987654321)';
+            setFieldValidity(input, false, msg);
+            return { valid: false, message: msg, label: 'Teléfono / WhatsApp' };
+        }
+        if (CELULARES_INVALIDOS.has(value)) {
+            const msg = 'Por favor ingrese un celular de contacto real';
+            setFieldValidity(input, false, msg);
+            return { valid: false, message: msg, label: 'Teléfono / WhatsApp' };
+        }
+    }
+
+    // 4. Correo Electrónico
+    if (name === 'correo' || name === 'email') {
+        if (!REGEX_CORREO.test(value)) {
+            const msg = 'Ingrese un correo válido (ejemplo: usuario@correo.com)';
+            setFieldValidity(input, false, msg);
+            return { valid: false, message: msg, label: 'Correo Electrónico' };
+        }
+    }
+
+    // 5. Colegio de Procedencia
+    if (name === 'colegio_origen' || name === 'colegio') {
+        if (!REGEX_COLEGIO.test(value)) {
+            const msg = 'Ingrese el nombre de la institución (mínimo 3 caracteres)';
+            setFieldValidity(input, false, msg);
+            return { valid: false, message: msg, label: 'Colegio de Procedencia' };
+        }
+    }
+
+    // 6. Selects (Sede, Nivel, Grado)
+    if (input.tagName.toLowerCase() === 'select') {
+        if (!value || value === '' || input.disabled) {
+            const msg = 'Por favor seleccione una opción válida';
+            setFieldValidity(input, false, msg);
+            return { valid: false, message: msg, label: input.previousElementSibling ? input.previousElementSibling.textContent.replace('*', '').trim() : 'Selección' };
+        }
+    }
+
+    // 7. Mensaje
+    if (name === 'mensaje' || name === 'consulta') {
+        if (value.length < 5) {
+            const msg = 'La consulta debe tener al menos 5 caracteres';
+            setFieldValidity(input, false, msg);
+            return { valid: false, message: msg, label: 'Mensaje o Consulta' };
+        }
+    }
+
+    setFieldValidity(input, true);
+    return { valid: true };
+}
+
+function initFormSanitization() {
+    const inputs = document.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+        const name = input.getAttribute('name');
+
+        // Sanitización en tiempo real para NOMBRES (sin números ni símbolos)
+        if (name === 'nombres' || name === 'nombre' || name === 'estudiante' || name === 'alumno') {
+            input.addEventListener('input', function() {
+                const cleaned = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]/g, '').replace(/\s{2,}/g, ' ');
+                if (this.value !== cleaned) this.value = cleaned;
+                if (this.value.length >= 3) validateSingleField(this, false);
+            });
+        }
+
+        // Sanitización en tiempo real para DNI (solo dígitos, máx 8)
+        if (name === 'dni') {
+            input.addEventListener('input', function() {
+                const cleaned = this.value.replace(/\D/g, '').slice(0, 8);
+                if (this.value !== cleaned) this.value = cleaned;
+                if (this.value.length === 8) validateSingleField(this, false);
+            });
+        }
+
+        // Sanitización en tiempo real para TELÉFONO (solo dígitos, máx 9)
+        if (name === 'telefono' || name === 'celular') {
+            input.addEventListener('input', function() {
+                const cleaned = this.value.replace(/\D/g, '').slice(0, 9);
+                if (this.value !== cleaned) this.value = cleaned;
+                if (this.value.length === 9) validateSingleField(this, false);
+            });
+        }
+
+        // Sanitización para CORREO (sin espacios)
+        if (name === 'correo' || name === 'email') {
+            input.addEventListener('input', function() {
+                const cleaned = this.value.replace(/\s/g, '');
+                if (this.value !== cleaned) this.value = cleaned;
+            });
+        }
+
+        // Sanitización para COLEGIO (remover caracteres de inyección)
+        if (name === 'colegio_origen' || name === 'colegio') {
+            input.addEventListener('input', function() {
+                const cleaned = this.value.replace(/[<>{}\[\];\"\'`]/g, '');
+                if (this.value !== cleaned) this.value = cleaned;
+            });
+        }
+
+        // Validación al salir del campo (blur)
+        input.addEventListener('blur', function() {
+            validateSingleField(this, false);
+        });
+    });
+}
+
 function initFormFeedback() {
     const forms = document.querySelectorAll('form.formulario-moderno, form.parent-modern-form');
     forms.forEach(form => {
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
 
+            // 1. VALIDACIÓN EXHAUSTIVA DE TODOS LOS CAMPOS ANTES DE PROCESAR
+            const formInputs = form.querySelectorAll('input:not([type="hidden"]), select, textarea');
+            let firstInvalidInput = null;
+            let firstErrorMessage = '';
+            let firstErrorLabel = '';
+
+            for (const input of formInputs) {
+                const result = validateSingleField(input, true);
+                if (!result.valid && !firstInvalidInput) {
+                    firstInvalidInput = input;
+                    firstErrorMessage = result.message;
+                    firstErrorLabel = result.label || 'Campo';
+                }
+            }
+
+            // Si hay algún dato inválido, detenemos el envío y mostramos alerta profesional
+            if (firstInvalidInput) {
+                firstInvalidInput.focus();
+                const parentShell = firstInvalidInput.closest('.form-input-shell, .input-wrapper');
+                if (parentShell) {
+                    parentShell.classList.remove('is-invalid');
+                    void parentShell.offsetWidth; // Forzar re-trigger de animación shake
+                    parentShell.classList.add('is-invalid');
+                }
+
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: 'Dato inválido detectado',
+                        html: `
+                            <div style="text-align: left; padding: 4px; font-size: 0.95rem; color: #334155; line-height: 1.6;">
+                                <p style="margin-bottom: 8px;">Por favor verifique el campo <strong>${firstErrorLabel}</strong>:</p>
+                                <div style="background: #FEF2F2; border-left: 4px solid #EF4444; padding: 10px 14px; border-radius: 6px; font-size: 0.9rem; color: #991B1B;">
+                                    <i class="fas fa-exclamation-triangle" style="margin-right: 6px;"></i> ${firstErrorMessage}
+                                </div>
+                                <p style="margin-top: 10px; font-size: 0.85rem; color: #64748B;">
+                                    Recuerde que los nombres solo deben llevar letras, el DNI debe contener 8 números y el celular 9 dígitos iniciando con 9.
+                                </p>
+                            </div>
+                        `,
+                        icon: 'warning',
+                        iconColor: '#EF4444',
+                        confirmButtonText: '<i class="fas fa-pen"></i> Corregir campo',
+                        confirmButtonColor: '#202682',
+                        customClass: {
+                            popup: 'genes-swal-popup',
+                            confirmButton: 'genes-swal-confirm-btn'
+                        }
+                    });
+                } else {
+                    alert(`Error en ${firstErrorLabel}: ${firstErrorMessage}`);
+                }
+                return;
+            }
+
+            // 2. TODOS LOS DATOS SON VÁLIDOS -> PROCEDER CON EL DESPACHO
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Enviar mensaje';
 
@@ -1217,7 +1487,7 @@ function initFormFeedback() {
 
             if (submitBtn) {
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = `<span>Procesando y registrando...</span> <i class="fas fa-spinner fa-spin"></i>`;
+                submitBtn.innerHTML = `<span>Validando y registrando...</span> <i class="fas fa-spinner fa-spin"></i>`;
             }
 
             const payload = {
@@ -1261,7 +1531,7 @@ function initFormFeedback() {
                     submitBtn.innerHTML = originalBtnHtml;
                 }
 
-                // Mensaje estructurado para WhatsApp
+                // Mensaje estructurado institucional para WhatsApp
                 let waMessageText = `🎓 *SOLICITUD DE INFORMACIÓN - COLEGIO GENES*\n`;
                 waMessageText += `👤 *Apoderado:* ${nombre || 'No especificado'}\n`;
                 if (dni) waMessageText += `🪪 *DNI:* ${dni}\n`;
@@ -1278,11 +1548,11 @@ function initFormFeedback() {
                         title: '¡Solicitud Registrada con Éxito!',
                         html: `
                             <div style="text-align: left; padding: 6px 2px; font-size: 0.95rem; color: #334155; line-height: 1.6;">
-                                <p style="margin-bottom: 8px;">¡Muchas gracias, <strong>${nombre || 'estimado(a) padre/madre de familia'}</strong>!</p>
-                                <p style="margin-bottom: 12px;">Tus datos han sido registrados en nuestro <strong>Sistema Institucional de Admisión 2026</strong>. Para atención inmediata y vacantes por sede, puedes chatear directamente con el área de admisiones.</p>
+                                <p style="margin-bottom: 8px;">¡Muchas gracias, <strong>${nombre}</strong>!</p>
+                                <p style="margin-bottom: 12px;">Tus datos han sido validados y registrados en nuestro <strong>Sistema Institucional de Admisión 2026</strong>. Para atención inmediata y vacantes por sede, puedes chatear directamente con el área de admisiones.</p>
                                 
                                 <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.88rem;">
-                                    ${dni ? `<div><strong>DNI Apoderado:</strong> ${dni}</div>` : ''}
+                                    <div><strong>DNI Apoderado:</strong> ${dni}</div>
                                     ${estudiante ? `<div><strong>Estudiante:</strong> ${estudiante}</div>` : ''}
                                     ${sede ? `<div><strong>Sede elegida:</strong> ${sede}</div>` : ''}
                                     ${grado ? `<div><strong>Grado:</strong> ${grado}</div>` : ''}
@@ -1326,6 +1596,7 @@ function initFormFeedback() {
                 feedbackBanner.style.display = 'flex';
 
                 form.reset();
+                formInputs.forEach(clearFieldStatus);
                 initDynamicGrades();
 
                 setTimeout(() => {
@@ -1344,6 +1615,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderVideosSecundaria('secundaria1');
     initAnchorNavigation();
     initDynamicGrades();
+    initFormSanitization();
     initFormFeedback();
     handleHashRouting();
 });
