@@ -6628,3 +6628,129 @@ p.text-mobile-only, div.text-mobile-only {
     }
 }
 
+
+
+/* ==========================================================================
+   ENRIQUECIMIENTO INSTITUCIONAL: PRIMARIA (TALLERES FORMATIVOS POR BIMESTRE)
+   ========================================================================== */
+.primaria-talleres-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.taller-bimestre-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 22px 18px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    position: relative;
+}
+
+.taller-bimestre-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    border-color: #CBD5E1;
+}
+
+.taller-bimestre-badge {
+    align-self: flex-start;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.6px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+}
+
+.taller-bimestre-badge.bimestre-1 {
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563EB;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.taller-bimestre-badge.bimestre-2 {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10B981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.taller-bimestre-badge.bimestre-3 {
+    background: rgba(245, 158, 11, 0.1);
+    color: #D97706;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.taller-bimestre-badge.bimestre-4 {
+    background: rgba(220, 38, 38, 0.1);
+    color: #DC2626;
+    border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.taller-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    margin-bottom: 14px;
+}
+
+.taller-bimestre-card h4 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0F172A;
+    margin: 0 0 12px;
+}
+
+.taller-actividades-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.taller-actividades-list li {
+    font-size: 0.84rem;
+    color: #475569;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.taller-actividades-list li i {
+    color: #10B981;
+    font-size: 0.75rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.taller-actividades-list li strong {
+    color: #0F172A;
+    font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+    .primaria-talleres-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .primaria-talleres-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+}
