@@ -6973,3 +6973,90 @@ p.text-mobile-only, div.text-mobile-only {
 .formacion-vida-card:hover .fvc-photo-thumb img {
     transform: scale(1.05);
 }
+
+
+/* ==========================================================================
+   DESACOPLE VISUAL: ELIMINACIÓN DE "TARJETA SOBRE TARJETA"
+   ========================================================================== */
+.sistema-detail-subsection {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 10px 15px 40px;
+}
+
+.detail-section-block {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 10px 0 35px !important;
+    margin-bottom: 20px;
+    width: 100%;
+    position: relative;
+}
+
+.detail-section-block .pilares-header {
+    margin-bottom: 26px;
+    text-align: center;
+}
+
+.detail-section-block .titulo-pilares {
+    color: #0F172A;
+    font-size: 1.85rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+}
+
+/* El botón volver ahora tiene una estética de píldora flotante moderna */
+.btn-volver-sistema {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #FFFFFF;
+    color: #202682;
+    border: 1.5px solid #E2E8F0;
+    padding: 11px 22px;
+    border-radius: 9999px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+    margin-bottom: 30px;
+}
+
+.btn-volver-sistema:hover {
+    background: #EFF6FF;
+    border-color: #BFDBFE;
+    color: #1E3A8A;
+    transform: translateX(-4px);
+    box-shadow: 0 6px 18px rgba(32, 38, 130, 0.1);
+}
+
+/* Tarjetas individuales ahora respiran con sombras elegantes y bordes suaves */
+.pilar-card,
+.proyecto-card,
+.formacion-vida-card,
+.taller-bimestre-card,
+.sistema-highlight-card,
+.sistema-info-split {
+    background: #FFFFFF;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+}
+
+.pilar-card:hover,
+.proyecto-card:hover,
+.formacion-vida-card:hover,
+.taller-bimestre-card:hover,
+.sistema-highlight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+    border-color: #CBD5E1;
+}
+
+.sistema-info-split {
+    padding: 32px 28px;
+}
