@@ -555,19 +555,6 @@ const videosPrimariaData = {
             { nombre: "Matemática", link: "https://youtu.be/DFvta53hE8Q", icono: "fas fa-calculator" }
         ]
     },
-    primaria3: {
-        cursos: [
-            { nombre: "Aritmética", link: "https://youtu.be/dOdc8ij6kh0", icono: "fas fa-calculator" },
-            { nombre: "Álgebra", link: "https://youtu.be/AWscpVMkWuc", icono: "fas fa-square-root-alt" },
-            { nombre: "Geometría", link: "https://youtu.be/g1tWczbKadE", icono: "fas fa-draw-polygon" },
-            { nombre: "Raz. Matemático", link: "https://youtu.be/Ul5i1RD5yYI", icono: "fas fa-brain" },
-            { nombre: "Personal Social", link: "https://youtu.be/LK-8iXxqAHw", icono: "fas fa-users" },
-            { nombre: "Ciencia y Tecnología", link: "https://youtu.be/_vCv2SnLzoE", icono: "fas fa-flask" },
-            { nombre: "Inglés", link: "https://youtu.be/YxoNPEEHqdM", icono: "fas fa-language" },
-            { nombre: "Comunicación", link: "https://youtu.be/6y1F3BrcC20", icono: "fas fa-book-open" },
-            { nombre: "Raz. Verbal", link: "https://youtu.be/VBoveOlYbvo", icono: "fas fa-comments" }
-        ]
-    },
     primaria4: {
         cursos: [
             { nombre: "Aritmética", link: "https://youtu.be/Xm55s-Ntnao", icono: "fas fa-calculator" },
