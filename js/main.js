@@ -888,7 +888,7 @@ function openSedeModal(id) {
 
     const celular = document.getElementById("sede-modal-celular");
     celular.innerHTML = `<i class="fab fa-whatsapp"></i> <span>${sede.celular}</span>`;
-    celular.href = `https://wa.me/51${sede.celular}`;
+    celular.href = `https://wa.me/51${sede.celular}?text=${encodeURIComponent(`Hola Colegio Genes (Sede ${sede.nombre}), deseo solicitar información sobre vacantes y el proceso de admisión.`)}`;
 
     const correo = document.getElementById("sede-modal-correo");
     correo.innerHTML = `<i class="far fa-envelope"></i> <span>${sede.correo}</span>`;
