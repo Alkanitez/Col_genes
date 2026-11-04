@@ -1805,3 +1805,20 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('resize', function() {
     centerTrack();
 });
+
+
+// ==========================================================================
+// RESILIENCIA DE RED: REINTENTO AUTOMÁTICO DE CARGA DE IMÁGENES
+// ==========================================================================
+window.addEventListener('error', function (e) {
+    if (e.target && e.target.tagName === 'IMG') {
+        const img = e.target;
+        if (!img.dataset.retried) {
+            img.dataset.retried = 'true';
+            setTimeout(function() {
+                const base = img.src.split('?')[0];
+                img.src = base + '?retry=' + Date.now();
+            }, 600);
+        }
+    }
+}, true);
