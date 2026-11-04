@@ -1120,105 +1120,118 @@
         <section id="vacaciones">
             <div class="content-wrapper">
                 <div class="card animate-fade-up">
-                    <!-- DOODLE CRAYÓN: SOL EN ESQUINA SUPERIOR IZQUIERDA -->
+                    <!-- DOODLE CRAYÓN: SOL ANIMADO EN ESQUINA SUPERIOR IZQUIERDA -->
                     <div class="vacaciones-doodle vacaciones-doodle-sun" aria-hidden="true">
                         <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Rayos principales garabateados tipo crayón -->
-                            <g stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M60 12 C59.5 20, 60.5 24, 60 27" />
-                                <path d="M85 22 C81 28, 78 31, 74 35" />
-                                <path d="M106 46 C99 48, 95 50, 88 51" />
-                                <path d="M106 72 C99 70, 95 69, 88 67" />
-                                <path d="M86 94 C81 89, 78 86, 73 82" />
-                                <path d="M60 106 C60.5 98, 59.5 95, 60 92" />
-                                <path d="M34 94 C39 89, 42 86, 47 82" />
-                                <path d="M14 72 C21 70, 25 69, 32 67" />
-                                <path d="M14 46 C21 48, 25 50, 32 51" />
-                                <path d="M35 22 C39 28, 42 31, 46 35" />
+                            <!-- Rayos solares giratorios estilo crayón -->
+                            <g class="doodle-sun-rays">
+                                <!-- Rayos principales garabateados tipo crayón -->
+                                <g stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M60 12 C59.5 20, 60.5 24, 60 27" />
+                                    <path d="M85 22 C81 28, 78 31, 74 35" />
+                                    <path d="M106 46 C99 48, 95 50, 88 51" />
+                                    <path d="M106 72 C99 70, 95 69, 88 67" />
+                                    <path d="M86 94 C81 89, 78 86, 73 82" />
+                                    <path d="M60 106 C60.5 98, 59.5 95, 60 92" />
+                                    <path d="M34 94 C39 89, 42 86, 47 82" />
+                                    <path d="M14 72 C21 70, 25 69, 32 67" />
+                                    <path d="M14 46 C21 48, 25 50, 32 51" />
+                                    <path d="M35 22 C39 28, 42 31, 46 35" />
+                                </g>
+                                <!-- Rayos secundarios finos tipo crayón -->
+                                <g stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round">
+                                    <path d="M73 15 C72 20, 71 22, 70 24" />
+                                    <path d="M96 32 C92 35, 89 37, 85 39" />
+                                    <path d="M103 59 C98 59, 94 59, 90 58" />
+                                    <path d="M94 84 C90 81, 87 78, 83 75" />
+                                    <path d="M47 15 C48 20, 49 22, 50 24" />
+                                    <path d="M24 32 C28 35, 31 37, 35 39" />
+                                    <path d="M17 59 C22 59, 26 59, 30 58" />
+                                    <path d="M26 84 C30 81, 33 78, 37 75" />
+                                </g>
                             </g>
-                            <!-- Rayos secundarios finos tipo crayón -->
-                            <g stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round">
-                                <path d="M73 15 C72 20, 71 22, 70 24" />
-                                <path d="M96 32 C92 35, 89 37, 85 39" />
-                                <path d="M103 59 C98 59, 94 59, 90 58" />
-                                <path d="M94 84 C90 81, 87 78, 83 75" />
-                                <path d="M47 15 C48 20, 49 22, 50 24" />
-                                <path d="M24 32 C28 35, 31 37, 35 39" />
-                                <path d="M17 59 C22 59, 26 59, 30 58" />
-                                <path d="M26 84 C30 81, 33 78, 37 75" />
+                            <!-- Núcleo y rostro sonriente animado -->
+                            <g class="doodle-sun-face">
+                                <!-- Relleno amarillo crayón translúcido -->
+                                <circle cx="60" cy="59" r="26" fill="#FEF08A" fill-opacity="0.88" />
+                                <!-- Textura interna de garabato crayón -->
+                                <path d="M42 53 Q52 44, 64 47 T76 55 Q68 66, 56 63 T44 67" stroke="#FDE047" stroke-width="3" stroke-linecap="round" fill="none" />
+                                <path d="M46 48 C54 43, 68 45, 73 52 C77 60, 73 68, 63 70" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 4" fill="none" />
+                                <!-- Contorno libre e imperfecto del sol -->
+                                <path d="M60 33 C75 32.5, 87 44.5, 86.5 59 C86 73.8, 74.5 85.5, 60 85.2 C45.2 85, 33.5 73.5, 33.8 59 C34 44.5, 45.5 33.5, 60 33 Z" stroke="#D97706" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <!-- Carita sonriente amigable tipo dibujo escolar -->
+                                <ellipse cx="51" cy="55" rx="2.5" ry="3.2" fill="#B45309" />
+                                <ellipse cx="69" cy="55" rx="2.5" ry="3.2" fill="#B45309" />
+                                <path d="M52 64 Q60 72, 68 64" stroke="#B45309" stroke-width="2.8" stroke-linecap="round" fill="none" />
+                                <!-- Chapitas rosadas con brillo sutil -->
+                                <g class="doodle-sun-cheeks">
+                                    <ellipse cx="45" cy="62" rx="3.5" ry="2" fill="#F87171" fill-opacity="0.8" />
+                                    <ellipse cx="75" cy="62" rx="3.5" ry="2" fill="#F87171" fill-opacity="0.8" />
+                                </g>
                             </g>
-                            <!-- Relleno amarillo crayón translúcido -->
-                            <circle cx="60" cy="59" r="26" fill="#FEF08A" fill-opacity="0.85" />
-                            <!-- Textura interna de garabato crayón -->
-                            <path d="M42 53 Q52 44, 64 47 T76 55 Q68 66, 56 63 T44 67" stroke="#FDE047" stroke-width="3" stroke-linecap="round" fill="none" />
-                            <path d="M46 48 C54 43, 68 45, 73 52 C77 60, 73 68, 63 70" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 4" fill="none" />
-                            <!-- Contorno libre e imperfecto del sol -->
-                            <path d="M60 33 C75 32.5, 87 44.5, 86.5 59 C86 73.8, 74.5 85.5, 60 85.2 C45.2 85, 33.5 73.5, 33.8 59 C34 44.5, 45.5 33.5, 60 33 Z" stroke="#D97706" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <!-- Carita sonriente amigable tipo dibujo escolar -->
-                            <ellipse cx="51" cy="55" rx="2.5" ry="3.2" fill="#B45309" />
-                            <ellipse cx="69" cy="55" rx="2.5" ry="3.2" fill="#B45309" />
-                            <path d="M52 64 Q60 72, 68 64" stroke="#B45309" stroke-width="2.8" stroke-linecap="round" fill="none" />
-                            <!-- Chapitas rosadas -->
-                            <ellipse cx="45" cy="62" rx="3.5" ry="2" fill="#F87171" fill-opacity="0.75" />
-                            <ellipse cx="75" cy="62" rx="3.5" ry="2" fill="#F87171" fill-opacity="0.75" />
                         </svg>
                     </div>
 
-                    <!-- DOODLE CRAYÓN: PARASOL EN ESQUINA SUPERIOR DERECHA -->
+                    <!-- DOODLE CRAYÓN: PARASOL ANIMADO EN ESQUINA SUPERIOR DERECHA -->
                     <div class="vacaciones-doodle vacaciones-doodle-parasol" aria-hidden="true">
                         <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Mástil / Palo del parasol (garabato inclinado) -->
+                            <!-- Mástil y arena de base -->
                             <path d="M55 42 L34 98" stroke="#78350F" stroke-width="3.5" stroke-linecap="round" />
-                            
-                            <!-- Montículo de arena en la base con puntitos de crayón -->
                             <path d="M20 98 Q34 94, 48 98" stroke="#D97706" stroke-width="3" stroke-linecap="round" fill="none" />
                             <circle cx="26" cy="101" r="1.5" fill="#F59E0B" />
                             <circle cx="36" cy="100" r="1.8" fill="#D97706" />
                             <circle cx="44" cy="102" r="1.4" fill="#F59E0B" />
                             
-                            <!-- Cúpula del Parasol (Segmentos de colores estilo crayón) -->
-                            <!-- Segmento 1 (Rojo cálido / Crimson) -->
-                            <path d="M55 16 C42 22, 28 32, 18 46 Q24 48, 30 46 C38 34, 48 24, 55 16 Z" fill="#EF4444" fill-opacity="0.9" />
-                            <path d="M22 41 Q28 32, 34 26" stroke="#FCA5A5" stroke-width="2" stroke-linecap="round" fill="none" />
-                            
-                            <!-- Segmento 2 (Amarillo soleado) -->
-                            <path d="M55 16 C48 24, 38 34, 30 46 Q38 49, 46 47 C50 35, 54 24, 55 16 Z" fill="#FBBF24" fill-opacity="0.9" />
-                            <path d="M36 42 Q42 33, 46 25" stroke="#FEF08A" stroke-width="2" stroke-linecap="round" fill="none" />
+                            <!-- Cúpula del Parasol con micro-aleteo de brisa playera -->
+                            <g class="doodle-parasol-canopy">
+                                <!-- Segmento 1 (Rojo cálido / Crimson) -->
+                                <path d="M55 16 C42 22, 28 32, 18 46 Q24 48, 30 46 C38 34, 48 24, 55 16 Z" fill="#EF4444" fill-opacity="0.92" />
+                                <path d="M22 41 Q28 32, 34 26" stroke="#FCA5A5" stroke-width="2" stroke-linecap="round" fill="none" />
+                                
+                                <!-- Segmento 2 (Amarillo soleado) -->
+                                <path d="M55 16 C48 24, 38 34, 30 46 Q38 49, 46 47 C50 35, 54 24, 55 16 Z" fill="#FBBF24" fill-opacity="0.92" />
+                                <path d="M36 42 Q42 33, 46 25" stroke="#FEF08A" stroke-width="2" stroke-linecap="round" fill="none" />
 
-                            <!-- Segmento 3 (Celeste / Azul cielo) -->
-                            <path d="M55 16 C54 24, 50 35, 46 47 Q56 50, 66 48 C64 36, 61 24, 55 16 Z" fill="#0EA5E9" fill-opacity="0.9" />
-                            <path d="M54 44 Q57 34, 58 24" stroke="#BAE6FD" stroke-width="2" stroke-linecap="round" fill="none" />
+                                <!-- Segmento 3 (Celeste / Azul cielo) -->
+                                <path d="M55 16 C54 24, 50 35, 46 47 Q56 50, 66 48 C64 36, 61 24, 55 16 Z" fill="#0EA5E9" fill-opacity="0.92" />
+                                <path d="M54 44 Q57 34, 58 24" stroke="#BAE6FD" stroke-width="2" stroke-linecap="round" fill="none" />
 
-                            <!-- Segmento 4 (Naranja / Coral brillante) -->
-                            <path d="M55 16 C61 24, 64 36, 66 48 Q76 49, 84 45 C78 33, 68 22, 55 16 Z" fill="#F97316" fill-opacity="0.9" />
-                            <path d="M72 43 Q70 33, 66 25" stroke="#FED7AA" stroke-width="2" stroke-linecap="round" fill="none" />
+                                <!-- Segmento 4 (Naranja / Coral brillante) -->
+                                <path d="M55 16 C61 24, 64 36, 66 48 Q76 49, 84 45 C78 33, 68 22, 55 16 Z" fill="#F97316" fill-opacity="0.92" />
+                                <path d="M72 43 Q70 33, 66 25" stroke="#FED7AA" stroke-width="2" stroke-linecap="round" fill="none" />
 
-                            <!-- Segmento 5 (Verde menta veraniego / Lima) -->
-                            <path d="M55 16 C68 22, 78 33, 84 45 Q90 44, 94 40 C87 28, 73 19, 55 16 Z" fill="#10B981" fill-opacity="0.9" />
-                            <path d="M84 39 Q80 30, 74 23" stroke="#A7F3D0" stroke-width="2" stroke-linecap="round" fill="none" />
+                                <!-- Segmento 5 (Verde menta veraniego / Lima) -->
+                                <path d="M55 16 C68 22, 78 33, 84 45 Q90 44, 94 40 C87 28, 73 19, 55 16 Z" fill="#10B981" fill-opacity="0.92" />
+                                <path d="M84 39 Q80 30, 74 23" stroke="#A7F3D0" stroke-width="2" stroke-linecap="round" fill="none" />
 
-                            <!-- Borde festoneado inferior (ondas tipo sombrilla) -->
-                            <path d="M18 46 Q24 48, 30 46 Q38 49, 46 47 Q56 50, 66 48 Q76 49, 84 45 Q90 44, 94 40" stroke="#1E293B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                <!-- Borde festoneado inferior -->
+                                <path d="M18 46 Q24 48, 30 46 Q38 49, 46 47 Q56 50, 66 48 Q76 49, 84 45 Q90 44, 94 40" stroke="#1E293B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
 
-                            <!-- Arco superior de la cúpula (trazo libre crayón) -->
-                            <path d="M18 46 C28 30, 42 16, 55 16 C70 16, 84 26, 94 40" stroke="#1E293B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                <!-- Arco superior de la cúpula -->
+                                <path d="M18 46 C28 30, 42 16, 55 16 C70 16, 84 26, 94 40" stroke="#1E293B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
 
-                            <!-- Varillas divisorias garabateadas -->
-                            <path d="M55 16 C48 24, 38 34, 30 46" stroke="#1E293B" stroke-width="2.2" stroke-linecap="round" fill="none" />
-                            <path d="M55 16 C54 24, 50 35, 46 47" stroke="#1E293B" stroke-width="2.2" stroke-linecap="round" fill="none" />
-                            <path d="M55 16 C61 24, 64 36, 66 48" stroke="#1E293B" stroke-width="2.2" stroke-linecap="round" fill="none" />
-                            <path d="M55 16 C68 22, 78 33, 84 45" stroke="#1E293B" stroke-width="2.2" stroke-linecap="round" fill="none" />
+                                <!-- Varillas divisorias garabateadas -->
+                                <path d="M55 16 C48 24, 38 34, 30 46" stroke="#1E293B" stroke-width="2.2" stroke-linecap="round" fill="none" />
+                                <path d="M55 16 C54 24, 50 35, 46 47" stroke="#1E293B" stroke-width="2.2" stroke-linecap="round" fill="none" />
+                                <path d="M55 16 C61 24, 64 36, 66 48" stroke="#1E293B" stroke-width="2.2" stroke-linecap="round" fill="none" />
+                                <path d="M55 16 C68 22, 78 33, 84 45" stroke="#1E293B" stroke-width="2.2" stroke-linecap="round" fill="none" />
 
-                            <!-- Punta superior del parasol (pitorro / regatón) -->
-                            <path d="M55 16 L56 10" stroke="#1E293B" stroke-width="3" stroke-linecap="round" />
-                            <circle cx="56" cy="9" r="2.2" fill="#D97706" stroke="#1E293B" stroke-width="1.5" />
+                                <!-- Punta superior del parasol -->
+                                <path d="M55 16 L56 10" stroke="#1E293B" stroke-width="3" stroke-linecap="round" />
+                                <circle cx="56" cy="9" r="2.2" fill="#D97706" stroke="#1E293B" stroke-width="1.5" />
+                            </g>
 
-                            <!-- Rayitas de viento/brisa marina veraniega jugando con la sombrilla -->
-                            <path d="M88 56 C94 56, 100 53, 102 48" stroke="#38BDF8" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="3 4" fill="none" />
-                            <path d="M78 62 C86 62, 94 60, 97 56" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 4" fill="none" />
-                            <!-- Pequeña estrellita de mar en la arena -->
+                            <!-- Trazos de viento dinámico con la brisa -->
+                            <g class="doodle-parasol-wind">
+                                <path d="M88 56 C94 56, 100 53, 102 48" stroke="#38BDF8" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="3 4" fill="none" />
+                                <path d="M78 62 C86 62, 94 60, 97 56" stroke="#38BDF8" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="3 4" fill="none" />
+                            </g>
+
+                            <!-- Estrellita de mar saltarina juguetona -->
                             <g transform="translate(48, 93) scale(0.7)">
-                                <path d="M10 2 L12 8 L18 8 L13 12 L15 18 L10 14 L5 18 L7 12 L2 8 L8 8 Z" fill="#F43F5E" stroke="#BE123C" stroke-width="1.2" stroke-linejoin="round" />
+                                <g class="doodle-parasol-starfish">
+                                    <path d="M10 2 L12 8 L18 8 L13 12 L15 18 L10 14 L5 18 L7 12 L2 8 L8 8 Z" fill="#F43F5E" stroke="#BE123C" stroke-width="1.2" stroke-linejoin="round" />
+                                </g>
                             </g>
                         </svg>
                     </div>
