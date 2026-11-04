@@ -6832,3 +6832,27 @@ p.text-mobile-only, div.text-mobile-only {
         margin-top: 10px;
     }
 }
+
+
+/* Photo thumbnail para tarjetas de Formación y Convivencia Escolar */
+.fvc-photo-thumb {
+    width: 100%;
+    height: 145px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    background: #F1F5F9;
+}
+
+.fvc-photo-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.formacion-vida-card:hover .fvc-photo-thumb img {
+    transform: scale(1.05);
+}
