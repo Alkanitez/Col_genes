@@ -129,8 +129,7 @@ nav {
     flex-shrink: 0 !important;
 }
 
-li.mobile-drawer-header,
-.mobile-drawer-contact-strip {
+li.mobile-drawer-header {
     display: none !important;
 }
 
@@ -4943,65 +4942,6 @@ p.text-mobile-only, div.text-mobile-only {
         box-shadow: 0 2px 8px rgba(128, 0, 0, 0.4) !important;
     }
 
-    /* STRIP DE CONTACTO CON TARJETA BLANCA Y BOTÓN CHATEAR VERDE */
-    .nav-links .mobile-drawer-contact-strip {
-        display: flex !important;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 14px;
-        background: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        border-radius: 14px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-    }
-
-    .mobile-drawer-contact-strip .contact-info-group {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .mobile-drawer-contact-strip .whatsapp-icon {
-        color: #25D366;
-        font-size: 1.4rem;
-    }
-
-    .mobile-drawer-contact-strip .contact-text-box {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.25;
-    }
-
-    .mobile-drawer-contact-strip .contact-label {
-        font-size: 0.75rem;
-        color: #64748B;
-        font-weight: 600;
-    }
-
-    .mobile-drawer-contact-strip .contact-number {
-        font-size: 0.9rem;
-        color: #0F172A;
-        font-weight: 800;
-    }
-
-    .mobile-drawer-contact-strip .btn-chatear-wa {
-        background: #25D366;
-        color: #FFFFFF;
-        padding: 8px 14px;
-        border-radius: 10px;
-        font-size: 0.82rem;
-        font-weight: 800;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        box-shadow: 0 2px 6px rgba(37, 211, 102, 0.25);
-        transition: all 0.2s ease;
-    }
-
-    .mobile-drawer-contact-strip .btn-chatear-wa:active {
-        transform: scale(0.95);
-    }
 
     /* Overlay: oscuro y nítido para enfocar el drawer sin desenfoque borroso */
     .mobile-nav-overlay {
