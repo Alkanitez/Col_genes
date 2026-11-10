@@ -42,8 +42,8 @@ function showSistemaSubSection(subId) {
 const sectionSeoTitles = {
     'inicio': 'Colegio Genes | Sistema Educativo Preuniversitario 2026',
     'propuesta': 'Sistema de Trabajo - Primaria y Secundaria | Colegio Genes',
-    'primaria': 'Sistema Educativo - Primaria y Secundaria | Colegio Genes',
-    'secundaria': 'Sistema Educativo - Secundaria | Colegio Genes',
+    'primaria': 'Nivel Primaria | Colegio Genes',
+    'secundaria': 'Nivel Secundaria | Colegio Genes',
     'sedes': 'Nuestras Sedes en Lima Metropolitana | Colegio Genes',
     'vacaciones': 'Programa de Vacaciones Útiles 2026 | Colegio Genes',
     'ingresantes': 'Historias de Éxito e Ingresantes Destacados | Colegio Genes',
