@@ -5553,39 +5553,16 @@ p.text-mobile-only, div.text-mobile-only {
 
 /* CUERPO DE LA TARJETA */
 .level-card-body {
-    padding: 24px 28px 10px;
+    padding: 24px 28px 18px;
     display: flex;
     flex-direction: column;
-    flex: 1;
-}
-
-.level-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 16px;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    background: rgba(254, 242, 242, 0.95);
-    color: #B91C1C;
-    border: 1px solid #FCA5A5;
-    width: fit-content;
-}
-
-.level-badge.primaria-badge {
-    background: rgba(239, 246, 255, 0.95);
-    color: #1D4ED8;
-    border-color: #BFDBFE;
 }
 
 .level-select-card h3 {
     font-size: 1.85rem;
     font-weight: 900;
     color: #0F172A;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     letter-spacing: -0.5px;
 }
 
@@ -6081,7 +6058,7 @@ p.text-mobile-only, div.text-mobile-only {
     }
 
     .level-select-card .level-card-body {
-        padding: 20px 18px 10px !important;
+        padding: 20px 18px 14px !important;
     }
 
     .level-select-card .btn-level-action-wrap {
