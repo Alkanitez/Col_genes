@@ -18,9 +18,19 @@ function showSistemaSubSection(subId) {
     if (subId === 'selection-main') {
         if (mainSelection) mainSelection.style.display = 'block';
     } else if (subId === 'primaria-detail') {
-        if (primariaDetail) primariaDetail.style.display = 'block';
+        if (primariaDetail) {
+            primariaDetail.style.display = 'block';
+            if (typeof showPrimaryChannel === 'function') {
+                showPrimaryChannel('grado1');
+            }
+        }
     } else if (subId === 'secundaria-detail') {
-        if (secundariaDetail) secundariaDetail.style.display = 'block';
+        if (secundariaDetail) {
+            secundariaDetail.style.display = 'block';
+            if (typeof showSecundariaChannel === 'function') {
+                showSecundariaChannel('grado1');
+            }
+        }
     }
 
     const targetSection = document.getElementById('propuesta') || document.getElementById('primaria');
@@ -350,42 +360,42 @@ const primaryChannelsData = {
         titulo: "1ro de Primaria",
         descripcion: "Accede al canal virtual oficial de 1er. Grado de Primaria para reforzar las clases y revisar el contenido académico.",
         link: "https://www.youtube.com/@genesclasevirtual1ro.prima508",
-        imagen: generateGenesBadgeSvg("1", "er."),
+        imagen: "assets/images/canales/primaria_1.svg",
         disponible: true
     },
     grado2: {
         titulo: "2do de Primaria",
         descripcion: "Canal virtual oficial de 2do. Grado de Primaria para reforzamiento escolar y solucionarios.",
         link: "https://www.youtube.com/@genesclasevirtual2do.prima19",
-        imagen: generateGenesBadgeSvg("2", "do."),
+        imagen: "assets/images/canales/primaria_2.svg",
         disponible: true
     },
     grado3: {
         titulo: "3ro de Primaria",
         descripcion: "El canal virtual de 3er. Grado de Primaria no se encuentra disponible por el momento.",
         link: "javascript:void(0);",
-        imagen: generateGenesBadgeSvg("3", "er."),
+        imagen: "assets/images/canales/primaria_3.svg",
         disponible: false
     },
     grado4: {
         titulo: "4to de Primaria",
         descripcion: "Canal virtual oficial para 4to. Grado de Primaria. Refuerzo académico progresivo.",
         link: "https://www.youtube.com/@genesclasevirtual4to.prima398",
-        imagen: generateGenesBadgeSvg("4", "to."),
+        imagen: "assets/images/canales/primaria_4.svg",
         disponible: true
     },
     grado5: {
         titulo: "5to de Primaria",
         descripcion: "Canal virtual para 5to. Grado de Primaria. Preparación con exigencia académica.",
         link: "https://www.youtube.com/@genesclasevirtual5to.prima354",
-        imagen: generateGenesBadgeSvg("5", "to."),
+        imagen: "assets/images/canales/primaria_5.svg",
         disponible: true
     },
     grado6: {
         titulo: "6to de Primaria",
         descripcion: "Canal virtual oficial para 6to. Grado de Primaria. Preparación y consolidación de estudios.",
         link: "https://www.youtube.com/@genesclasevirtual6to.prima156",
-        imagen: generateGenesBadgeSvg("6", "to."),
+        imagen: "assets/images/canales/primaria_6.svg",
         disponible: true
     }
 };
@@ -431,7 +441,12 @@ function showPrimaryChannel(gradoKey, button) {
     const data = primaryChannelsData[gradoKey] || primaryChannelsData['grado1'];
     
     document.querySelectorAll('.canales-primaria-tabs .canal-primaria-tab').forEach(btn => btn.classList.remove('active'));
-    if (button) button.classList.add('active');
+    if (button) {
+        button.classList.add('active');
+    } else {
+        const defaultBtn = document.querySelector(`.canales-primaria-tabs .canal-primaria-tab[onclick*="${gradoKey}"]`) || document.querySelector('.canales-primaria-tabs .canal-primaria-tab');
+        if (defaultBtn) defaultBtn.classList.add('active');
+    }
 
     const titleEl = document.getElementById('primary-channel-title');
     const descEl = document.getElementById('primary-channel-description');
@@ -501,7 +516,12 @@ function showSecundariaChannel(gradoKey, button) {
     const data = secondaryChannelsData[gradoKey] || secondaryChannelsData['grado1'];
     
     document.querySelectorAll('.canales-secundaria-tabs .canal-secundaria-tab').forEach(btn => btn.classList.remove('active'));
-    if (button) button.classList.add('active');
+    if (button) {
+        button.classList.add('active');
+    } else {
+        const defaultBtn = document.querySelector(`.canales-secundaria-tabs .canal-secundaria-tab[onclick*="${gradoKey}"]`) || document.querySelector('.canales-secundaria-tabs .canal-secundaria-tab');
+        if (defaultBtn) defaultBtn.classList.add('active');
+    }
 
     const titleEl = document.getElementById('secondary-channel-title');
     const descEl = document.getElementById('secondary-channel-description');
@@ -1588,6 +1608,8 @@ document.addEventListener('DOMContentLoaded', () => {
     startTestimonioAuto();
     renderVideosPrimaria('primaria1');
     renderVideosSecundaria('secundaria1');
+    showPrimaryChannel('grado1');
+    showSecundariaChannel('grado1');
     initAnchorNavigation();
     initDynamicGrades();
     initFormSanitization();
