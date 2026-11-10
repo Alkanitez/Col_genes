@@ -4480,7 +4480,7 @@ section.active {
 }
 
 .img-pizarra-secundaria {
-    object-position: center center !important;
+    object-position: 8% center !important;
 }
 
 .img-tutoria-secundaria {
@@ -5528,7 +5528,7 @@ p.text-mobile-only, div.text-mobile-only {
 }
 
 .level-card-media.secundaria-media img {
-    object-position: center 25% !important;
+    object-position: 8% center !important;
 }
 
 .level-select-card:hover .level-card-media img {
@@ -6971,7 +6971,7 @@ p.text-mobile-only, div.text-mobile-only {
 
 .taller-photo-thumb {
     width: 100%;
-    height: 130px;
+    height: 140px;
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 14px;
@@ -6987,6 +6987,7 @@ p.text-mobile-only, div.text-mobile-only {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top !important;
     transition: transform 0.3s ease;
 }
 
