@@ -86,6 +86,12 @@ function showSection(id, updateHash = true) {
 
     if (id === 'propuesta' || id === 'sistema' || id === 'primaria') {
         showSistemaSubSection('selection-main');
+    } else if (id === 'vacaciones') {
+        const activeVacTab = document.querySelector('#vacaciones .vacaciones-tab.active');
+        if (!activeVacTab) {
+            const defaultVacBtn = document.getElementById('tab-vacaciones-primaria') || document.querySelector('#vacaciones .vacaciones-tab');
+            showVacacionesPanel('vacaciones-primaria', defaultVacBtn);
+        }
     }
 
     // Actualización dinámica de SEO Document Title y URL Hash
@@ -912,11 +918,20 @@ function closeSedeModal() {
 
 function showVacacionesPanel(panelId, button) {
     document.querySelectorAll('.vacaciones-panel').forEach(panel => panel.classList.remove('active'));
-    document.querySelectorAll('#vacaciones .canal-primaria-tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('#vacaciones .vacaciones-tab, #vacaciones .canal-primaria-tab').forEach(tab => tab.classList.remove('active'));
 
     const target = document.getElementById(panelId);
     if (target) target.classList.add('active');
-    if (button) button.classList.add('active');
+
+    let btn = button;
+    if (!btn) {
+        if (panelId === 'vacaciones-primaria') {
+            btn = document.getElementById('tab-vacaciones-primaria');
+        } else if (panelId === 'vacaciones-secundaria') {
+            btn = document.getElementById('tab-vacaciones-secundaria');
+        }
+    }
+    if (btn) btn.classList.add('active');
 }
 
 /* TOGGLES DROPDOWN CON AUTO-CLOSE */
@@ -1608,6 +1623,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startTestimonioAuto();
     renderVideosPrimaria('primaria1');
     renderVideosSecundaria('secundaria1');
+    showVacacionesPanel('vacaciones-primaria', document.getElementById('tab-vacaciones-primaria'));
     showPrimaryChannel('grado1');
     showSecundariaChannel('grado1');
     initAnchorNavigation();

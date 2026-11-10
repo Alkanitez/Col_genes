@@ -6922,24 +6922,26 @@ p.text-mobile-only, div.text-mobile-only {
    ========================================================================== */
 .proyecto-media-box {
     width: 100%;
-    height: 140px;
+    height: 170px;
     border-radius: 12px;
     overflow: hidden;
-    background: #FFFFFF;
+    background: #0F172A;
     border: 1px solid #E2E8F0;
     margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .proyecto-media-box img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    padding: 6px;
-    transition: transform 0.3s ease;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    padding: 0 !important;
+    display: block !important;
+    transition: transform 0.35s ease;
 }
 
 .proyecto-card:hover .proyecto-media-box img {
@@ -6948,23 +6950,25 @@ p.text-mobile-only, div.text-mobile-only {
 
 .taller-photo-thumb {
     width: 100%;
-    height: 140px;
+    height: 160px;
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 14px;
     border: 1px solid #E2E8F0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    background: #F8FAFC;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: #0F172A;
+    position: relative;
 }
 
 .taller-photo-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
     object-position: center top !important;
+    padding: 0 !important;
+    display: block !important;
     transition: transform 0.3s ease;
 }
 
@@ -7088,4 +7092,105 @@ p.text-mobile-only, div.text-mobile-only {
 
 .sistema-info-split {
     padding: 32px 28px;
+}
+
+/* ==========================================================================
+   SELECTOR DE NIVELES VACACIONES ÚTILES & ARMONIZACIÓN DE TÍTULOS
+   ========================================================================== */
+#vacaciones .titulo-pilares {
+    color: #202682 !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: clamp(1.4rem, 2.5vw, 2.1rem) !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: -0.5px !important;
+}
+
+.vacaciones-level-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 auto 25px;
+    max-width: 680px;
+    width: 100%;
+}
+
+.vacaciones-tab {
+    flex: 1;
+    max-width: 320px;
+    padding: 12px 20px;
+    min-height: 50px;
+    border-radius: 12px;
+    border: 2px solid #E2E8F0;
+    background: #FFFFFF;
+    color: #202682;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    user-select: none;
+}
+
+.vacaciones-tab:hover {
+    border-color: #202682;
+    color: #202682;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(32, 38, 130, 0.15);
+}
+
+.vacaciones-tab.active {
+    background: linear-gradient(135deg, #202682 0%, #19206E 100%) !important;
+    color: #FFFFFF !important;
+    border-color: #202682 !important;
+    box-shadow: 0 8px 20px rgba(32, 38, 130, 0.35) !important;
+    transform: translateY(-2px);
+}
+
+.vacaciones-tab.active i {
+    color: #FFFFFF !important;
+}
+
+@media (max-width: 768px) {
+    .vacaciones-level-tabs {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        padding: 0 0 10px !important;
+        margin-bottom: 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .vacaciones-tab {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 48px !important;
+        padding: 10px 6px !important;
+        font-size: 0.82rem !important;
+        border-radius: 10px !important;
+        white-space: normal !important;
+    }
+
+    .proyecto-media-box {
+        height: 160px !important;
+    }
+
+    .taller-photo-thumb {
+        height: 150px !important;
+    }
+}
+
+@media (max-width: 420px) {
+    .vacaciones-tab {
+        font-size: 0.78rem !important;
+        padding: 8px 4px !important;
+        gap: 5px !important;
+    }
 }
