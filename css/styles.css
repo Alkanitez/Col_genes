@@ -5467,9 +5467,9 @@ p.text-mobile-only, div.text-mobile-only {
 
 .level-select-card {
     background: #FFFFFF !important;
-    border-radius: 0 !important;
+    border-radius: 20px !important;
     padding: 0;
-    border: 2px solid #E2E8F0;
+    border: 1px solid #E2E8F0;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
@@ -5510,7 +5510,7 @@ p.text-mobile-only, div.text-mobile-only {
 .level-card-media {
     position: relative;
     width: 100%;
-    height: 220px;
+    height: 230px;
     overflow: hidden;
     background: #0F172A;
 }
@@ -5521,6 +5521,14 @@ p.text-mobile-only, div.text-mobile-only {
     object-fit: cover;
     display: block;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.level-card-media.primaria-media img {
+    object-position: center 18% !important;
+}
+
+.level-card-media.secundaria-media img {
+    object-position: center 25% !important;
 }
 
 .level-select-card:hover .level-card-media img {
@@ -5627,7 +5635,7 @@ p.text-mobile-only, div.text-mobile-only {
     font-weight: 800;
     font-size: 0.95rem;
     padding: 15px 28px;
-    border-radius: 0 !important;
+    border-radius: 14px !important;
     border: none;
     cursor: pointer;
     transition: all 0.25s ease;
@@ -6202,7 +6210,7 @@ p.text-mobile-only, div.text-mobile-only {
     }
 
     .level-card-media {
-        height: 175px !important;
+        height: 200px !important;
     }
 
     .level-select-card h3 {
