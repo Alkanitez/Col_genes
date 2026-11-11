@@ -5510,7 +5510,7 @@ p.text-mobile-only, div.text-mobile-only {
 .level-card-media {
     position: relative;
     width: 100%;
-    height: 230px;
+    height: 290px;
     overflow: hidden;
     background: #0F172A;
 }
@@ -5524,11 +5524,11 @@ p.text-mobile-only, div.text-mobile-only {
 }
 
 .level-card-media.primaria-media img {
-    object-position: center 18% !important;
+    object-position: center 40% !important;
 }
 
 .level-card-media.secundaria-media img {
-    object-position: 8% center !important;
+    object-position: center center !important;
 }
 
 .level-select-card:hover .level-card-media img {
@@ -6188,6 +6188,14 @@ p.text-mobile-only, div.text-mobile-only {
 
     .level-card-media {
         height: 200px !important;
+    }
+
+    .level-card-media.primaria-media img {
+        object-position: center 18% !important;
+    }
+
+    .level-card-media.secundaria-media img {
+        object-position: 8% center !important;
     }
 
     .level-select-card h3 {
