@@ -41,6 +41,13 @@ body {
     overflow-x: hidden;
 }
 
+/* Escala visual optimizada para pantallas de escritorio (look inmersivo 110%) sin alterar versión móvil */
+@media (min-width: 1025px) {
+    body {
+        zoom: 1.08;
+    }
+}
+
 /* --------------------------------------------------------------------------
    KEYFRAME ANIMATIONS FOR UX/UI EXCELLENCE
    -------------------------------------------------------------------------- */
