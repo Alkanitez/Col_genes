@@ -33,6 +33,30 @@ function showSistemaSubSection(subId) {
         }
     }
 
+    // Actualizar indicador de progreso y conmutador rápido
+    const step1 = document.getElementById('prog-step-1');
+    const step2 = document.getElementById('prog-step-2');
+    const step2Label = document.getElementById('prog-step-2-label');
+    const quickSwitch = document.getElementById('sistema-quick-switch');
+    const btnPrim = document.getElementById('btn-switch-primaria');
+    const btnSec = document.getElementById('btn-switch-secundaria');
+
+    if (step1 && step2 && step2Label) {
+        if (subId === 'selection-main') {
+            step1.className = 'prog-step active';
+            step2.className = 'prog-step';
+            step2Label.textContent = 'Detalle Académico';
+            if (quickSwitch) quickSwitch.style.display = 'none';
+        } else {
+            step1.className = 'prog-step completed';
+            step2.className = 'prog-step active';
+            step2Label.textContent = subId === 'primaria-detail' ? 'Nivel Primaria' : 'Nivel Secundaria';
+            if (quickSwitch) quickSwitch.style.display = 'flex';
+            if (btnPrim) btnPrim.classList.toggle('active', subId === 'primaria-detail');
+            if (btnSec) btnSec.classList.toggle('active', subId === 'secundaria-detail');
+        }
+    }
+
     const targetSection = document.getElementById('propuesta') || document.getElementById('primaria');
     if (targetSection) {
         targetSection.scrollIntoView({ behavior: 'smooth' });
@@ -485,35 +509,35 @@ const secondaryChannelsData = {
         titulo: "1ro de Secundaria",
         descripcion: "Canal virtual oficial de 1er. Año de Secundaria. Clases de ciencias exactas y letras.",
         link: "https://www.youtube.com/@genesclasevirtual1rosecund681",
-        imagen: "assets/images/canales/1ro_sec.jpg",
+        imagen: "assets/images/canales/1ro_sec.webp",
         disponible: true
     },
     grado2: {
         titulo: "2do de Secundaria",
         descripcion: "Canal virtual oficial para 2do. Año de Secundaria. Explicaciones dinámicas y compendios.",
         link: "https://www.youtube.com/@genesclasevirtual2do.secun258",
-        imagen: "assets/images/canales/2do_sec.jpg",
+        imagen: "assets/images/canales/2do_sec.webp",
         disponible: true
     },
     grado3: {
         titulo: "3ro de Secundaria",
         descripcion: "Canal virtual oficial para 3er. Año de Secundaria. Preparación preuniversitaria intensiva.",
         link: "https://www.youtube.com/@genesclasevirtual3ro.secun539",
-        imagen: "assets/images/canales/3ro_sec.jpg",
+        imagen: "assets/images/canales/3ro_sec.webp",
         disponible: true
     },
     grado4: {
         titulo: "4to de Secundaria",
         descripcion: "Canal virtual oficial para 4to. Año de Secundaria. Exigencia académica y preguntas de admisión.",
         link: "https://www.youtube.com/@genesclasevirtual4to.secun736",
-        imagen: "assets/images/canales/4to_sec.jpg",
+        imagen: "assets/images/canales/4to_sec.webp",
         disponible: true
     },
     grado5: {
         titulo: "5to de Secundaria",
         descripcion: "Canal virtual oficial de 5to. Año de Secundaria. Máximo nivel con resolución de ejercicios tipo examen.",
         link: "https://www.youtube.com/@genesclasevirtual5to.secun175",
-        imagen: "assets/images/canales/5to_sec.jpg",
+        imagen: "assets/images/canales/5to_sec.webp",
         disponible: true
     }
 };
@@ -1686,9 +1710,23 @@ function openIngresanteModal(imgSrc, uniTitle) {
     const modalImg = document.getElementById('ingresante-modal-img');
     const modalTitle = document.getElementById('ingresante-modal-title');
     const btnOriginal = document.getElementById('btn-open-original-img');
+    const spinner = document.getElementById('lightbox-spinner');
 
     if (modal && modalImg) {
+        if (spinner) spinner.classList.add('active');
+        modalImg.style.opacity = '0';
+
+        const hideSpinner = () => {
+            if (spinner) spinner.classList.remove('active');
+            modalImg.style.opacity = '1';
+        };
+        modalImg.onload = hideSpinner;
+        modalImg.onerror = hideSpinner;
+
         modalImg.src = imgSrc;
+        if (modalImg.complete && modalImg.naturalWidth > 0) {
+            hideSpinner();
+        }
         resetLightboxTransform();
 
         if (btnOriginal) btnOriginal.href = imgSrc;
@@ -1860,3 +1898,70 @@ window.addEventListener('error', function (e) {
         }
     }
 }, true);
+
+
+// ==========================================================================
+// FEEDBACK VISUAL EN TIEMPO REAL PARA FORMULARIOS DE ADMISIÓN Y CONTACTO
+// ==========================================================================
+(function initRealtimeFormValidation() {
+    const fields = document.querySelectorAll('.formulario-moderno input:not([type="hidden"]), .formulario-moderno textarea, .formulario-moderno select');
+    if (!fields.length) return;
+
+    fields.forEach(field => {
+        const group = field.closest('.input-field-group');
+        const wrapper = field.closest('.input-wrapper');
+        if (!group || !wrapper) return;
+
+        // Crear icono de estado y mensaje inline una sola vez
+        let statusIcon = wrapper.querySelector('.input-status-icon');
+        if (!statusIcon) {
+            statusIcon = document.createElement('i');
+            statusIcon.className = 'input-status-icon fas';
+            statusIcon.setAttribute('aria-hidden', 'true');
+            wrapper.appendChild(statusIcon);
+        }
+
+        let feedbackMsg = group.querySelector('.input-feedback-msg');
+        if (!feedbackMsg) {
+            feedbackMsg = document.createElement('span');
+            feedbackMsg.className = 'input-feedback-msg';
+            feedbackMsg.setAttribute('aria-live', 'polite');
+            group.appendChild(feedbackMsg);
+        }
+
+        const validateField = (showEmptyError = false) => {
+            const val = field.value.trim();
+
+            // Filtro automático numérico para DNI y teléfono
+            if ((field.name === 'dni' || field.name === 'telefono') && /[^0-9]/.test(field.value)) {
+                field.value = field.value.replace(/[^0-9]/g, '');
+            }
+
+            if (val === '') {
+                group.classList.remove('is-valid', 'is-invalid');
+                statusIcon.className = 'input-status-icon fas';
+                feedbackMsg.textContent = showEmptyError && field.required ? 'Este campo es obligatorio.' : '';
+                if (showEmptyError && field.required) {
+                    group.classList.add('is-invalid');
+                    statusIcon.className = 'input-status-icon fas fa-exclamation-circle';
+                }
+                return;
+            }
+
+            if (field.checkValidity()) {
+                group.classList.remove('is-invalid');
+                group.classList.add('is-valid');
+                statusIcon.className = 'input-status-icon fas fa-check-circle';
+                feedbackMsg.textContent = '';
+            } else {
+                group.classList.remove('is-valid');
+                group.classList.add('is-invalid');
+                statusIcon.className = 'input-status-icon fas fa-exclamation-circle';
+                feedbackMsg.textContent = field.title || 'Verifica el formato ingresado.';
+            }
+        };
+
+        field.addEventListener('input', () => validateField(false));
+        field.addEventListener('blur', () => validateField(true));
+    });
+})();

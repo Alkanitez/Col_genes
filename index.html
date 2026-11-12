@@ -16,7 +16,11 @@
     <meta name="author" content="Colegio Genes">
     <meta name="geo.region" content="PE-LIM">
     <meta name="geo.placename" content="Lima, Perú">
+    <meta name="theme-color" content="#202682">
+    <!-- Google Search Console: Reemplazar content="" con el código de verificación al registrar el dominio -->
+    <!-- <meta name="google-site-verification" content="CODIGO_AQUI"> -->
     <link rel="canonical" href="https://colegiogenes.edu.pe/">
+    <link rel="alternate" hreflang="es-PE" href="https://colegiogenes.edu.pe/">
     <link rel="icon" type="image/png" href="assets/images/logo.png">
     <link rel="apple-touch-icon" href="assets/images/logo.png">
 
@@ -26,8 +30,8 @@
     <meta property="og:url" content="https://colegiogenes.edu.pe/">
     <meta property="og:title" content="Colegio Genes | Exigencia y Alto Desempeño Preuniversitario 2026">
     <meta property="og:description" content="Sistema educativo preuniversitario con excelencia académica y valores para asegurar el ingreso a San Marcos, UNI, PUCP y Callao. Proceso de Admisión y Vacaciones Útiles.">
-    <meta property="og:image" content="https://colegiogenes.edu.pe/assets/images/hero_students.png">
-    <meta property="og:image:secure_url" content="https://colegiogenes.edu.pe/assets/images/hero_students.png">
+    <meta property="og:image" content="https://colegiogenes.edu.pe/assets/images/og_preview.jpg">
+    <meta property="og:image:secure_url" content="https://colegiogenes.edu.pe/assets/images/og_preview.jpg">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -38,7 +42,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Colegio Genes | Exigencia y Alto Desempeño Preuniversitario">
     <meta name="twitter:description" content="Formación de alto desempeño para el éxito de tus hijos. Sedes en Lima Metropolitana y Canales Virtuales por Grado.">
-    <meta name="twitter:image" content="https://colegiogenes.edu.pe/assets/images/hero_students.png">
+    <meta name="twitter:image" content="https://colegiogenes.edu.pe/assets/images/og_preview.jpg">
     <meta name="twitter:image:alt" content="Colegio Genes Educación de Alto Rendimiento">
     
     <!-- JSON-LD Datos Estructurados Schema.org para Posicionamiento N.°1 en Google (School / EducationalOrganization) -->
@@ -50,7 +54,7 @@
       "alternateName": ["Genes Colegio", "Colegios Genes", "Colegio Preuniversitario Genes", "I.E.P. Genes"],
       "url": "https://colegiogenes.edu.pe/",
       "logo": "https://colegiogenes.edu.pe/assets/images/logo.png",
-      "image": "https://colegiogenes.edu.pe/assets/images/hero_students.png",
+      "image": "https://colegiogenes.edu.pe/assets/images/og_preview.jpg",
       "description": "Colegio preuniversitario de alta exigencia académica y formación en valores en Lima Metropolitana. Educación especializada para Primaria y Secundaria con preparación continua para el ingreso a universidades públicas y privadas.",
       "telephone": "+51933840074",
       "email": "informes@colegiogenes.edu.pe",
@@ -139,6 +143,40 @@
           }
         ]
       }
+    }
+    </script>
+
+    <!-- JSON-LD FAQPage Schema para Rich Snippets en Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuántas sedes tiene Colegios Genes en Lima?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Colegios Genes cuenta con 8 sedes estratégicas en Lima Norte y Centro: Alborada (Comas), Genes II (Los Olivos), Los Olivos, Primavera (Comas), S.M.P., Genes del Norte (Puente Piedra), Gamarra (La Victoria) y Del Pinar (Comas)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué niveles educativos ofrece Colegios Genes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ofrecemos Educación Primaria (1.° a 6.° Grado) con formación integral en valores y Educación Secundaria Preuniversitaria (1.° a 5.° Año) enfocada en el ingreso directo a San Marcos (UNMSM), UNI, PUCP y Callao, además de ciclos de Vacaciones Útiles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo puedo postular al Proceso de Admisión 2026 en Colegios Genes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Puedes solicitar información y agendar tu evaluación de admisión directamente desde el formulario en línea de nuestra web o escribiendo al WhatsApp oficial de admisión (+51 933 840 074)."
+          }
+        }
+      ]
     }
     </script>
     
@@ -259,14 +297,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- CONTROLES FLECHAS (DESKTOP) -->
-                <button type="button" class="hero-slider-arrow prev" onclick="changeHeroSlide(-1)" aria-label="Diapositiva anterior">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button type="button" class="hero-slider-arrow next" onclick="changeHeroSlide(1)" aria-label="Siguiente diapositiva">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
 
                 <!-- INDICADORES (DOTS CON BARRA DE PROGRESO DE 5 SEGUNDOS) -->
                 <div class="hero-slider-dots">
@@ -513,6 +543,25 @@
             <span id="primaria" style="position: relative; top: -85px; display: block; visibility: hidden;"></span>
             <div class="content-wrapper">
 
+                <!-- INDICADOR DE PROGRESO Y RUTA EN SISTEMA DE TRABAJO -->
+                <div id="sistema-progress-bar" class="sistema-progress-bar" aria-label="Progreso en Sistema de Trabajo">
+                    <div class="sistema-progress-steps">
+                        <button type="button" id="prog-step-1" class="prog-step active" onclick="showSistemaSubSection('selection-main')">
+                            <span class="prog-num">1</span>
+                            <span class="prog-label">Elegir Nivel</span>
+                        </button>
+                        <span class="prog-divider"><i class="fas fa-chevron-right"></i></span>
+                        <div id="prog-step-2" class="prog-step">
+                            <span class="prog-num">2</span>
+                            <span class="prog-label" id="prog-step-2-label">Detalle Académico</span>
+                        </div>
+                    </div>
+                    <div class="sistema-quick-switch" id="sistema-quick-switch" style="display: none;">
+                        <button type="button" id="btn-switch-primaria" class="quick-switch-btn" onclick="showSistemaSubSection('primaria-detail')">Primaria</button>
+                        <button type="button" id="btn-switch-secundaria" class="quick-switch-btn" onclick="showSistemaSubSection('secundaria-detail')">Secundaria</button>
+                    </div>
+                </div>
+
                 <!-- 1. VISTA PRINCIPAL: DOS CUADROS NIVELES (PRIMARIA Y SECUNDARIA) -->
                 <div id="sistema-level-selection" class="card animate-fade-up">
                     <div class="pilares-header">
@@ -525,7 +574,7 @@
                         <!-- CUADRO NIVEL PRIMARIA -->
                         <div class="level-select-card primaria" onclick="showSistemaSubSection('primaria-detail')">
                             <div class="level-card-media primaria-media">
-                                <img src="assets/images/primaria_docente_clase.jpg" alt="Nivel Primaria Colegio Genes">
+                                <img src="assets/images/primaria_docente_clase.webp" alt="Nivel Primaria Colegio Genes">
                                 <div class="level-card-media-overlay"></div>
                             </div>
                             <div class="level-card-body">
@@ -541,7 +590,7 @@
                         <!-- CUADRO NIVEL SECUNDARIA -->
                         <div class="level-select-card secundaria" onclick="showSistemaSubSection('secundaria-detail')">
                             <div class="level-card-media secundaria-media">
-                                <img src="assets/images/secundaria_pizarra_resolucion.jpg" alt="Nivel Secundaria Colegio Genes">
+                                <img src="assets/images/secundaria_pizarra_resolucion.webp" alt="Nivel Secundaria Colegio Genes">
                                 <div class="level-card-media-overlay"></div>
                             </div>
                             <div class="level-card-body">
@@ -628,7 +677,7 @@
                         <!-- BLOQUE 1: DOCENTES Y METODOLOGÍA POR ETAPAS -->
                         <div class="sistema-info-split">
                             <div class="sistema-img-box sistema-img-portrait">
-                                <img src="assets/images/primaria_docente_clase.jpg" alt="Colegio Genes - Clases de Primaria con Docentes Especialistas y Material Concreto" class="img-docente-primaria">
+                                <img src="assets/images/primaria_docente_clase.webp" alt="Colegio Genes - Clases de Primaria con Docentes Especialistas y Material Concreto" class="img-docente-primaria">
                             </div>
                             <div class="sistema-info-content">
                                 <h3>Docentes Especialistas por Curso</h3>
@@ -644,7 +693,7 @@
                         <!-- BLOQUE 2: TUTORÍA Y SEGUIMIENTO CONDUCTUAL -->
                         <div class="sistema-info-split reverse" style="margin-top: 40px;">
                             <div class="sistema-img-box sistema-img-landscape">
-                                <img src="assets/images/primaria_tutoria_personal.jpg" alt="Tutora Oficial de Primaria y Alumno Uniformado en Acompañamiento Académico - Colegio Genes" class="img-tutoria-primaria">
+                                <img src="assets/images/primaria_tutoria_personal.webp" alt="Tutora Oficial de Primaria y Alumno Uniformado en Acompañamiento Académico - Colegio Genes" class="img-tutoria-primaria">
                             </div>
                             <div class="sistema-info-content">
                                 <h3>Tutoría y Orientación Personalizada</h3>
@@ -680,7 +729,7 @@
                             <!-- COMPENDIO I BIMESTRE -->
                             <div class="compendio-card-item" style="background: #FFFFFF; border-radius: 20px; padding: 20px; border: 1px solid #E2E8F0; box-shadow: 0 8px 24px rgba(0,0,0,0.05); text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
                                 <div class="compendio-img-wrapper" style="width: 100%; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;">
-                                    <img src="assets/images/compendios/compendio_bimestre1.png?v=20260907_CLEAN" alt="Compendio I Bimestre Colegio Genes" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
+                                    <img src="assets/images/compendios/compendio_bimestre1.webp?v=20260907_CLEAN" alt="Compendio I Bimestre Colegio Genes" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
                                 </div>
                                 <h4 style="font-size: 1.05rem; color: #0F172A; font-weight: 800; margin-bottom: 6px;">Compendio</h4>
                                 <span style="display: inline-block; width: 100%; padding: 6px 12px; background: #F59E0B; color: #FFFFFF; font-size: 0.85rem; font-weight: 900; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">I BIMESTRE</span>
@@ -689,7 +738,7 @@
                             <!-- COMPENDIO II BIMESTRE -->
                             <div class="compendio-card-item" style="background: #FFFFFF; border-radius: 20px; padding: 20px; border: 1px solid #E2E8F0; box-shadow: 0 8px 24px rgba(0,0,0,0.05); text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
                                 <div class="compendio-img-wrapper" style="width: 100%; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;">
-                                    <img src="assets/images/compendios/compendio_bimestre2.png?v=20260907_CLEAN" alt="Compendio II Bimestre Colegio Genes" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
+                                    <img src="assets/images/compendios/compendio_bimestre2.webp?v=20260907_CLEAN" alt="Compendio II Bimestre Colegio Genes" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
                                 </div>
                                 <h4 style="font-size: 1.05rem; color: #0F172A; font-weight: 800; margin-bottom: 6px;">Compendio</h4>
                                 <span style="display: inline-block; width: 100%; padding: 6px 12px; background: #1E293B; color: #FFFFFF; font-size: 0.85rem; font-weight: 900; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">II BIMESTRE</span>
@@ -698,7 +747,7 @@
                             <!-- COMPENDIO III BIMESTRE -->
                             <div class="compendio-card-item" style="background: #FFFFFF; border-radius: 20px; padding: 20px; border: 1px solid #E2E8F0; box-shadow: 0 8px 24px rgba(0,0,0,0.05); text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
                                 <div class="compendio-img-wrapper" style="width: 100%; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;">
-                                    <img src="assets/images/compendios/compendio_bimestre3.png?v=20260907_CLEAN" alt="Compendio III Bimestre Colegio Genes" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
+                                    <img src="assets/images/compendios/compendio_bimestre3.webp?v=20260907_CLEAN" alt="Compendio III Bimestre Colegio Genes" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
                                 </div>
                                 <h4 style="font-size: 1.05rem; color: #0F172A; font-weight: 800; margin-bottom: 6px;">Compendio</h4>
                                 <span style="display: inline-block; width: 100%; padding: 6px 12px; background: #0D9488; color: #FFFFFF; font-size: 0.85rem; font-weight: 900; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">III BIMESTRE</span>
@@ -707,7 +756,7 @@
                             <!-- COMPENDIO IV BIMESTRE -->
                             <div class="compendio-card-item" style="background: #FFFFFF; border-radius: 20px; padding: 20px; border: 1px solid #E2E8F0; box-shadow: 0 8px 24px rgba(0,0,0,0.05); text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
                                 <div class="compendio-img-wrapper" style="width: 100%; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;">
-                                    <img src="assets/images/compendios/compendio_bimestre4.png?v=20260907_CLEAN" alt="Compendio IV Bimestre Colegio Genes" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
+                                    <img src="assets/images/compendios/compendio_bimestre4.webp?v=20260907_CLEAN" alt="Compendio IV Bimestre Colegio Genes" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
                                 </div>
                                 <h4 style="font-size: 1.05rem; color: #0F172A; font-weight: 800; margin-bottom: 6px;">Compendio</h4>
                                 <span style="display: inline-block; width: 100%; padding: 6px 12px; background: #2563EB; color: #FFFFFF; font-size: 0.85rem; font-weight: 900; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">IV BIMESTRE</span>
@@ -764,7 +813,7 @@
                             <div class="taller-bimestre-card">
                                 <div class="taller-bimestre-badge bimestre-1">I BIMESTRE</div>
                                 <div class="taller-photo-thumb">
-                                    <img src="assets/images/oficiales/primaria/titeres.jpg" alt="Alumnos en el taller oficial de títeres">
+                                    <img src="assets/images/oficiales/primaria/titeres.webp" alt="Alumnos en el taller oficial de títeres">
                                 </div>
                                 <h4>Títeres y Acuarelas</h4>
                                 <ul class="taller-actividades-list">
@@ -777,7 +826,7 @@
                             <div class="taller-bimestre-card">
                                 <div class="taller-bimestre-badge bimestre-2">II BIMESTRE</div>
                                 <div class="taller-photo-thumb">
-                                    <img src="assets/images/oficiales/primaria/oratoria.jpg" alt="Alumno en el taller de oratoria infantil">
+                                    <img src="assets/images/oficiales/primaria/oratoria.webp" alt="Alumno en el taller de oratoria infantil">
                                 </div>
                                 <h4>Oratoria y Melódica</h4>
                                 <ul class="taller-actividades-list">
@@ -790,7 +839,7 @@
                             <div class="taller-bimestre-card">
                                 <div class="taller-bimestre-badge bimestre-3">III BIMESTRE</div>
                                 <div class="taller-photo-thumb">
-                                    <img src="assets/images/oficiales/primaria/taller_teatro_instrumentos.jpg" alt="Alumnos en ensamble de teatro y música con xilófono y cajón">
+                                    <img src="assets/images/oficiales/primaria/taller_teatro_instrumentos.webp" alt="Alumnos en ensamble de teatro y música con xilófono y cajón">
                                 </div>
                                 <h4>Teatro e Instrumentos</h4>
                                 <ul class="taller-actividades-list">
@@ -803,7 +852,7 @@
                             <div class="taller-bimestre-card">
                                 <div class="taller-bimestre-badge bimestre-4">IV BIMESTRE</div>
                                 <div class="taller-photo-thumb">
-                                    <img src="assets/images/oficiales/primaria/exposiciones.jpg" alt="Alumno exponiendo con material concreto">
+                                    <img src="assets/images/oficiales/primaria/exposiciones.webp" alt="Alumno exponiendo con material concreto">
                                 </div>
                                 <h4>Exposición, Coro y Danza</h4>
                                 <ul class="taller-actividades-list">
@@ -831,7 +880,7 @@
                                     <h4>Jornada & Puntualidad</h4>
                                 </div>
                                 <div class="fvc-photo-thumb">
-                                    <img src="assets/images/primaria_jornada.jpg" alt="Jornada Escolar y Formación Cívica - Colegio Genes">
+                                    <img src="assets/images/primaria_jornada.webp" alt="Jornada Escolar y Formación Cívica - Colegio Genes">
                                 </div>
                                 <ul class="fvc-list">
                                     <li><strong>Lunes (Formación Cívica):</strong> 7:00 am a 7:30 am con izamiento de bandera y reflexión semanal.</li>
@@ -847,7 +896,7 @@
                                     <h4>Salida Segura & Fotocheck</h4>
                                 </div>
                                 <div class="fvc-photo-thumb">
-                                    <img src="assets/images/primaria_fotocheck.jpg" alt="Salida segura y control con fotocheck institucional">
+                                    <img src="assets/images/primaria_fotocheck.webp" alt="Salida segura y control con fotocheck institucional">
                                 </div>
                                 <ul class="fvc-list">
                                     <li><strong>1.° a 3.° de Primaria:</strong> Salida ordenada a la <strong>1:50 pm</strong>.</li>
@@ -863,7 +912,7 @@
                                     <h4>Cultura de Paz y Valores</h4>
                                 </div>
                                 <div class="fvc-photo-thumb">
-                                    <img src="assets/images/primaria_paz_valores.jpg" alt="Convivencia escolar, respeto mutuo y campaña no al bullying">
+                                    <img src="assets/images/primaria_paz_valores.webp" alt="Convivencia escolar, respeto mutuo y campaña no al bullying">
                                 </div>
                                 <ul class="fvc-list">
                                     <li><strong>Estrategia Disciplinaria:</strong> Metodología formativa <em>Problema – Reflexión – Compromiso</em>.</li>
@@ -986,7 +1035,7 @@
                         <!-- BLOQUE 1: SALIDA A LA PIZARRA Y RESOLUCIÓN EN CLASE -->
                         <div class="sistema-info-split">
                             <div class="sistema-img-box sistema-img-landscape">
-                                <img src="assets/images/secundaria_pizarra_resolucion.jpg" alt="Profesor y Alumnos de Secundaria en Pizarra Gigante Resolviendo Problemas Tipo Admisión - Colegio Genes" class="img-pizarra-secundaria">
+                                <img src="assets/images/secundaria_pizarra_resolucion.webp" alt="Profesor y Alumnos de Secundaria en Pizarra Gigante Resolviendo Problemas Tipo Admisión - Colegio Genes" class="img-pizarra-secundaria">
                             </div>
                             <div class="sistema-info-content">
                                 <h3>Metodología Preuniversitaria en Aula</h3>
@@ -1003,7 +1052,7 @@
                         <!-- BLOQUE 2: DEBATE, ORATORIA Y EXPOSICIONES -->
                         <div class="sistema-info-split reverse" style="margin-top: 40px;">
                             <div class="sistema-img-box sistema-img-landscape">
-                                <img src="assets/images/secundaria_oratoria_debate.jpg" alt="Docente y Alumna en Tutoría, Oratoria y Acompañamiento Académico - Colegio Genes" class="img-tutoria-secundaria">
+                                <img src="assets/images/secundaria_oratoria_debate.webp" alt="Docente y Alumna en Tutoría, Oratoria y Acompañamiento Académico - Colegio Genes" class="img-tutoria-secundaria">
                             </div>
                             <div class="sistema-info-content">
                                 <h3>Debate, Oratoria y Tutoría</h3>
@@ -1101,7 +1150,7 @@
                         <div class="sistema-proyectos-grid">
                             <div class="proyecto-card">
                                 <div class="proyecto-media-box">
-                                    <img src="assets/images/secundaria_proyecto_fisica.jpg" alt="Estudiantes en proyecto de Física Aplicada y Tecnología">
+                                    <img src="assets/images/secundaria_proyecto_fisica.webp" alt="Estudiantes en proyecto de Física Aplicada y Tecnología">
                                 </div>
                                 <div class="proyecto-tag-wrap">
                                     <span class="proyecto-pill pill-blue"><i class="fas fa-microchip"></i> Robótica & Prototipos</span>
@@ -1112,7 +1161,7 @@
 
                             <div class="proyecto-card">
                                 <div class="proyecto-media-box">
-                                    <img src="assets/images/secundaria_proyecto_economia.jpg" alt="Estudiantes en proyecto de Economía y Emprendimiento">
+                                    <img src="assets/images/secundaria_proyecto_economia.webp" alt="Estudiantes en proyecto de Economía y Emprendimiento">
                                 </div>
                                 <div class="proyecto-tag-wrap">
                                     <span class="proyecto-pill pill-green"><i class="fas fa-chart-line"></i> Emprendimiento Juvenil</span>
@@ -1123,7 +1172,7 @@
 
                             <div class="proyecto-card">
                                 <div class="proyecto-media-box">
-                                    <img src="assets/images/secundaria_proyecto_english.jpg" alt="Estudiante en concurso Spelling Bee en inglés">
+                                    <img src="assets/images/secundaria_proyecto_english.webp" alt="Estudiante en concurso Spelling Bee en inglés">
                                 </div>
                                 <div class="proyecto-tag-wrap">
                                     <span class="proyecto-pill pill-amber"><i class="fas fa-spell-check"></i> Oratoria en Inglés</span>
@@ -1155,7 +1204,7 @@
                             <!-- COMPENDIO I BIMESTRE -->
                             <div class="compendio-card-item" style="background: #FFFFFF; border-radius: 20px; padding: 20px; border: 1px solid #E2E8F0; box-shadow: 0 8px 24px rgba(0,0,0,0.05); text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
                                 <div class="compendio-img-wrapper" style="width: 100%; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;">
-                                    <img src="assets/images/compendios/compendio_bimestre1.png?v=20260907_CLEAN" alt="Compendio I Bimestre Colegio Genes Secundaria" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
+                                    <img src="assets/images/compendios/compendio_bimestre1.webp?v=20260907_CLEAN" alt="Compendio I Bimestre Colegio Genes Secundaria" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
                                 </div>
                                 <h4 style="font-size: 1.05rem; color: #0F172A; font-weight: 800; margin-bottom: 6px;">Compendio</h4>
                                 <span style="display: inline-block; width: 100%; padding: 6px 12px; background: #F59E0B; color: #FFFFFF; font-size: 0.85rem; font-weight: 900; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">I BIMESTRE</span>
@@ -1164,7 +1213,7 @@
                             <!-- COMPENDIO II BIMESTRE -->
                             <div class="compendio-card-item" style="background: #FFFFFF; border-radius: 20px; padding: 20px; border: 1px solid #E2E8F0; box-shadow: 0 8px 24px rgba(0,0,0,0.05); text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
                                 <div class="compendio-img-wrapper" style="width: 100%; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;">
-                                    <img src="assets/images/compendios/compendio_bimestre2.png?v=20260907_CLEAN" alt="Compendio II Bimestre Colegio Genes Secundaria" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
+                                    <img src="assets/images/compendios/compendio_bimestre2.webp?v=20260907_CLEAN" alt="Compendio II Bimestre Colegio Genes Secundaria" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
                                 </div>
                                 <h4 style="font-size: 1.05rem; color: #0F172A; font-weight: 800; margin-bottom: 6px;">Compendio</h4>
                                 <span style="display: inline-block; width: 100%; padding: 6px 12px; background: #1E293B; color: #FFFFFF; font-size: 0.85rem; font-weight: 900; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">II BIMESTRE</span>
@@ -1173,7 +1222,7 @@
                             <!-- COMPENDIO III BIMESTRE -->
                             <div class="compendio-card-item" style="background: #FFFFFF; border-radius: 20px; padding: 20px; border: 1px solid #E2E8F0; box-shadow: 0 8px 24px rgba(0,0,0,0.05); text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
                                 <div class="compendio-img-wrapper" style="width: 100%; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;">
-                                    <img src="assets/images/compendios/compendio_bimestre3.png?v=20260907_CLEAN" alt="Compendio III Bimestre Colegio Genes Secundaria" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
+                                    <img src="assets/images/compendios/compendio_bimestre3.webp?v=20260907_CLEAN" alt="Compendio III Bimestre Colegio Genes Secundaria" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
                                 </div>
                                 <h4 style="font-size: 1.05rem; color: #0F172A; font-weight: 800; margin-bottom: 6px;">Compendio</h4>
                                 <span style="display: inline-block; width: 100%; padding: 6px 12px; background: #0D9488; color: #FFFFFF; font-size: 0.85rem; font-weight: 900; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">III BIMESTRE</span>
@@ -1182,7 +1231,7 @@
                             <!-- COMPENDIO IV BIMESTRE -->
                             <div class="compendio-card-item" style="background: #FFFFFF; border-radius: 20px; padding: 20px; border: 1px solid #E2E8F0; box-shadow: 0 8px 24px rgba(0,0,0,0.05); text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
                                 <div class="compendio-img-wrapper" style="width: 100%; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;">
-                                    <img src="assets/images/compendios/compendio_bimestre4.png?v=20260907_CLEAN" alt="Compendio IV Bimestre Colegio Genes Secundaria" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
+                                    <img src="assets/images/compendios/compendio_bimestre4.webp?v=20260907_CLEAN" alt="Compendio IV Bimestre Colegio Genes Secundaria" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); border-radius: 6px; transition: transform 0.3s ease;">
                                 </div>
                                 <h4 style="font-size: 1.05rem; color: #0F172A; font-weight: 800; margin-bottom: 6px;">Compendio</h4>
                                 <span style="display: inline-block; width: 100%; padding: 6px 12px; background: #2563EB; color: #FFFFFF; font-size: 0.85rem; font-weight: 900; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">IV BIMESTRE</span>
@@ -1263,7 +1312,7 @@
                             <article class="canal-secundaria-card" id="secondary-channel-card">
                                 <div class="canal-secundaria-media">
                                     <div class="canal-secundaria-img-wrap">
-                                        <img id="secondary-channel-image" src="assets/images/canales/1ro_sec.jpg" alt="1ro de Secundaria">
+                                        <img id="secondary-channel-image" src="assets/images/canales/1ro_sec.webp" alt="1ro de Secundaria">
                                     </div>
                                 </div>
 
@@ -1297,7 +1346,7 @@
 
                     <div class="sedes-grid">
                         <article class="sede-card" onclick="openSedeModal('alborada')">
-                            <div class="sede-img"><img src="assets/images/sedes/alborada.png" alt="Genes Alborada"></div>
+                            <div class="sede-img"><img src="assets/images/sedes/alborada.webp" alt="Genes Alborada"></div>
                             <span class="sede-distrito">Comas</span>
                             <h3>Genes Alborada</h3>
                             <p class="sede-resumen">Primaria y secundaria con acceso rápido desde Av. Universitaria.</p>
@@ -1306,7 +1355,7 @@
                         </article>
 
                         <article class="sede-card" onclick="openSedeModal('genes2')">
-                            <div class="sede-img"><img src="assets/images/sedes/genes2.png" alt="Genes II"></div>
+                            <div class="sede-img"><img src="assets/images/sedes/genes2.webp" alt="Genes II"></div>
                             <span class="sede-distrito">Comas</span>
                             <h3>Genes II</h3>
                             <p class="sede-resumen">Sede con enfoque en secundaria y acompañamiento académico constante.</p>
@@ -1315,7 +1364,7 @@
                         </article>
 
                         <article class="sede-card" onclick="openSedeModal('losolivos')">
-                            <div class="sede-img"><img src="assets/images/sedes/losolivos.png" alt="Genes Los Olivos"></div>
+                            <div class="sede-img"><img src="assets/images/sedes/losolivos.webp" alt="Genes Los Olivos"></div>
                             <span class="sede-distrito">Los Olivos</span>
                             <h3>Genes Los Olivos</h3>
                             <p class="sede-resumen">Alternativa cercana para familias de Los Olivos con doble nivel.</p>
@@ -1324,7 +1373,7 @@
                         </article>
 
                         <article class="sede-card" onclick="openSedeModal('primavera')">
-                            <div class="sede-img"><img src="assets/images/sedes/primavera.png" alt="Genes Primavera"></div>
+                            <div class="sede-img"><img src="assets/images/sedes/primavera.webp" alt="Genes Primavera"></div>
                             <span class="sede-distrito">Comas</span>
                             <h3>Genes Primavera</h3>
                             <p class="sede-resumen">Espacio pensado para primaria con atención cercana a las familias.</p>
@@ -1333,7 +1382,7 @@
                         </article>
 
                         <article class="sede-card" onclick="openSedeModal('smp')">
-                            <div class="sede-img"><img src="assets/images/sedes/smp.png" alt="Genes de S.M.P."></div>
+                            <div class="sede-img"><img src="assets/images/sedes/smp.webp" alt="Genes de S.M.P."></div>
                             <span class="sede-distrito">San Martín de Porres</span>
                             <h3>Genes de S.M.P.</h3>
                             <p class="sede-resumen">Sede integral para familias de SMP con fácil conexión vial.</p>
@@ -1342,7 +1391,7 @@
                         </article>
 
                         <article class="sede-card" onclick="openSedeModal('norte')">
-                            <div class="sede-img"><img src="assets/images/sedes/norte.png" alt="Genes del Norte"></div>
+                            <div class="sede-img"><img src="assets/images/sedes/norte.webp" alt="Genes del Norte"></div>
                             <span class="sede-distrito">Puente Piedra</span>
                             <h3>Genes del Norte</h3>
                             <p class="sede-resumen">Cobertura para la zona norte con propuesta académica completa.</p>
@@ -1351,7 +1400,7 @@
                         </article>
 
                         <article class="sede-card" onclick="openSedeModal('gamarra')">
-                            <div class="sede-img"><img src="assets/images/sedes/gamarra.jpg" alt="Genes Gamarra"></div>
+                            <div class="sede-img"><img src="assets/images/sedes/gamarra.webp" alt="Genes Gamarra"></div>
                             <span class="sede-distrito">San Martín de Porres</span>
                             <h3>Genes Gamarra</h3>
                             <p class="sede-resumen">Sede urbana con acceso cómodo y acompañamiento por etapas.</p>
@@ -1360,7 +1409,7 @@
                         </article>
 
                         <article class="sede-card" onclick="openSedeModal('pinar')">
-                            <div class="sede-img"><img src="assets/images/sedes/pinar.jpg" alt="Genes del Pinar"></div>
+                            <div class="sede-img"><img src="assets/images/sedes/pinar.webp" alt="Genes del Pinar"></div>
                             <span class="sede-distrito">Comas</span>
                             <h3>Genes del Pinar</h3>
                             <p class="sede-resumen">Sede para familias de Comas que buscan exigencia y cercanía.</p>
@@ -1520,10 +1569,10 @@
                                 Refuerzo en Matemática, Comunicación, Taller de Xilófono, Taller de Oratoria y Baile Moderno.
                             </p>
                             
-                            <div class="horario-img-box" onclick="openIngresanteModal('assets/images/vacaciones/horario_primaria_nuevo.jpg', 'Horario Oficial Nivel Primaria (1° a 6° Grado) - Vacaciones Útiles')" title="Toca para ampliar horario en pantalla completa" style="max-width: 980px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #E2E8F0; background: #FFFFFF; padding: 12px; cursor: pointer;">
-                                <img src="assets/images/vacaciones/horario_primaria_nuevo.jpg" alt="Horario Referencial 1° a 6° de Primaria Vacaciones Útiles Colegio Genes" style="width: 100%; height: auto; display: block; border-radius: 10px;">
+                            <div class="horario-img-box" onclick="openIngresanteModal('assets/images/vacaciones/horario_primaria_nuevo.webp', 'Horario Oficial Nivel Primaria (1° a 6° Grado) - Vacaciones Útiles')" title="Toca para ampliar horario en pantalla completa" style="max-width: 980px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #E2E8F0; background: #FFFFFF; padding: 12px; cursor: pointer;">
+                                <img src="assets/images/vacaciones/horario_primaria_nuevo.webp" alt="Horario Referencial 1° a 6° de Primaria Vacaciones Útiles Colegio Genes" style="width: 100%; height: auto; display: block; border-radius: 10px;">
                             </div>
-                            <button type="button" class="horario-zoom-badge" onclick="openIngresanteModal('assets/images/vacaciones/horario_primaria_nuevo.jpg', 'Horario Oficial Nivel Primaria (1° a 6° Grado) - Vacaciones Útiles')">
+                            <button type="button" class="horario-zoom-badge" onclick="openIngresanteModal('assets/images/vacaciones/horario_primaria_nuevo.webp', 'Horario Oficial Nivel Primaria (1° a 6° Grado) - Vacaciones Útiles')">
                                 <i class="fas fa-search-plus"></i> Toca para ampliar horario en alta resolución
                             </button>
                         </div>
@@ -1573,7 +1622,7 @@
                         <div class="vacaciones-beneficios-grid">
                             <div class="vacaciones-beneficio-card">
                                 <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_profesores.jpg" alt="Profesores dinámicos Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                    <img src="assets/images/vacaciones/beneficio_profesores.webp" alt="Profesores dinámicos Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                                 </div>
                                 <div class="beneficio-body">
                                     <h5>Profesores dinámicos</h5>
@@ -1582,7 +1631,7 @@
                             </div>
                             <div class="vacaciones-beneficio-card">
                                 <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_videos.jpg" alt="Videos tutoriales Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                    <img src="assets/images/vacaciones/beneficio_videos.webp" alt="Videos tutoriales Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                                 </div>
                                 <div class="beneficio-body">
                                     <h5>Videos tutoriales</h5>
@@ -1591,7 +1640,7 @@
                             </div>
                             <div class="vacaciones-beneficio-card">
                                 <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_material.jpg" alt="Material académico Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                    <img src="assets/images/vacaciones/beneficio_material.webp" alt="Material académico Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                                 </div>
                                 <div class="beneficio-body">
                                     <h5>Material académico</h5>
@@ -1600,7 +1649,7 @@
                             </div>
                             <div class="vacaciones-beneficio-card">
                                 <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_rendimiento.jpg" alt="Informe de rendimiento Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                    <img src="assets/images/vacaciones/beneficio_rendimiento.webp" alt="Informe de rendimiento Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                                 </div>
                                 <div class="beneficio-body">
                                     <h5>Informe de rendimiento</h5>
@@ -1621,10 +1670,10 @@
                                 Preparación preuniversitaria en Ciencias, Matemáticas, Miscelánea, Taller de Oratoria y Baile Moderno.
                             </p>
                             
-                            <div class="horario-img-box" onclick="openIngresanteModal('assets/images/vacaciones/horario_secundaria_nuevo.jpg', 'Horario Oficial Nivel Secundaria (1° a 5° Año) - Vacaciones Útiles')" title="Toca para ampliar horario en pantalla completa" style="max-width: 980px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #E2E8F0; background: #FFFFFF; padding: 12px; cursor: pointer;">
-                                <img src="assets/images/vacaciones/horario_secundaria_nuevo.jpg" alt="Horario Referencial 1° a 5° de Secundaria Vacaciones Útiles Colegio Genes" style="width: 100%; height: auto; display: block; border-radius: 10px;">
+                            <div class="horario-img-box" onclick="openIngresanteModal('assets/images/vacaciones/horario_secundaria_nuevo.webp', 'Horario Oficial Nivel Secundaria (1° a 5° Año) - Vacaciones Útiles')" title="Toca para ampliar horario en pantalla completa" style="max-width: 980px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #E2E8F0; background: #FFFFFF; padding: 12px; cursor: pointer;">
+                                <img src="assets/images/vacaciones/horario_secundaria_nuevo.webp" alt="Horario Referencial 1° a 5° de Secundaria Vacaciones Útiles Colegio Genes" style="width: 100%; height: auto; display: block; border-radius: 10px;">
                             </div>
-                            <button type="button" class="horario-zoom-badge" onclick="openIngresanteModal('assets/images/vacaciones/horario_secundaria_nuevo.jpg', 'Horario Oficial Nivel Secundaria (1° a 5° Año) - Vacaciones Útiles')">
+                            <button type="button" class="horario-zoom-badge" onclick="openIngresanteModal('assets/images/vacaciones/horario_secundaria_nuevo.webp', 'Horario Oficial Nivel Secundaria (1° a 5° Año) - Vacaciones Útiles')">
                                 <i class="fas fa-search-plus"></i> Toca para ampliar horario en alta resolución
                             </button>
                         </div>
@@ -1674,7 +1723,7 @@
                         <div class="vacaciones-beneficios-grid">
                             <div class="vacaciones-beneficio-card">
                                 <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_profesores.jpg" alt="Profesores dinámicos Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                    <img src="assets/images/vacaciones/beneficio_profesores.webp" alt="Profesores dinámicos Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                                 </div>
                                 <div class="beneficio-body">
                                     <h5>Profesores dinámicos</h5>
@@ -1683,7 +1732,7 @@
                             </div>
                             <div class="vacaciones-beneficio-card">
                                 <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_videos.jpg" alt="Videos tutoriales Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                    <img src="assets/images/vacaciones/beneficio_videos.webp" alt="Videos tutoriales Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                                 </div>
                                 <div class="beneficio-body">
                                     <h5>Videos tutoriales</h5>
@@ -1692,7 +1741,7 @@
                             </div>
                             <div class="vacaciones-beneficio-card">
                                 <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_material.jpg" alt="Material académico Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                    <img src="assets/images/vacaciones/beneficio_material.webp" alt="Material académico Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                                 </div>
                                 <div class="beneficio-body">
                                     <h5>Material académico</h5>
@@ -1701,7 +1750,7 @@
                             </div>
                             <div class="vacaciones-beneficio-card">
                                 <div class="beneficio-img-wrap" style="width: 100%; height: 140px; overflow: hidden; background: #F1F5F9;">
-                                    <img src="assets/images/vacaciones/beneficio_rendimiento.jpg" alt="Informe de rendimiento Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                    <img src="assets/images/vacaciones/beneficio_rendimiento.webp" alt="Informe de rendimiento Colegios Genes" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                                 </div>
                                 <div class="beneficio-body">
                                     <h5>Informe de rendimiento</h5>
@@ -2058,10 +2107,10 @@
                     <div class="ingresantes-grid">
                         
                         <!-- CARD SAN MARCOS -->
-                        <div class="ingresante-card" data-uni="sanmarcos" onclick="openIngresanteModal('assets/images/ingresantes_sanmarcos.png', 'Universidad Nacional Mayor de San Marcos')">
+                        <div class="ingresante-card" data-uni="sanmarcos" onclick="openIngresanteModal('assets/images/ingresantes_sanmarcos.webp', 'Universidad Nacional Mayor de San Marcos')">
                             <div class="ingresante-img-wrapper">
                                 <span class="ingresante-badge-uni badge-sanmarcos">UNMSM - San Marcos</span>
-                                <img src="assets/images/ingresantes_sanmarcos.png" alt="Ingresantes Universidad Nacional Mayor de San Marcos">
+                                <img src="assets/images/ingresantes_sanmarcos.webp" alt="Ingresantes Universidad Nacional Mayor de San Marcos">
                                 <div class="ingresante-overlay-zoom">
                                     <i class="fas fa-search-plus"></i> Ampliar Afiche
                                 </div>
@@ -2074,10 +2123,10 @@
                         </div>
 
                         <!-- CARD UNI -->
-                        <div class="ingresante-card" data-uni="uni" onclick="openIngresanteModal('assets/images/ingresantes_uni.png', 'Universidad Nacional de Ingeniería')">
+                        <div class="ingresante-card" data-uni="uni" onclick="openIngresanteModal('assets/images/ingresantes_uni.webp', 'Universidad Nacional de Ingeniería')">
                             <div class="ingresante-img-wrapper">
                                 <span class="ingresante-badge-uni badge-uni">UNI - Ingeniería</span>
-                                <img src="assets/images/ingresantes_uni.png" alt="Ingresantes Universidad Nacional de Ingeniería">
+                                <img src="assets/images/ingresantes_uni.webp" alt="Ingresantes Universidad Nacional de Ingeniería">
                                 <div class="ingresante-overlay-zoom">
                                     <i class="fas fa-search-plus"></i> Ampliar Afiche
                                 </div>
@@ -2090,10 +2139,10 @@
                         </div>
 
                         <!-- CARD CALLAO -->
-                        <div class="ingresante-card" data-uni="callao" onclick="openIngresanteModal('assets/images/ingresantes_callao.png', 'Universidad Nacional del Callao')">
+                        <div class="ingresante-card" data-uni="callao" onclick="openIngresanteModal('assets/images/ingresantes_callao.webp', 'Universidad Nacional del Callao')">
                             <div class="ingresante-img-wrapper">
                                 <span class="ingresante-badge-uni badge-callao">UNAC - Callao</span>
-                                <img src="assets/images/ingresantes_callao.png" alt="Ingresantes Universidad Nacional del Callao">
+                                <img src="assets/images/ingresantes_callao.webp" alt="Ingresantes Universidad Nacional del Callao">
                                 <div class="ingresante-overlay-zoom">
                                     <i class="fas fa-search-plus"></i> Ampliar Afiche
                                 </div>
@@ -2106,10 +2155,10 @@
                         </div>
 
                         <!-- CARD PUCP -->
-                        <div class="ingresante-card" data-uni="pucp" onclick="openIngresanteModal('assets/images/ingresantes_pucp.png', 'Pontificia Universidad Católica del Perú')">
+                        <div class="ingresante-card" data-uni="pucp" onclick="openIngresanteModal('assets/images/ingresantes_pucp.webp', 'Pontificia Universidad Católica del Perú')">
                             <div class="ingresante-img-wrapper">
                                 <span class="ingresante-badge-uni badge-pucp">PUCP - Católica</span>
-                                <img src="assets/images/ingresantes_pucp.png" alt="Ingresantes Pontificia Universidad Católica del Perú">
+                                <img src="assets/images/ingresantes_pucp.webp" alt="Ingresantes Pontificia Universidad Católica del Perú">
                                 <div class="ingresante-overlay-zoom">
                                     <i class="fas fa-search-plus"></i> Ampliar Afiche
                                 </div>
@@ -2184,7 +2233,7 @@
 
                             <!-- ILUSTRACIÓN PNG TRANSPARENTE EN LA PARTE INFERIOR DEL PANEL -->
                             <div class="contacto-illustration-wrap">
-                                <img src="assets/images/contacto_ilustracion.png" alt="Atención e Informes Colegio Genes" class="contacto-illustration-img">
+                                <img src="assets/images/contacto_ilustracion.webp" alt="Atención e Informes Colegio Genes" class="contacto-illustration-img">
                             </div>
                         </div>
                     </div>
@@ -2678,6 +2727,10 @@
 
             <!-- VIEWPORT / STAGE -->
             <div class="lightbox-stage" id="lightbox-stage">
+                <div id="lightbox-spinner" class="lightbox-spinner" aria-hidden="true">
+                    <div class="lightbox-spinner-ring"></div>
+                    <span>Cargando imagen en alta resolución...</span>
+                </div>
                 <div class="lightbox-img-wrapper" id="lightbox-img-wrapper">
                     <img id="ingresante-modal-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Publicación Oficial Colegios Genes" draggable="false">
                 </div>

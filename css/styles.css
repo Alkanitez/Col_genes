@@ -361,15 +361,15 @@ li.mobile-drawer-header {
 }
 
 .hero-slide-1 {
-    background: linear-gradient(90deg, rgba(7, 11, 24, 0.95) 0%, rgba(7, 11, 24, 0.82) 45%, rgba(7, 11, 24, 0.2) 75%, rgba(7, 11, 24, 0) 100%), url('../assets/images/hero_classroom_whiteboard.jpg?v=20260801_1') center/cover no-repeat !important;
+    background: linear-gradient(90deg, rgba(7, 11, 24, 0.95) 0%, rgba(7, 11, 24, 0.82) 45%, rgba(7, 11, 24, 0.2) 75%, rgba(7, 11, 24, 0) 100%), url('../assets/images/hero_classroom_whiteboard.webp?v=20260801_1') center/cover no-repeat !important;
 }
 
 .hero-slide-2 {
-    background: linear-gradient(90deg, rgba(7, 11, 24, 0.95) 0%, rgba(7, 11, 24, 0.82) 45%, rgba(7, 11, 24, 0.2) 75%, rgba(7, 11, 24, 0) 100%), url('../assets/images/hero_virtual_learning.jpg?v=20260802_1') center/cover no-repeat !important;
+    background: linear-gradient(90deg, rgba(7, 11, 24, 0.95) 0%, rgba(7, 11, 24, 0.82) 45%, rgba(7, 11, 24, 0.2) 75%, rgba(7, 11, 24, 0) 100%), url('../assets/images/hero_virtual_learning.webp?v=20260802_1') center/cover no-repeat !important;
 }
 
 .hero-slide-3 {
-    background: linear-gradient(90deg, rgba(7, 11, 24, 0.95) 0%, rgba(7, 11, 24, 0.82) 45%, rgba(7, 11, 24, 0.2) 75%, rgba(7, 11, 24, 0) 100%), url('../assets/images/hero_students.png') center/cover no-repeat !important;
+    background: linear-gradient(90deg, rgba(7, 11, 24, 0.95) 0%, rgba(7, 11, 24, 0.82) 45%, rgba(7, 11, 24, 0.2) 75%, rgba(7, 11, 24, 0) 100%), url('../assets/images/hero_students.webp') center/cover no-repeat !important;
 }
 
 .hero-h1 span.highlight-blue,
@@ -5024,15 +5024,15 @@ p.text-mobile-only, div.text-mobile-only {
     }
 
     .hero-slide-1 {
-        background: linear-gradient(180deg, rgba(7, 11, 24, 0.4) 0%, rgba(7, 11, 24, 0.75) 55%, rgba(7, 11, 24, 0.95) 100%), url('../assets/images/hero_mobile_slide1.jpg') center top/cover no-repeat !important;
+        background: linear-gradient(180deg, rgba(7, 11, 24, 0.4) 0%, rgba(7, 11, 24, 0.75) 55%, rgba(7, 11, 24, 0.95) 100%), url('../assets/images/hero_mobile_slide1.webp') center top/cover no-repeat !important;
     }
 
     .hero-slide-2 {
-        background: linear-gradient(180deg, rgba(7, 11, 24, 0.4) 0%, rgba(7, 11, 24, 0.75) 55%, rgba(7, 11, 24, 0.95) 100%), url('../assets/images/hero_mobile_slide2.jpg') center top/cover no-repeat !important;
+        background: linear-gradient(180deg, rgba(7, 11, 24, 0.4) 0%, rgba(7, 11, 24, 0.75) 55%, rgba(7, 11, 24, 0.95) 100%), url('../assets/images/hero_mobile_slide2.webp') center top/cover no-repeat !important;
     }
 
     .hero-slide-3 {
-        background: linear-gradient(180deg, rgba(7, 11, 24, 0.4) 0%, rgba(7, 11, 24, 0.75) 55%, rgba(7, 11, 24, 0.95) 100%), url('../assets/images/hero_mobile_slide3.jpg') center top/cover no-repeat !important;
+        background: linear-gradient(180deg, rgba(7, 11, 24, 0.4) 0%, rgba(7, 11, 24, 0.75) 55%, rgba(7, 11, 24, 0.95) 100%), url('../assets/images/hero_mobile_slide3.webp') center top/cover no-repeat !important;
     }
 
     .hero-slider-arrow {
@@ -7210,4 +7210,232 @@ p.text-mobile-only, div.text-mobile-only {
         padding: 8px 4px !important;
         gap: 5px !important;
     }
+}
+
+
+/* ==========================================================================
+   MEJORAS UX/UI: PROGRESO EN SISTEMA DE TRABAJO, SPINNER LIGHTBOX Y VALIDACIÓN EN VIVO
+   ========================================================================== */
+
+/* 1. Barra de Progreso y Conmutador Rápido en Sistema de Trabajo */
+.sistema-progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.sistema-progress-steps {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prog-step {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #64748B;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+button.prog-step {
+    cursor: pointer;
+}
+
+button.prog-step:hover {
+    background: #F1F5F9;
+    color: #202682;
+}
+
+.prog-step .prog-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 800;
+    background: #E2E8F0;
+    color: #475569;
+    transition: all 0.25s ease;
+}
+
+.prog-step.active {
+    color: #202682;
+    font-weight: 700;
+}
+
+.prog-step.active .prog-num {
+    background: linear-gradient(135deg, #202682 0%, #38BDF8 100%);
+    color: #FFFFFF;
+    box-shadow: 0 3px 10px rgba(32, 38, 130, 0.28);
+}
+
+.prog-step.completed .prog-num {
+    background: #10B981;
+    color: #FFFFFF;
+}
+
+.prog-divider {
+    color: #CBD5E1;
+    font-size: 0.75rem;
+}
+
+.sistema-quick-switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quick-switch-btn {
+    border: 1px solid #CBD5E1;
+    background: #F8FAFC;
+    color: #334155;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-switch-btn:hover {
+    border-color: #202682;
+    color: #202682;
+}
+
+.quick-switch-btn.active {
+    background: #202682;
+    border-color: #202682;
+    color: #FFFFFF;
+}
+
+@media (max-width: 640px) {
+    .sistema-progress-bar {
+        padding: 10px 12px;
+    }
+    .prog-step {
+        font-size: 0.8rem;
+        padding: 3px 4px;
+    }
+    .sistema-quick-switch {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+/* 2. Spinner de Carga en Modal Lightbox (Ingresantes y Horarios) */
+.lightbox-stage {
+    position: relative;
+}
+
+.lightbox-spinner {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    z-index: 5;
+    color: #E2E8F0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.lightbox-spinner.active {
+    display: flex;
+}
+
+.lightbox-spinner-ring {
+    width: 46px;
+    height: 46px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #38BDF8;
+    border-radius: 50%;
+    animation: genesSpin 0.8s linear infinite;
+}
+
+@keyframes genesSpin {
+    to { transform: rotate(360deg); }
+}
+
+#ingresante-modal-img {
+    transition: opacity 0.25s ease;
+}
+
+/* 3. Feedback en Tiempo Real para Formularios */
+.input-wrapper {
+    position: relative;
+}
+
+.input-field-group.is-valid input,
+.input-field-group.is-valid textarea,
+.input-field-group.is-valid select {
+    border-color: #10B981 !important;
+    background-color: #F0FDF4 !important;
+    padding-right: 38px !important;
+}
+
+.input-field-group.is-invalid input,
+.input-field-group.is-invalid textarea,
+.input-field-group.is-invalid select {
+    border-color: #EF4444 !important;
+    background-color: #FEF2F2 !important;
+    padding-right: 38px !important;
+}
+
+.input-status-icon {
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    pointer-events: none;
+}
+
+.textarea-wrapper .input-status-icon {
+    top: 16px;
+    transform: none;
+}
+
+.input-field-group.is-valid .input-status-icon {
+    color: #10B981;
+}
+
+.input-field-group.is-invalid .input-status-icon {
+    color: #EF4444;
+}
+
+.input-feedback-msg {
+    display: block;
+    font-size: 0.76rem;
+    font-weight: 600;
+    margin-top: 5px;
+    min-height: 1em;
+}
+
+.input-field-group.is-valid .input-feedback-msg {
+    color: #059669;
+}
+
+.input-field-group.is-invalid .input-feedback-msg {
+    color: #DC2626;
 }
