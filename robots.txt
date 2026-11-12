@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://colegiogenes.edu.pe/sitemap.xml
+Sitemap: https://colegio-genes.vercel.app/sitemap.xml
