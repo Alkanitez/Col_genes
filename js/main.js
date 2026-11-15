@@ -33,30 +33,6 @@ function showSistemaSubSection(subId) {
         }
     }
 
-    // Actualizar indicador de progreso y conmutador rápido
-    const step1 = document.getElementById('prog-step-1');
-    const step2 = document.getElementById('prog-step-2');
-    const step2Label = document.getElementById('prog-step-2-label');
-    const quickSwitch = document.getElementById('sistema-quick-switch');
-    const btnPrim = document.getElementById('btn-switch-primaria');
-    const btnSec = document.getElementById('btn-switch-secundaria');
-
-    if (step1 && step2 && step2Label) {
-        if (subId === 'selection-main') {
-            step1.className = 'prog-step active';
-            step2.className = 'prog-step';
-            step2Label.textContent = 'Detalle Académico';
-            if (quickSwitch) quickSwitch.style.display = 'none';
-        } else {
-            step1.className = 'prog-step completed';
-            step2.className = 'prog-step active';
-            step2Label.textContent = subId === 'primaria-detail' ? 'Nivel Primaria' : 'Nivel Secundaria';
-            if (quickSwitch) quickSwitch.style.display = 'flex';
-            if (btnPrim) btnPrim.classList.toggle('active', subId === 'primaria-detail');
-            if (btnSec) btnSec.classList.toggle('active', subId === 'secundaria-detail');
-        }
-    }
-
     const targetSection = document.getElementById('propuesta') || document.getElementById('primaria');
     if (targetSection) {
         targetSection.scrollIntoView({ behavior: 'smooth' });
