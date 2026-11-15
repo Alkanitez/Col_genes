@@ -517,8 +517,6 @@ li.mobile-drawer-header {
     text-shadow: none !important;
 }
 
-.hero-h1 *,
-.hero-h1 span,
 .hero-h1 span.highlight {
     color: var(--bright-red);
     text-shadow: none !important;
