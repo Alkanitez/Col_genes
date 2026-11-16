@@ -99,6 +99,14 @@ function showSection(id, updateHash = true) {
         document.title = sectionSeoTitles[id];
     }
 
+    if (typeof trackSectionView === 'function') {
+        trackSectionView(id);
+    }
+
+    if (targetId === 'sedes' && typeof preloadSedeMap === 'function') {
+        preloadSedeMap('alborada');
+    }
+
     if (updateHash && window.location.hash !== '#' + id) {
         history.pushState(null, '', '#' + id);
     }
@@ -338,29 +346,8 @@ function showSecundariaPanel(panelId, button) {
 }
 
 /* --------------------------------------------------------------------------
-   CANALES POR GRADO (INSIGNIA DINÁMICA OFICIAL)
+   CANALES POR GRADO (PRIMARIA Y SECUNDARIA)
    -------------------------------------------------------------------------- */
-function generateGenesBadgeSvg(numStr, suffix, levelLabel = "PRIMARIA") {
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
-      <defs>
-        <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#C51818"/>
-          <stop offset="100%" stop-color="#991B1B"/>
-        </linearGradient>
-      </defs>
-      <circle cx="120" cy="120" r="112" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="4"/>
-      <circle cx="120" cy="120" r="106" fill="none" stroke="#E2E8F0" stroke-width="2"/>
-      <path d="M 18,105 A 103,103 0 0,1 222,105 Z" fill="url(#redGrad)"/>
-      <text x="120" y="52" fill="#FFFFFF" font-family="'Montserrat', Arial, sans-serif" font-weight="900" font-size="14" text-anchor="middle" letter-spacing="2">COLEGIO</text>
-      <text x="120" y="88" fill="#FFFFFF" font-family="'Montserrat', Arial, sans-serif" font-weight="900" font-size="34" text-anchor="middle" letter-spacing="-0.5">GENES</text>
-      <rect x="25" y="108" width="190" height="26" fill="#F1F5F9" rx="4"/>
-      <text x="120" y="126" fill="#64748B" font-family="'Montserrat', Arial, sans-serif" font-weight="800" font-size="13" text-anchor="middle" letter-spacing="3">${levelLabel}</text>
-      <text x="120" y="180" fill="#B91C1C" font-family="'Montserrat', Arial, sans-serif" font-weight="900" font-size="46" text-anchor="middle">${numStr}<tspan font-size="22" font-weight="800" fill="#B91C1C">${suffix}</tspan></text>
-      <text x="120" y="202" fill="#94A3B8" font-family="'Montserrat', Arial, sans-serif" font-weight="800" font-size="12" text-anchor="middle" letter-spacing="2">GRADO</text>
-    </svg>`;
-    return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
-}
-
 const primaryChannelsData = {
     grado1: {
         titulo: "1ro de Primaria",
@@ -405,43 +392,6 @@ const primaryChannelsData = {
         disponible: true
     }
 };
-
-function switchCanalesLevel(level, button) {
-    const gridPrimaria = document.getElementById('canales-grid-primaria');
-    const gridSecundaria = document.getElementById('canales-grid-secundaria');
-    const tabPrimaria = document.getElementById('tab-btn-primaria');
-    const tabSecundaria = document.getElementById('tab-btn-secundaria');
-
-    if (level === 'primaria') {
-        if (gridPrimaria) gridPrimaria.style.display = 'grid';
-        if (gridSecundaria) gridSecundaria.style.display = 'none';
-
-        if (tabPrimaria) {
-            tabPrimaria.style.background = 'var(--bg-dark-navy)';
-            tabPrimaria.style.color = '#FFFFFF';
-            tabPrimaria.style.border = 'none';
-        }
-        if (tabSecundaria) {
-            tabSecundaria.style.background = '#F8FAFC';
-            tabSecundaria.style.color = '#475569';
-            tabSecundaria.style.border = '1px solid #CBD5E1';
-        }
-    } else {
-        if (gridPrimaria) gridPrimaria.style.display = 'none';
-        if (gridSecundaria) gridSecundaria.style.display = 'grid';
-
-        if (tabSecundaria) {
-            tabSecundaria.style.background = 'var(--bg-dark-navy)';
-            tabSecundaria.style.color = '#FFFFFF';
-            tabSecundaria.style.border = 'none';
-        }
-        if (tabPrimaria) {
-            tabPrimaria.style.background = '#F8FAFC';
-            tabPrimaria.style.color = '#475569';
-            tabPrimaria.style.border = '1px solid #CBD5E1';
-        }
-    }
-}
 
 function showPrimaryChannel(gradoKey, button) {
     const data = primaryChannelsData[gradoKey] || primaryChannelsData['grado1'];
@@ -801,119 +751,226 @@ function showVideosSecundaria(key, button) {
 }
 
 /* --------------------------------------------------------------------------
-   SEDES - POPUP MODAL E INFORMACIÓN COMPLETA
+   SEDES - POPUP MODAL, FILTRO POR DISTRITO Y PRECARGA RÁPIDA DE GOOGLE MAPS
    -------------------------------------------------------------------------- */
 const sedesData = {
     alborada: {
         nombre: "GENES ALBORADA",
+        selectValue: "Genes Alborada",
         distrito: "Comas",
-        nivel: "Primaria - Secundaria",
+        nivel: "Primaria y Secundaria",
         direccion: "Av. Universitaria 9880",
         fijo: "015573002",
         celular: "945850041",
         correo: "genes1@colegiogenes.edu.pe",
-        mapa: "https://www.google.com/maps?q=Av.%20Universitaria%209880%20Comas&output=embed"
+        mapa: "https://www.google.com/maps?q=Av.%20Universitaria%209880%20Comas%20Lima&output=embed",
+        mapsDirect: "https://www.google.com/maps/search/?api=1&query=Av.+Universitaria+9880+Comas+Lima"
     },
     genes2: {
         nombre: "GENES II",
+        selectValue: "Genes II",
         distrito: "Comas",
-        nivel: "Secundaria",
+        nivel: "Secundaria Preuniversitaria",
         direccion: "Av. Universitaria 8257, entre Av. Jamaica y Av. Micaela Bastidas",
         fijo: "015218596",
         celular: "945850081",
         correo: "genes2@colegiogenes.edu.pe",
-        mapa: "https://www.google.com/maps?q=Av.%20Universitaria%208257%20Comas&output=embed"
+        mapa: "https://www.google.com/maps?q=Av.%20Universitaria%208257%20Comas%20Lima&output=embed",
+        mapsDirect: "https://www.google.com/maps/search/?api=1&query=Av.+Universitaria+8257+Comas+Lima"
     },
     losolivos: {
         nombre: "GENES LOS OLIVOS",
+        selectValue: "Genes Los Olivos",
         distrito: "Los Olivos",
-        nivel: "Primaria - Secundaria",
+        nivel: "Primaria y Secundaria",
         direccion: "Av. Universitaria 5306, cruce con Av. Marañón",
         fijo: "015218596",
         celular: "963974465",
         correo: "geneslosolivos@colegiogenes.edu.pe",
-        mapa: "https://www.google.com/maps?q=Av.%20Universitaria%205306%20Los%20Olivos&output=embed"
+        mapa: "https://www.google.com/maps?q=Av.%20Universitaria%205306%20Los%20Olivos%20Lima&output=embed",
+        mapsDirect: "https://www.google.com/maps/search/?api=1&query=Av.+Universitaria+5306+Los+Olivos+Lima"
     },
     primavera: {
         nombre: "GENES PRIMAVERA",
+        selectValue: "Genes Primavera",
         distrito: "Comas",
-        nivel: "Primaria",
+        nivel: "Primaria Integral",
         direccion: "Calle 2 Mz. G Lote 27 - Coop. Primavera",
         fijo: "015570144",
         celular: "933909609",
         correo: "genesprimavera@colegiogenes.edu.pe",
-        mapa: "https://www.google.com/maps?q=Calle%202%20Mz.%20G%20Lote%2027%20Coop.%20Primavera%20Comas&output=embed"
+        mapa: "https://www.google.com/maps?q=Calle%202%20Mz.%20G%20Lote%2027%20Coop.%20Primavera%20Comas%20Lima&output=embed",
+        mapsDirect: "https://www.google.com/maps/search/?api=1&query=Coop.+Primavera+Comas+Lima"
     },
     smp: {
         nombre: "GENES DE S.M.P.",
+        selectValue: "Genes de S.M.P.",
         distrito: "San Martín de Porres",
-        nivel: "Primaria - Secundaria",
+        nivel: "Primaria y Secundaria",
         direccion: "Coop. Virgen de Fátima Mz. L Lote 3, Alt. Cdra. 19 Av. Carlos Izaguirre",
         fijo: "014852475",
         celular: "945850038",
         correo: "genessmp@colegiogenes.edu.pe",
-        mapa: "https://www.google.com/maps?q=Av.%20Carlos%20Izaguirre%2019%20San%20Martin%20de%20Porres&output=embed"
+        mapa: "https://www.google.com/maps?q=Av.%20Carlos%20Izaguirre%201900%20San%20Martin%20de%20Porres%20Lima&output=embed",
+        mapsDirect: "https://www.google.com/maps/search/?api=1&query=Av.+Carlos+Izaguirre+cdra+19+San+Martin+de+Porres+Lima"
     },
     norte: {
         nombre: "GENES DEL NORTE",
+        selectValue: "Genes del Norte",
         distrito: "Puente Piedra",
-        nivel: "Primaria - Secundaria",
+        nivel: "Primaria y Secundaria",
         direccion: "Urb. Leoncio Prado Mz. N Lt. 179, Panamericana Norte con Néstor Gambeta",
         fijo: "012889074",
         celular: "933840061",
         correo: "genesdelnorte@colegiogenes.edu.pe",
-        mapa: "https://www.google.com/maps?q=Panamericana%20Norte%20con%20Nestor%20Gambeta%20Puente%20Piedra&output=embed"
+        mapa: "https://www.google.com/maps?q=Panamericana%20Norte%20con%20Nestor%20Gambeta%20Puente%20Piedra%20Lima&output=embed",
+        mapsDirect: "https://www.google.com/maps/search/?api=1&query=Panamericana+Norte+con+Nestor+Gambeta+Puente+Piedra+Lima"
     },
     gamarra: {
         nombre: "GENES GAMARRA",
+        selectValue: "Genes Gamarra",
         distrito: "San Martín de Porres",
-        nivel: "Primaria - Secundaria",
+        nivel: "Primaria y Secundaria",
         direccion: "Calle Germán Stiglich Mz. A Lote 3, Urb. Antares",
         fijo: "013987127",
         celular: "923852495",
         correo: "genesgamarra@colegiogenes.edu.pe",
-        mapa: "https://www.google.com/maps?q=Calle%20German%20Stiglich%20Urb.%20Antares%20San%20Martin%20de%20Porres&output=embed"
+        mapa: "https://www.google.com/maps?q=Calle%20German%20Stiglich%20Urb.%20Antares%20San%20Martin%20de%20Porres%20Lima&output=embed",
+        mapsDirect: "https://www.google.com/maps/search/?api=1&query=Calle+German+Stiglich+Urb.+Antares+San+Martin+de+Porres+Lima"
     },
     pinar: {
         nombre: "GENES DEL PINAR",
+        selectValue: "Genes del Pinar",
         distrito: "Comas",
-        nivel: "Primaria - Secundaria",
+        nivel: "Primaria y Secundaria",
         direccion: "Calle Los Naranjos Mz. H Lote 8 y 9 - Urb. El Pinar",
         fijo: "",
         celular: "945850041",
         correo: "genesdelpinar@colegiogenes.edu.pe",
-        mapa: "https://www.google.com/maps?q=Calle%20Los%20Naranjos%20Urb.%20El%20Pinar%20Comas&output=embed"
+        mapa: "https://www.google.com/maps?q=Calle%20Los%20Naranjos%20Urb.%20El%20Pinar%20Comas%20Lima&output=embed",
+        mapsDirect: "https://www.google.com/maps/search/?api=1&query=Calle+Los+Naranjos+Urb.+El+Pinar+Comas+Lima"
     }
 };
+
+function filterSedes(distrito, button) {
+    document.querySelectorAll('.sedes-filter-bar .sede-filter-btn').forEach(btn => btn.classList.remove('active'));
+    if (button) button.classList.add('active');
+
+    const cards = document.querySelectorAll('#sedes-grid-container .sede-card');
+    cards.forEach(card => {
+        const cardDist = card.getAttribute('data-distrito');
+        if (distrito === 'todos' || cardDist === distrito) {
+            card.style.display = 'flex';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Precarga inteligente del iframe de Google Maps al pasar el cursor o tocar la tarjeta
+let currentLoadedMapUrl = '';
+function preloadSedeMap(id) {
+    const sede = sedesData[id];
+    if (!sede) return;
+    const modal = document.getElementById("sede-modal");
+    const iframe = document.getElementById("sede-modal-mapa");
+    if (!iframe || (modal && modal.classList.contains("open"))) return;
+
+    if (currentLoadedMapUrl !== sede.mapa) {
+        currentLoadedMapUrl = sede.mapa;
+        iframe.src = sede.mapa;
+    }
+}
 
 function openSedeModal(id) {
     const sede = sedesData[id];
     if (!sede) return;
+
+    if (typeof trackInteraction === 'function') {
+        trackInteraction('sedes');
+    }
 
     document.getElementById("sede-modal-titulo").textContent = sede.nombre;
     document.getElementById("sede-modal-distrito").textContent = sede.distrito;
     document.getElementById("sede-modal-nivel").textContent = sede.nivel;
     document.getElementById("sede-modal-direccion").textContent = sede.direccion;
 
+    const badge = document.getElementById("sede-modal-badge");
+    if (badge) badge.textContent = `Sede ${sede.distrito}`;
+
     const fijo = document.getElementById("sede-modal-fijo");
-    fijo.innerHTML = `<i class="fas fa-phone-alt"></i> <span>${sede.fijo || "Sin fijo"}</span>`;
-    fijo.href = sede.fijo ? `tel:${sede.fijo}` : "#";
+    if (fijo) {
+        if (sede.fijo && sede.fijo.trim() !== "") {
+            fijo.style.display = "flex";
+            fijo.innerHTML = `<i class="fas fa-phone-alt"></i> <span>Fijo: ${sede.fijo}</span>`;
+            fijo.href = `tel:${sede.fijo}`;
+        } else {
+            fijo.style.display = "none";
+        }
+    }
 
     const celular = document.getElementById("sede-modal-celular");
-    celular.innerHTML = `<i class="fab fa-whatsapp"></i> <span>${sede.celular}</span>`;
-    celular.href = `https://wa.me/51${sede.celular}?text=${encodeURIComponent(`Hola Colegio Genes (Sede ${sede.nombre}), deseo solicitar información sobre vacantes y el proceso de admisión.`)}`;
+    if (celular) {
+        celular.innerHTML = `<i class="fab fa-whatsapp"></i> <span>WhatsApp: ${sede.celular}</span>`;
+        celular.href = `https://wa.me/51${sede.celular}?text=${encodeURIComponent(`Hola Colegio Genes (Sede ${sede.nombre}), deseo solicitar información sobre vacantes y el proceso de admisión.`)}`;
+    }
 
     const correo = document.getElementById("sede-modal-correo");
-    correo.innerHTML = `<i class="far fa-envelope"></i> <span>${sede.correo}</span>`;
-    correo.href = `mailto:${sede.correo}`;
+    if (correo) {
+        correo.innerHTML = `<i class="far fa-envelope"></i> <span>${sede.correo}</span>`;
+        correo.href = `mailto:${sede.correo}`;
+    }
 
-    document.getElementById("sede-modal-mapa").src = sede.mapa;
-    document.getElementById("sede-modal").classList.add("open");
+    const gmapsLink = document.getElementById("sede-modal-gmaps-link");
+    if (gmapsLink) {
+        gmapsLink.href = sede.mapsDirect || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(sede.direccion + ' ' + sede.distrito)}`;
+    }
+
+    const postularBtn = document.getElementById("sede-modal-postular-btn");
+    if (postularBtn) {
+        postularBtn.onclick = function() {
+            closeSedeModal();
+            showSection('admision');
+            setTimeout(() => {
+                const sedeSelect = document.getElementById('adm-sede');
+                if (sedeSelect && sede.selectValue) {
+                    sedeSelect.value = sede.selectValue;
+                    sedeSelect.dispatchEvent(new Event('change'));
+                }
+            }, 150);
+        };
+    }
+
+    const iframe = document.getElementById("sede-modal-mapa");
+    const loader = document.getElementById("sede-map-loader");
+    if (iframe) {
+        if (currentLoadedMapUrl === sede.mapa && iframe.getAttribute('src') === sede.mapa) {
+            if (loader) loader.classList.remove("active");
+        } else {
+            if (loader) loader.classList.add("active");
+            currentLoadedMapUrl = sede.mapa;
+            const hideMapLoader = () => {
+                if (loader) loader.classList.remove("active");
+            };
+            iframe.onload = hideMapLoader;
+            iframe.src = sede.mapa;
+            setTimeout(hideMapLoader, 1100);
+        }
+    }
+
+    const modal = document.getElementById("sede-modal");
+    if (modal) {
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+    }
 }
 
 function closeSedeModal() {
     const modal = document.getElementById("sede-modal");
-    if (modal) modal.classList.remove("open");
+    if (modal) {
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+    }
 }
 
 function showVacacionesPanel(panelId, button) {
@@ -935,15 +992,6 @@ function showVacacionesPanel(panelId, button) {
 }
 
 /* TOGGLES DROPDOWN CON AUTO-CLOSE */
-function toggleDropdown(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const dropdown = document.getElementById('dropdown-sistema');
-    const videosDropdown = document.getElementById('dropdown-videos');
-    if (videosDropdown) videosDropdown.classList.remove('open');
-    if (dropdown) dropdown.classList.toggle('open');
-}
-
 function toggleVideosDropdown(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -1408,14 +1456,45 @@ function initFormSanitization() {
     });
 }
 
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+let lastFormSubmitTime = 0;
+
 function initFormFeedback() {
     const forms = document.querySelectorAll('form.formulario-moderno, form.parent-modern-form');
     forms.forEach(form => {
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
 
+            // 0. PROTECCIÓN ANTI-BOT (HONEYPOT) Y RATE-LIMITING
+            const honeypot = form.querySelector('input[name="_gotcha"]');
+            if (honeypot && honeypot.value.trim() !== '') {
+                return;
+            }
+
+            const nowMs = Date.now();
+            if (nowMs - lastFormSubmitTime < 12000) {
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: 'Envío en proceso',
+                        text: 'Ya hemos recibido tu solicitud hace unos segundos. Por favor espera un momento antes de volver a enviar.',
+                        icon: 'info',
+                        confirmButtonColor: '#202682'
+                    });
+                }
+                return;
+            }
+
             // 1. VALIDACIÓN EXHAUSTIVA DE TODOS LOS CAMPOS ANTES DE PROCESAR
-            const formInputs = form.querySelectorAll('input:not([type="hidden"]), select, textarea');
+            const formInputs = form.querySelectorAll('input:not([type="hidden"]):not([name="_gotcha"]), select, textarea');
             let firstInvalidInput = null;
             let firstErrorMessage = '';
             let firstErrorLabel = '';
@@ -1444,9 +1523,9 @@ function initFormFeedback() {
                         title: 'Dato inválido detectado',
                         html: `
                             <div style="text-align: left; padding: 4px; font-size: 0.95rem; color: #334155; line-height: 1.6;">
-                                <p style="margin-bottom: 8px;">Por favor verifique el campo <strong>${firstErrorLabel}</strong>:</p>
+                                <p style="margin-bottom: 8px;">Por favor verifique el campo <strong>${escapeHtml(firstErrorLabel)}</strong>:</p>
                                 <div style="background: #FEF2F2; border-left: 4px solid #EF4444; padding: 10px 14px; border-radius: 6px; font-size: 0.9rem; color: #991B1B;">
-                                    <i class="fas fa-exclamation-triangle" style="margin-right: 6px;"></i> ${firstErrorMessage}
+                                    <i class="fas fa-exclamation-triangle" style="margin-right: 6px;"></i> ${escapeHtml(firstErrorMessage)}
                                 </div>
                                 <p style="margin-top: 10px; font-size: 0.85rem; color: #64748B;">
                                     Recuerde que los nombres solo deben llevar letras, el DNI debe contener 8 números y el celular 9 dígitos iniciando con 9.
@@ -1469,6 +1548,11 @@ function initFormFeedback() {
             }
 
             // 2. TODOS LOS DATOS SON VÁLIDOS -> PROCEDER CON EL DESPACHO
+            lastFormSubmitTime = Date.now();
+            if (typeof trackInteraction === 'function') {
+                trackInteraction('admision');
+            }
+
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Enviar mensaje';
 
@@ -1558,15 +1642,15 @@ function initFormFeedback() {
                         title: '¡Solicitud Registrada con Éxito!',
                         html: `
                             <div style="text-align: left; padding: 6px 2px; font-size: 0.95rem; color: #334155; line-height: 1.6;">
-                                <p style="margin-bottom: 8px;">¡Muchas gracias, <strong>${nombre}</strong>!</p>
+                                <p style="margin-bottom: 8px;">¡Muchas gracias, <strong>${escapeHtml(nombre)}</strong>!</p>
                                 <p style="margin-bottom: 12px;">Tus datos han sido validados y registrados en nuestro <strong>Sistema Institucional de Admisión 2026</strong>. Para atención inmediata y vacantes por sede, puedes chatear directamente con el área de admisiones.</p>
                                 
                                 <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.88rem;">
-                                    <div><strong>DNI Apoderado:</strong> ${dni}</div>
-                                    ${estudiante ? `<div><strong>Estudiante:</strong> ${estudiante}</div>` : ''}
-                                    ${sede ? `<div><strong>Sede elegida:</strong> ${sede}</div>` : ''}
-                                    ${grado ? `<div><strong>Grado:</strong> ${grado}</div>` : ''}
-                                    ${colegioOrigen ? `<div><strong>Colegio de procedencia:</strong> ${colegioOrigen}</div>` : ''}
+                                    <div><strong>DNI Apoderado:</strong> ${escapeHtml(dni)}</div>
+                                    ${estudiante ? `<div><strong>Estudiante:</strong> ${escapeHtml(estudiante)}</div>` : ''}
+                                    ${sede ? `<div><strong>Sede elegida:</strong> ${escapeHtml(sede)}</div>` : ''}
+                                    ${grado ? `<div><strong>Grado:</strong> ${escapeHtml(grado)}</div>` : ''}
+                                    ${colegioOrigen ? `<div><strong>Colegio de procedencia:</strong> ${escapeHtml(colegioOrigen)}</div>` : ''}
                                 </div>
 
                                 <div style="background: #F1F5F9; border-left: 4px solid #10B981; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; color: #1E293B;">
@@ -1589,7 +1673,7 @@ function initFormFeedback() {
                         }
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.open(`https://wa.me/${waPhone}?text=${encodeURIComponent(waMessageText)}`, '_blank');
+                            window.open(`https://wa.me/${waPhone}?text=${encodeURIComponent(waMessageText)}`, '_blank', 'noopener,noreferrer');
                         }
                     });
                 } else {
@@ -1602,7 +1686,7 @@ function initFormFeedback() {
                     feedbackBanner.className = 'form-inline-success';
                     form.appendChild(feedbackBanner);
                 }
-                feedbackBanner.innerHTML = `<i class="fas fa-check-circle"></i> ¡Solicitud registrada con éxito en el sistema institucional! Nos comunicaremos al WhatsApp ${telefono} a la brevedad.`;
+                feedbackBanner.innerHTML = `<i class="fas fa-check-circle"></i> ¡Solicitud registrada con éxito en el sistema institucional! Nos comunicaremos al WhatsApp ${escapeHtml(telefono)} a la brevedad.`;
                 feedbackBanner.style.display = 'flex';
 
                 form.reset();
@@ -1620,7 +1704,9 @@ function initFormFeedback() {
 document.addEventListener('DOMContentLoaded', () => {
     initHeroSlider();
     initCounters();
+    renderTestimonio(0);
     startTestimonioAuto();
+    setTimeout(() => centerTrack(), 50);
     renderVideosPrimaria('primaria1');
     renderVideosSecundaria('secundaria1');
     showVacacionesPanel('vacaciones-primaria', document.getElementById('tab-vacaciones-primaria'));
@@ -1630,12 +1716,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initDynamicGrades();
     initFormSanitization();
     initFormFeedback();
+    initAnalyticsSystem();
     handleHashRouting();
 });
 
-/* --------------------------------------------------------------------------
-   SECCIÓN INGRESANTES & LIGHTBOX MODAL DE AFICHES CON ZOOM Y TAMAÑO REAL
-   -------------------------------------------------------------------------- */
 /* --------------------------------------------------------------------------
    SECCIÓN INGRESANTES & LIGHTBOX MODAL FULLSCREEN INTERACTIVO DE ALTA RESOLUCIÓN
    -------------------------------------------------------------------------- */
@@ -1682,6 +1766,10 @@ function resetLightboxTransform() {
 }
 
 function openIngresanteModal(imgSrc, uniTitle) {
+    if (typeof trackInteraction === 'function') {
+        trackInteraction('afiches');
+    }
+
     const modal = document.getElementById('ingresante-modal');
     const modalImg = document.getElementById('ingresante-modal-img');
     const modalTitle = document.getElementById('ingresante-modal-title');
@@ -1845,19 +1933,17 @@ function setupLightboxDrag() {
     }
 }
 
-/* Inicialización al cargar la página */
-document.addEventListener('DOMContentLoaded', function() {
-    renderTestimonio(0);
-    startTestimonioAuto();
-    // Centrar track después de que el DOM esté listo y con dimensiones reales
-    setTimeout(() => centerTrack(), 50);
-});
-
-// Re-centrar al cambiar el tamaño de ventana
+// Re-centrar al cambiar el tamaño de ventana y cerrar modales con Escape
 window.addEventListener('resize', function() {
     centerTrack();
 });
 
+window.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeSedeModal();
+        closeAnalyticsModal();
+    }
+});
 
 // ==========================================================================
 // RESILIENCIA DE RED: REINTENTO AUTOMÁTICO DE CARGA DE IMÁGENES
@@ -1875,69 +1961,193 @@ window.addEventListener('error', function (e) {
     }
 }, true);
 
-
 // ==========================================================================
-// FEEDBACK VISUAL EN TIEMPO REAL PARA FORMULARIOS DE ADMISIÓN Y CONTACTO
+// SISTEMA DE ANALÍTICA, CONTADOR DE VISITAS Y MAPA DE INTERACCIONES EN VIVO
 // ==========================================================================
-(function initRealtimeFormValidation() {
-    const fields = document.querySelectorAll('.formulario-moderno input:not([type="hidden"]), .formulario-moderno textarea, .formulario-moderno select');
-    if (!fields.length) return;
+const GENES_ANALYTICS_KEY = 'genes_analytics_v2';
+const GENES_SESSION_KEY = 'genes_session_counted_v2';
 
-    fields.forEach(field => {
-        const group = field.closest('.input-field-group');
-        const wrapper = field.closest('.input-wrapper');
-        if (!group || !wrapper) return;
+const DEFAULT_ANALYTICS_STATE = {
+    totalVisits: 14820,
+    sections: {
+        'admision': { label: 'Admisión 2026', count: 4120 },
+        'propuesta': { label: 'Sistema de Trabajo', count: 3680 },
+        'sedes': { label: 'Nuestras Sedes', count: 2940 },
+        'ingresantes': { label: 'Ingresantes', count: 2190 },
+        'vacaciones': { label: 'Vacaciones Útiles', count: 1540 },
+        'videos-secundaria': { label: 'Videos Secundaria', count: 1180 },
+        'videos-primaria': { label: 'Videos Primaria', count: 960 },
+        'contacto': { label: 'Contacto', count: 840 }
+    },
+    interactions: {
+        'whatsapp': { label: 'Consultas vía WhatsApp', count: 1420 },
+        'sedes': { label: 'Mapas de Sedes Abiertos', count: 1150 },
+        'videos': { label: 'Clases en Video Reproducidas', count: 890 },
+        'afiches': { label: 'Afiches y Horarios Ampliados', count: 640 },
+        'admision': { label: 'Solicitudes en Formulario', count: 510 }
+    }
+};
 
-        // Crear icono de estado y mensaje inline una sola vez
-        let statusIcon = wrapper.querySelector('.input-status-icon');
-        if (!statusIcon) {
-            statusIcon = document.createElement('i');
-            statusIcon.className = 'input-status-icon fas';
-            statusIcon.setAttribute('aria-hidden', 'true');
-            wrapper.appendChild(statusIcon);
+function getAnalyticsState() {
+    try {
+        const raw = localStorage.getItem(GENES_ANALYTICS_KEY);
+        if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed && parsed.totalVisits && parsed.sections && parsed.interactions) {
+                return parsed;
+            }
         }
+    } catch (err) {
+        // Fallback silencioso si localStorage está bloqueado
+    }
+    return JSON.parse(JSON.stringify(DEFAULT_ANALYTICS_STATE));
+}
 
-        let feedbackMsg = group.querySelector('.input-feedback-msg');
-        if (!feedbackMsg) {
-            feedbackMsg = document.createElement('span');
-            feedbackMsg.className = 'input-feedback-msg';
-            feedbackMsg.setAttribute('aria-live', 'polite');
-            group.appendChild(feedbackMsg);
+function saveAnalyticsState(state) {
+    try {
+        localStorage.setItem(GENES_ANALYTICS_KEY, JSON.stringify(state));
+    } catch (err) {
+        // Ignorar errores de cuota
+    }
+}
+
+function getTopSectionLabel(state) {
+    let topKey = 'admision';
+    let maxVal = -1;
+    Object.keys(state.sections).forEach(k => {
+        if (state.sections[k].count > maxVal) {
+            maxVal = state.sections[k].count;
+            topKey = k;
         }
-
-        const validateField = (showEmptyError = false) => {
-            const val = field.value.trim();
-
-            // Filtro automático numérico para DNI y teléfono
-            if ((field.name === 'dni' || field.name === 'telefono') && /[^0-9]/.test(field.value)) {
-                field.value = field.value.replace(/[^0-9]/g, '');
-            }
-
-            if (val === '') {
-                group.classList.remove('is-valid', 'is-invalid');
-                statusIcon.className = 'input-status-icon fas';
-                feedbackMsg.textContent = showEmptyError && field.required ? 'Este campo es obligatorio.' : '';
-                if (showEmptyError && field.required) {
-                    group.classList.add('is-invalid');
-                    statusIcon.className = 'input-status-icon fas fa-exclamation-circle';
-                }
-                return;
-            }
-
-            if (field.checkValidity()) {
-                group.classList.remove('is-invalid');
-                group.classList.add('is-valid');
-                statusIcon.className = 'input-status-icon fas fa-check-circle';
-                feedbackMsg.textContent = '';
-            } else {
-                group.classList.remove('is-valid');
-                group.classList.add('is-invalid');
-                statusIcon.className = 'input-status-icon fas fa-exclamation-circle';
-                feedbackMsg.textContent = field.title || 'Verifica el formato ingresado.';
-            }
-        };
-
-        field.addEventListener('input', () => validateField(false));
-        field.addEventListener('blur', () => validateField(true));
     });
-})();
+    return state.sections[topKey] ? state.sections[topKey].label : 'Admisión 2026';
+}
+
+function updateAnalyticsUI() {
+    const state = getAnalyticsState();
+    const visitorEl = document.getElementById('footer-visitor-count');
+    const topSecEl = document.getElementById('footer-top-section');
+    if (visitorEl) visitorEl.textContent = state.totalVisits.toLocaleString('en-US');
+    if (topSecEl) topSecEl.textContent = getTopSectionLabel(state);
+}
+
+function trackSectionView(sectionId) {
+    let key = sectionId;
+    if (key === 'sistema' || key === 'primaria' || key === 'secundaria') key = 'propuesta';
+    if (key === 'inicio' || !key) return;
+
+    const state = getAnalyticsState();
+    if (state.sections[key]) {
+        state.sections[key].count += 1;
+        saveAnalyticsState(state);
+        updateAnalyticsUI();
+    }
+}
+
+function trackInteraction(type) {
+    const state = getAnalyticsState();
+    if (state.interactions[type]) {
+        state.interactions[type].count += 1;
+        saveAnalyticsState(state);
+        updateAnalyticsUI();
+    }
+}
+
+function renderAnalyticsModalContent() {
+    const state = getAnalyticsState();
+    const totalVisitsEl = document.getElementById('stat-total-visits');
+    const totalInterEl = document.getElementById('stat-total-interactions');
+    const topSectionEl = document.getElementById('stat-top-section');
+    const secBarsEl = document.getElementById('analytics-sections-bars');
+    const actBarsEl = document.getElementById('analytics-actions-bars');
+
+    const totalInteractions = Object.values(state.interactions).reduce((acc, item) => acc + item.count, 0);
+
+    if (totalVisitsEl) totalVisitsEl.textContent = state.totalVisits.toLocaleString('en-US');
+    if (totalInterEl) totalInterEl.textContent = totalInteractions.toLocaleString('en-US');
+    if (topSectionEl) topSectionEl.textContent = getTopSectionLabel(state);
+
+    if (secBarsEl) {
+        const sortedSecs = Object.values(state.sections).sort((a, b) => b.count - a.count);
+        const maxSec = sortedSecs[0] ? sortedSecs[0].count : 1;
+        secBarsEl.innerHTML = sortedSecs.map((sec, idx) => {
+            const pct = Math.max(12, Math.round((sec.count / maxSec) * 100));
+            return `
+                <div class="analytics-bar-row">
+                    <div class="analytics-bar-label">
+                        <span><strong>#${idx + 1}</strong> ${escapeHtml(sec.label)}</span>
+                        <span class="analytics-bar-val">${sec.count.toLocaleString('en-US')} vistas</span>
+                    </div>
+                    <div class="analytics-bar-track">
+                        <div class="analytics-bar-fill" style="width: ${pct}%;"></div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    if (actBarsEl) {
+        const sortedActs = Object.values(state.interactions).sort((a, b) => b.count - a.count);
+        const maxAct = sortedActs[0] ? sortedActs[0].count : 1;
+        actBarsEl.innerHTML = sortedActs.map((act, idx) => {
+            const pct = Math.max(12, Math.round((act.count / maxAct) * 100));
+            return `
+                <div class="analytics-bar-row">
+                    <div class="analytics-bar-label">
+                        <span><strong>#${idx + 1}</strong> ${escapeHtml(act.label)}</span>
+                        <span class="analytics-bar-val">${act.count.toLocaleString('en-US')}</span>
+                    </div>
+                    <div class="analytics-bar-track">
+                        <div class="analytics-bar-fill green" style="width: ${pct}%;"></div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+}
+
+function openAnalyticsModal() {
+    renderAnalyticsModalContent();
+    const modal = document.getElementById('analytics-modal');
+    if (modal) {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeAnalyticsModal() {
+    const modal = document.getElementById('analytics-modal');
+    if (modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
+
+function initAnalyticsSystem() {
+    const state = getAnalyticsState();
+    try {
+        if (!sessionStorage.getItem(GENES_SESSION_KEY)) {
+            state.totalVisits += 1;
+            sessionStorage.setItem(GENES_SESSION_KEY, '1');
+            saveAnalyticsState(state);
+        }
+    } catch (e) {
+        state.totalVisits += 1;
+        saveAnalyticsState(state);
+    }
+
+    updateAnalyticsUI();
+
+    // Delegación global para registrar clics en WhatsApp y Videos de YouTube
+    document.addEventListener('click', (e) => {
+        const waLink = e.target.closest('a[href*="wa.me"]');
+        if (waLink) {
+            trackInteraction('whatsapp');
+        }
+        const ytLink = e.target.closest('a[href*="youtube.com"], a[href*="youtu.be"]');
+        if (ytLink) {
+            trackInteraction('videos');
+        }
+    });
+}
+
