@@ -895,9 +895,6 @@ function openSedeModal(id) {
     document.getElementById("sede-modal-nivel").textContent = sede.nivel;
     document.getElementById("sede-modal-direccion").textContent = sede.direccion;
 
-    const badge = document.getElementById("sede-modal-badge");
-    if (badge) badge.textContent = `Sede ${sede.distrito}`;
-
     const fijo = document.getElementById("sede-modal-fijo");
     if (fijo) {
         if (sede.fijo && sede.fijo.trim() !== "") {

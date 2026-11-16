@@ -7463,41 +7463,10 @@ p.text-mobile-only, div.text-mobile-only {
     box-shadow: 0 4px 12px rgba(32, 38, 130, 0.25);
 }
 
-.sede-level-pill {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(15, 23, 42, 0.86);
-    color: #FFFFFF;
-    font-size: 0.7rem;
-    font-weight: 800;
-    padding: 5px 11px;
-    border-radius: 999px;
-    backdrop-filter: blur(4px);
-    letter-spacing: 0.2px;
-}
-
-.sede-level-pill.sec-only {
-    background: rgba(185, 28, 28, 0.92);
-}
-
-.sede-level-pill.prim-only {
-    background: rgba(32, 38, 130, 0.92);
-}
-
 .sede-meta span {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-}
-
-.sede-meta span i.fa-whatsapp {
-    color: #16A34A;
-    font-size: 0.9rem;
-}
-
-.sede-meta span i.fa-map-pin {
-    color: var(--crimson-red);
 }
 
 .sede-btn {
@@ -7505,6 +7474,20 @@ p.text-mobile-only, div.text-mobile-only {
     align-items: center;
     justify-content: center;
     gap: 8px;
+}
+
+.sede-modal-header-clean {
+    padding: 4px 48px 0 !important;
+    box-sizing: border-box;
+}
+
+.sede-modal-title-text {
+    color: var(--bg-dark-navy);
+    font-size: clamp(1.12rem, 4.4vw, 1.55rem) !important;
+    font-weight: 800;
+    line-height: 1.22;
+    margin: 0 !important;
+    word-break: break-word;
 }
 
 .sede-modal-top-badge {
@@ -7830,5 +7813,25 @@ p.text-mobile-only, div.text-mobile-only {
     .sede-filter-btn {
         padding: 7px 13px;
         font-size: 0.78rem;
+    }
+
+    .sede-modal-box {
+        padding: 22px 18px !important;
+    }
+
+    .sede-modal-close {
+        top: 12px !important;
+        right: 12px !important;
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 1.25rem !important;
+    }
+
+    .sede-modal-header-clean {
+        padding: 4px 40px 0 !important;
+    }
+
+    .sede-modal-title-text {
+        font-size: clamp(1.08rem, 4.4vw, 1.32rem) !important;
     }
 }
