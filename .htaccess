@@ -1,0 +1,47 @@
+# ==========================================================================
+# CONFIGURACIÓN OFICIAL PARA SERVIDORES CPANEL (APACHE / LITESPEED)
+# Colegio Genes - Seguridad, UTF-8, Soporte WebP y Caché de Alto Rendimiento
+# ==========================================================================
+
+# 1. Evitar listado público de carpetas (Seguridad en cPanel)
+Options -Indexes
+
+# 2. Forzar codificación UTF-8 para tildes y caracteres en español
+AddDefaultCharset UTF-8
+
+# 3. Asegurar soporte nativo de imágenes WebP y SVG en cualquier versión de cPanel
+<IfModule mod_mime.c>
+    AddType image/webp .webp
+    AddType image/svg+xml .svg .svgz
+    AddType application/javascript .js
+    AddType text/css .css
+</IfModule>
+
+# 4. Archivo principal por defecto
+DirectoryIndex index.html
+
+# 5. Cabeceras de Seguridad HTTP (Equivalente a vercel.json en Apache/cPanel)
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self)"
+</IfModule>
+
+# 6. Compresión GZIP para carga ultrarrápida en cPanel
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# 7. Caché de navegador para imágenes, fuentes y estilos
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
