@@ -239,6 +239,11 @@ function centerTrack() {
     const activeCard = document.getElementById('testimonio-card-active');
     if (!track || !viewport || !activeCard) return;
 
+    if (window.innerWidth <= 1024) {
+        track.style.transform = '';
+        return;
+    }
+
     const vpW = viewport.offsetWidth;
     const cardW = activeCard.offsetWidth;
     // Desplazamiento: queremos que el centro de la tarjeta activa (index=1 en el track)
@@ -348,6 +353,19 @@ function showSecundariaPanel(panelId, button) {
 /* --------------------------------------------------------------------------
    CANALES POR GRADO (PRIMARIA Y SECUNDARIA)
    -------------------------------------------------------------------------- */
+function switchCanalesLevel(level) {
+    const gridPrimaria = document.getElementById('canales-grid-primaria');
+    const gridSecundaria = document.getElementById('canales-grid-secundaria');
+    const tabPrimaria = document.getElementById('tab-btn-primaria');
+    const tabSecundaria = document.getElementById('tab-btn-secundaria');
+
+    const isPrimaria = level === 'primaria';
+    if (gridPrimaria) gridPrimaria.style.display = isPrimaria ? 'grid' : 'none';
+    if (gridSecundaria) gridSecundaria.style.display = isPrimaria ? 'none' : 'grid';
+    if (tabPrimaria) tabPrimaria.classList.toggle('active', isPrimaria);
+    if (tabSecundaria) tabSecundaria.classList.toggle('active', !isPrimaria);
+}
+
 const primaryChannelsData = {
     grado1: {
         titulo: "1ro de Primaria",
