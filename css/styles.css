@@ -6116,6 +6116,46 @@ p.text-mobile-only, div.text-mobile-only {
         display: none !important;
     }
 
+    /* Sistema de Trabajo móvil: ambas tarjetas centradas y compactas sin recortarse */
+    .sistema-levels-grid {
+        gap: clamp(10px, 1.8dvh, 16px) !important;
+        max-width: 420px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .level-card-media {
+        height: clamp(110px, 16.5dvh, 142px) !important;
+    }
+
+    .level-select-card {
+        text-align: center !important;
+    }
+
+    .level-select-card .level-card-body {
+        padding: clamp(10px, 1.6dvh, 15px) 16px clamp(6px, 1dvh, 10px) !important;
+        text-align: center !important;
+    }
+
+    .level-select-card h3 {
+        font-size: clamp(1.15rem, 4.5vw, 1.38rem) !important;
+        margin-bottom: 4px !important;
+        text-align: center !important;
+    }
+
+    .level-select-card .btn-level-action-wrap {
+        padding: 0 16px clamp(12px, 1.8dvh, 16px) !important;
+    }
+
+    .btn-level-action {
+        width: 100% !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+        font-size: clamp(0.78rem, 3.6vw, 0.92rem) !important;
+        padding: clamp(9px, 1.4dvh, 12px) 14px !important;
+        gap: 8px !important;
+    }
+
     /* WhatsApp flotante: compacto, sin burbuja de texto horizontal invasiva */
     .whatsapp-widget-wrapper {
         right: 16px !important;
