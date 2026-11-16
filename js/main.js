@@ -1622,17 +1622,45 @@ function initFormFeedback() {
                     submitBtn.innerHTML = originalBtnHtml;
                 }
 
-                // Mensaje estructurado institucional para WhatsApp
-                let waMessageText = `🎓 *SOLICITUD DE INFORMACIÓN - COLEGIO GENES*\n`;
-                waMessageText += `👤 *Apoderado:* ${nombre || 'No especificado'}\n`;
-                if (dni) waMessageText += `🪪 *DNI:* ${dni}\n`;
-                waMessageText += `📱 *Teléfono:* ${telefono || 'No especificado'}\n`;
-                if (correo) waMessageText += `📧 *Correo:* ${correo}\n`;
-                if (estudiante) waMessageText += `👦 *Estudiante:* ${estudiante}\n`;
-                if (colegioOrigen) waMessageText += `🏫 *Colegio de Procedencia:* ${colegioOrigen}\n`;
-                if (sede) waMessageText += `📍 *Sede:* ${sede}\n`;
-                if (nivel || grado) waMessageText += `📚 *Nivel y Grado:* ${nivel || ''} ${grado ? '(' + grado + ')' : ''}\n`;
-                if (mensaje) waMessageText += `📝 *Consulta:* ${mensaje}\n`;
+                // Mensaje estructurado institucional para WhatsApp (sin emojis para evitar signos '?' y ordenado línea por línea)
+                const seccionTitulo = formType === 'contacto'
+                    ? 'SECCIÓN: CONTACTO E INFORMES - COLEGIO GENES'
+                    : 'SECCIÓN: ADMISIÓN 2026 - COLEGIO GENES';
+
+                const waLines = [
+                    `*${seccionTitulo}*`,
+                    `Hola Colegio Genes, envío mis datos registrados en la web:`,
+                    ``,
+                    `*Nombres y Apellidos del Apoderado:*`,
+                    `${nombre || 'No especificado'}`
+                ];
+
+                if (dni) {
+                    waLines.push(``, `*DNI del Apoderado:*`, `${dni}`);
+                }
+                if (telefono) {
+                    waLines.push(``, `*Teléfono / WhatsApp:*`, `${telefono}`);
+                }
+                if (correo) {
+                    waLines.push(``, `*Correo Electrónico:*`, `${correo}`);
+                }
+                if (estudiante) {
+                    waLines.push(``, `*Nombres y Apellidos del Estudiante:*`, `${estudiante}`);
+                }
+                if (colegioOrigen) {
+                    waLines.push(``, `*Colegio de Procedencia:*`, `${colegioOrigen}`);
+                }
+                if (sede) {
+                    waLines.push(``, `*Sede de Preferencia:*`, `${sede}`);
+                }
+                if (nivel || grado) {
+                    waLines.push(``, `*Nivel y Grado a Postular:*`, `${[nivel, grado].filter(Boolean).join(' - ')}`);
+                }
+                if (mensaje) {
+                    waLines.push(``, `*Mensaje o Consulta:*`, `${mensaje}`);
+                }
+
+                const waMessageText = waLines.join('\n');
 
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
