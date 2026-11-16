@@ -21,12 +21,18 @@ Plataforma web institucional y landing page adaptativa para el **Colegio Genes**
   - Despacho automático de alerta por correo con tarjeta visual HTML.
   - Confirmación inmediata al apoderado vía correo electrónico.
   - Respaldo con derivación directa al canal de WhatsApp Oficial con mensaje precargado.
-- **SEO On-Page Avanzado & Schema.org**:
-  - OpenGraph optimizado (`og:image`, `og:title`, `og:description`, `og:url`) y Twitter Cards para vistas previas impecables en WhatsApp y redes sociales.
-  - Datos Estructurados JSON-LD con tipos `School` y `EducationalOrganization`, detallando sedes, geolocalización, coordenadas en Lima, teléfonos y programas de estudio.
-- **Navegación Fluida por Anclas Semánticas (Smooth Scroll)**: Transición completa de enlaces a anclas (`#inicio`, `#propuesta`, `#sedes`, `#vacaciones`, `#ingresantes`, `#contacto`, `#admision`) con *Scroll Spy* dinámico con `IntersectionObserver`.
-- **Diseño 100% Adaptativo (Responsive)**: Optimización fluida para dispositivos móviles, tablets y computadoras de escritorio.
-- **Activos 100% Locales**: Logotipos, imágenes de las 8 sedes, portadas de compendios y horarios de talleres alojados internamente en `assets/images/`.
+- **SEO On-Page Avanzado & Schema.org (Perú)**:
+  - OpenGraph optimizado (`og:image`, `og:title`, `og:description`, `og:url`) y Twitter Cards para vistas previas en WhatsApp y redes sociales.
+  - Datos Estructurados JSON-LD (`School`, `EducationalOrganization` y `FAQPage`) con las 8 sedes oficiales en Comas, Los Olivos, San Martín de Porres y Puente Piedra.
+- **Sección Sedes con Precarga Rápida de Google Maps**:
+  - Filtro interactivo por distrito (`Todas`, `Comas`, `San Martín de Porres`, `Los Olivos`, `Puente Piedra`).
+  - Precarga anticipada (`preconnect` + precarga al pasar el cursor/tocar la tarjeta) para apertura instantánea de mapas en el modal, ruta directa en Google Maps y botón `"Postular a esta Sede"` con autoselección en el formulario de Admisión.
+- **Analítica de Visitas e Interacciones en Tiempo Real**:
+  - Contador de visitas en el pie de página y modal interactivo de métricas (`#analytics-modal`) con el ranking de secciones más vistas (`Admisión`, `Sistema de Trabajo`, `Sedes`, `Ingresantes`, etc.) e interacciones más frecuentes (`WhatsApp`, `Mapas de Sedes`, `Videos`, `Afiches`, `Formularios`).
+- **Seguridad y Cabeceras HTTP (`vercel.json`)**:
+  - Sanitización contra XSS (`escapeHtml`), campos honeypot anti-bots (`_gotcha`), rate-limiting de envíos, protección `noopener,noreferrer` y cabeceras HTTP de seguridad (`Strict-Transport-Security`, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`).
+- **Diseño 100% Adaptativo (Responsive `100dvh` + `clamp()`)**: Optimización fluida para dispositivos móviles (adaptable a barras de navegación superiores e inferiores), tablets y escritorio.
+- **Activos 100% Locales en WebP/SVG**: Logotipos, imágenes de las 8 sedes, portadas de compendios y horarios alojados internamente en `assets/images/`.
 
 ---
 
