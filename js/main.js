@@ -145,7 +145,7 @@ const testimoniosIngresantes = [
         universidad: "UNMSM - San Marcos",
         puesto: "1er. Puesto Cómputo General",
         comentario: "El sistema de Genes me dio la disciplina, el seguimiento constante y una base preuniversitaria inquebrantable. Sentí que cada simulacro semanal y cada tutoría personalizada me acercaban de verdad a mi ingreso.",
-        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=250&auto=format&fit=crop"
+        avatar: "assets/images/testimonios/valeria_torres.jpg"
     },
     {
         nombre: "Diego Salazar",
@@ -153,7 +153,7 @@ const testimoniosIngresantes = [
         universidad: "UNI - U. Nacional de Ingeniería",
         puesto: "2do. Puesto Facultad de Sistemas",
         comentario: "Lo que más valoro de Colegio Genes es la exigencia bien orientada. No solo nos preparaban para resolver preguntas difíciles, sino para pensar con orden, velocidad y total confianza ante cualquier examen.",
-        avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=250&auto=format&fit=crop"
+        avatar: "assets/images/testimonios/diego_salazar.jpg"
     },
     {
         nombre: "Axel Fernández",
@@ -161,7 +161,7 @@ const testimoniosIngresantes = [
         universidad: "PUCP - U. Católica del Perú",
         puesto: "Ingreso Directo 1era Opción",
         comentario: "Genes me ayudó a fortalecer mi lógica matemática, comprensión lectora y constancia. El acompañamiento de las profesoras tutoras hizo que el proceso fuera exigente pero siempre motivador.",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=250&auto=format&fit=crop"
+        avatar: "assets/images/testimonios/axel_fernandez.jpg"
     },
     {
         nombre: "Yohan López",
@@ -169,7 +169,7 @@ const testimoniosIngresantes = [
         universidad: "UNAC - U. Nacional del Callao",
         puesto: "3er. Puesto General",
         comentario: "Aprendí a sostener un ritmo de estudio constante sin acumular dudas. Las clases en video de repaso y las evaluaciones continuas marcaron la diferencia para asegurar mi ingreso.",
-        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=250&auto=format&fit=crop"
+        avatar: "assets/images/testimonios/yohan_lopez.jpg"
     },
     {
         nombre: "Lucía Fernández",
@@ -177,7 +177,7 @@ const testimoniosIngresantes = [
         universidad: "UNFV - U. Federico Villarreal",
         puesto: "1er. Puesto Especialidad",
         comentario: "En Genes encontré un ambiente académico de alta exigencia, pero al mismo tiempo un equipo de monitores que creía en nosotros. Logré ingresar con la tranquilidad de estar bien preparada.",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=250&auto=format&fit=crop"
+        avatar: "assets/images/testimonios/lucia_fernandez.jpg"
     }
 ];
 
