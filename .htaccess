@@ -45,3 +45,11 @@ DirectoryIndex index.html
     ExpiresByType text/css "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
+
+# 8. URLs limpias opcionales en cPanel (ej. /admision -> admision.html)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteRule ^([^/]+)/?$ $1.html [L]
+</IfModule>

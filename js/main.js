@@ -69,18 +69,39 @@ function updateActiveNavLink(id) {
     }
 }
 
+const SECTION_ROUTES = {
+    'inicio': 'index.html',
+    'propuesta': 'propuesta.html',
+    'sistema': 'propuesta.html',
+    'primaria': 'propuesta.html',
+    'secundaria': 'propuesta.html',
+    'sedes': 'sedes.html',
+    'vacaciones': 'vacaciones.html',
+    'videos-primaria': 'videos-primaria.html',
+    'videos-secundaria': 'videos-secundaria.html',
+    'canales-virtuales': 'canales-virtuales.html',
+    'ingresantes': 'ingresantes.html',
+    'contacto': 'contacto.html',
+    'admision': 'admision.html'
+};
+
 function showSection(id, updateHash = true) {
     let targetId = id;
     if (id === 'sistema' || id === 'primaria') {
         targetId = 'propuesta';
     }
 
+    const target = document.getElementById(targetId) || document.getElementById(id);
+    if (!target) {
+        if (SECTION_ROUTES[id]) {
+            window.location.href = SECTION_ROUTES[id];
+        }
+        return;
+    }
+
     // Ocultar todas las secciones y activar únicamente la solicitada
     document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-    const target = document.getElementById(targetId) || document.getElementById(id);
-    if (target) {
-        target.classList.add('active');
-    }
+    target.classList.add('active');
     
     updateActiveNavLink(id);
 
@@ -120,7 +141,7 @@ function showSection(id, updateHash = true) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Navegación por Hash / Deep Linking para Motores de Búsqueda (SEO)
+// Navegación por Hash / Deep Linking y compatibilidad con enlaces #antiguos
 function handleHashRouting() {
     const hash = window.location.hash.replace('#', '');
     if (hash) {
@@ -128,6 +149,8 @@ function handleHashRouting() {
         if (hash === 'sistema' || hash === 'primaria') targetId = 'propuesta';
         if (document.getElementById(targetId) || document.getElementById(hash)) {
             showSection(hash, false);
+        } else if (SECTION_ROUTES[hash]) {
+            window.location.replace(SECTION_ROUTES[hash]);
         }
     }
 }
@@ -945,14 +968,21 @@ function openSedeModal(id) {
     if (postularBtn) {
         postularBtn.onclick = function() {
             closeSedeModal();
-            showSection('admision');
-            setTimeout(() => {
-                const sedeSelect = document.getElementById('adm-sede');
-                if (sedeSelect && sede.selectValue) {
-                    sedeSelect.value = sede.selectValue;
-                    sedeSelect.dispatchEvent(new Event('change'));
-                }
-            }, 150);
+            if (document.getElementById('admision')) {
+                showSection('admision');
+                setTimeout(() => {
+                    const sedeSelect = document.getElementById('adm-sede');
+                    if (sedeSelect && sede.selectValue) {
+                        sedeSelect.value = sede.selectValue;
+                        sedeSelect.dispatchEvent(new Event('change'));
+                    }
+                }, 150);
+            } else {
+                const targetUrl = sede.selectValue
+                    ? `admision.html?sede=${encodeURIComponent(sede.selectValue)}`
+                    : 'admision.html';
+                window.location.href = targetUrl;
+            }
         };
     }
 
@@ -1745,6 +1775,14 @@ function initFormFeedback() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const activeSection = document.querySelector('main > section.active') || document.querySelector('section.active');
+    if (activeSection && activeSection.id) {
+        updateActiveNavLink(activeSection.id);
+        if (activeSection.id === 'sedes' && typeof preloadSedeMap === 'function') {
+            preloadSedeMap('alborada');
+        }
+    }
+
     initHeroSlider();
     initCounters();
     renderTestimonio(0);
@@ -1761,6 +1799,14 @@ document.addEventListener('DOMContentLoaded', () => {
     initFormFeedback();
     initAnalyticsSystem();
     handleHashRouting();
+
+    const params = new URLSearchParams(window.location.search);
+    const sedeParam = params.get('sede');
+    const sedeSelect = document.getElementById('adm-sede');
+    if (sedeParam && sedeSelect) {
+        sedeSelect.value = sedeParam;
+        sedeSelect.dispatchEvent(new Event('change'));
+    }
 });
 
 /* --------------------------------------------------------------------------
