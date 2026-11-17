@@ -416,61 +416,53 @@
                                     </p>
                                 </div>
 
-                                <form class="parent-modern-form" data-form-type="admision" action="#" method="POST" novalidate>
+                                <form class="formulario-moderno" data-form-type="admision" action="#" method="POST" novalidate>
                                     <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true">
-                                    <div class="parent-form-grid">
-                                        <div class="form-field-unit">
+                                    <div class="form-grid">
+                                        <div class="input-field-group">
                                             <label for="adm-nombres">Nombres y Apellidos del Apoderado <span class="required">*</span></label>
-                                            <div class="form-input-shell">
-                                                <i class="fas fa-user field-icon"></i>
-                                                <input id="adm-nombres" type="text" name="nombres" placeholder="Ej. Carlos Mendoza Ramos" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]{3,60}$" minlength="3" maxlength="60" title="Ingrese solo letras y espacios (sin números)" required>
+                                            <div class="input-wrapper">
+                                                <i class="fas fa-user input-icon"></i>
+                                                <input id="adm-nombres" type="text" name="nombres" placeholder="Ej. Juan Carlos Pérez" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]{3,60}$" minlength="3" maxlength="60" title="Ingrese solo letras y espacios (sin números)" required>
                                             </div>
                                         </div>
 
-                                        <div class="form-field-unit">
+                                        <div class="input-field-group">
                                             <label for="adm-dni">DNI del Apoderado <span class="required">*</span></label>
-                                            <div class="form-input-shell">
-                                                <i class="fas fa-id-card field-icon"></i>
-                                                <input id="adm-dni" type="text" name="dni" placeholder="Ej. 45892134" pattern="[0-9]{8}" minlength="8" maxlength="8" inputmode="numeric" title="El DNI debe contener exactamente 8 números" required>
+                                            <div class="input-wrapper">
+                                                <i class="fas fa-id-card input-icon"></i>
+                                                <input id="adm-dni" type="text" name="dni" placeholder="Ej. 12345678" pattern="[0-9]{8}" minlength="8" maxlength="8" inputmode="numeric" title="El DNI debe contener exactamente 8 números" required>
                                             </div>
                                         </div>
 
-                                        <div class="form-field-unit">
+                                        <div class="input-field-group">
+                                            <label for="adm-correo">Correo Electrónico <span class="required">*</span></label>
+                                            <div class="input-wrapper">
+                                                <i class="fas fa-envelope input-icon"></i>
+                                                <input id="adm-correo" type="email" name="correo" placeholder="ejemplo@correo.com" pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Ingrese un correo electrónico válido" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-field-group">
                                             <label for="adm-telefono">Teléfono / Celular WhatsApp <span class="required">*</span></label>
-                                            <div class="form-input-shell">
-                                                <i class="fas fa-phone-alt field-icon"></i>
+                                            <div class="input-wrapper">
+                                                <i class="fas fa-phone-alt input-icon"></i>
                                                 <input id="adm-telefono" type="tel" name="telefono" placeholder="Ej. 987 654 321" pattern="^9[0-9]{8}$" minlength="9" maxlength="9" inputmode="numeric" title="El celular debe comenzar con 9 y tener 9 dígitos" required>
                                             </div>
                                         </div>
 
-                                        <div class="form-field-unit">
-                                            <label for="adm-correo">Correo Electrónico del Apoderado <span class="required">*</span></label>
-                                            <div class="form-input-shell">
-                                                <i class="fas fa-envelope field-icon"></i>
-                                                <input id="adm-correo" type="email" name="correo" placeholder="Ej. familia.mendoza@gmail.com" pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Ingrese un correo electrónico válido" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-field-unit">
-                                            <label for="adm-estudiante">Nombres y Apellidos del Estudiante <span class="required">*</span></label>
-                                            <div class="form-input-shell">
-                                                <i class="fas fa-user-graduate field-icon"></i>
-                                                <input id="adm-estudiante" type="text" name="estudiante" placeholder="Ej. Mateo Mendoza Silva" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]{3,60}$" minlength="3" maxlength="60" title="Ingrese solo letras y espacios para el nombre del estudiante" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-field-unit">
+                                        <div class="input-field-group">
                                             <label for="adm-colegio">Colegio de Procedencia <span class="required">*</span></label>
-                                            <div class="form-input-shell">
-                                                <i class="fas fa-school field-icon"></i>
+                                            <div class="input-wrapper">
+                                                <i class="fas fa-school input-icon"></i>
                                                 <input id="adm-colegio" type="text" name="colegio_origen" placeholder="Ej. I.E. República de Chile o Particular" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s\.,\-#°]{3,80}$" minlength="3" maxlength="80" title="Ingrese el nombre del colegio de procedencia" required>
                                             </div>
                                         </div>
 
-                                        <div class="form-field-unit">
+                                        <div class="input-field-group">
                                             <label for="adm-sede">Sede Educativa de Preferencia <span class="required">*</span></label>
-                                            <div class="form-input-shell">
-                                                <i class="fas fa-map-marker-alt field-icon"></i>
+                                            <div class="input-wrapper">
+                                                <i class="fas fa-map-marker-alt input-icon"></i>
                                                 <select id="adm-sede" name="sede" required>
                                                     <option value="" disabled selected>Selecciona tu sede cercana</option>
                                                     <option value="Genes Alborada">Genes Alborada (Comas)</option>
@@ -485,25 +477,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-field-unit">
-                                            <label for="adm-nivel">Nivel Educativo del Alumno <span class="required">*</span></label>
-                                            <div class="form-input-shell">
-                                                <i class="fas fa-graduation-cap field-icon"></i>
-                                                <select id="adm-nivel" name="nivel" required>
-                                                    <option value="" disabled selected>Selecciona nivel</option>
-                                                    <option value="Primaria">Nivel Primaria (1.° a 6.°)</option>
-                                                    <option value="Secundaria">Nivel Secundaria (1.° a 5.°)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-field-unit full-width">
-                                            <label for="adm-grado">Grado Escolar a Postular <span class="required">*</span></label>
-                                            <div class="form-input-shell">
-                                                <i class="fas fa-layer-group field-icon"></i>
-                                                <select id="adm-grado" name="grado" required disabled>
-                                                    <option value="" disabled selected>← Primero selecciona el nivel (Primaria o Secundaria)</option>
-                                                </select>
+                                        <div class="input-field-group">
+                                            <label for="adm-mensaje">Mensaje o Consulta <span class="required">*</span></label>
+                                            <div class="input-wrapper textarea-wrapper">
+                                                <i class="fas fa-comment-dots input-icon"></i>
+                                                <textarea id="adm-mensaje" name="mensaje" rows="4" placeholder="Escriba aquí su consulta sobre admisión, grado, pensiones o requisitos..." minlength="10" maxlength="500" required></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -511,8 +489,9 @@
                                     <input type="hidden" name="_captcha" value="false">
                                     <input type="hidden" name="_subject" value="Nuevo prospecto Admisión / Vacaciones Útiles - Colegio Genes">
 
-                                    <button type="submit" class="btn-parent-submit">
-                                        <span><i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Solicitar Información y Vacante</span>
+                                    <button type="submit" class="btn-submit-contacto">
+                                        <span>Solicitar Información y Vacante</span>
+                                        <i class="fas fa-paper-plane icon-arrow"></i>
                                     </button>
                                     <p class="form-privacy-note">
                                         <i class="fas fa-lock"></i> Respetamos la privacidad de tu familia. Tus datos solo serán utilizados para responder a tu consulta escolar.

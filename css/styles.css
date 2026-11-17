@@ -3020,7 +3020,8 @@ section.active { display: block; }
 }
 
 .input-wrapper input,
-.input-wrapper textarea {
+.input-wrapper textarea,
+.input-wrapper select {
     width: 100%;
     padding: 14px 16px 14px 46px;
     background: #F8FAFC;
@@ -3040,7 +3041,8 @@ section.active { display: block; }
 .input-wrapper.textarea-wrapper .input-icon { top: 18px; }
 
 .input-wrapper input:focus,
-.input-wrapper textarea:focus {
+.input-wrapper textarea:focus,
+.input-wrapper select:focus {
     background: #FFFFFF;
     border-color: #DC2626;
     box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.12);
@@ -5807,7 +5809,8 @@ div.text-mobile-only {
     .input-field-group { width: 100%; min-width: 0; }
     .input-wrapper { width: 100%; min-width: 0; }
     .input-wrapper input,
-    .input-wrapper textarea {
+    .input-wrapper textarea,
+    .input-wrapper select {
         width: 100%;
         min-width: 0;
         padding: 12px 14px 12px 42px;
