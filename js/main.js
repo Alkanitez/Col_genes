@@ -1799,6 +1799,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFormFeedback();
     initAnalyticsSystem();
     handleHashRouting();
+    initGenesInteractiveBackground();
 
     const params = new URLSearchParams(window.location.search);
     const sedeParam = params.get('sede');
@@ -2238,5 +2239,157 @@ function initAnalyticsSystem() {
             trackInteraction('videos');
         }
     });
+}
+
+/* --------------------------------------------------------------------------
+   FONDO INTERACTIVO SUTIL PARA VERSIÓN WEB DESKTOP (COLEGIO GENES)
+   -------------------------------------------------------------------------- */
+function initGenesInteractiveBackground() {
+    if (window.innerWidth <= 1024) return;
+    if (window.matchMedia && !window.matchMedia('(pointer: fine)').matches) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (document.getElementById('genes-bg-canvas')) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.id = 'genes-bg-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    document.body.prepend(canvas);
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const glyphs = ['π', '∑', 'Δ', 'α', '∫', 'G', '✦', '+'];
+    const colors = ['32, 38, 130', '185, 28, 28']; // Azul institucional Genes y Rojo carmesí
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let nodes = [];
+    const mouse = { x: -9999, y: -9999, active: false };
+    let rafId = null;
+
+    function buildGrid() {
+        nodes = [];
+        const stepX = 110;
+        const stepY = 100;
+        let idx = 0;
+        for (let y = 44; y < height + stepY; y += stepY) {
+            const rowOffset = (Math.floor(y / stepY) % 2) * (stepX * 0.45);
+            for (let x = 40 + rowOffset; x < width + stepX; x += stepX) {
+                nodes.push({
+                    baseX: x,
+                    baseY: y,
+                    x,
+                    y,
+                    glyph: glyphs[idx % glyphs.length],
+                    color: colors[idx % 5 === 0 ? 1 : 0],
+                    size: idx % 3 === 0 ? 14 : 11,
+                    angle: ((idx * 17) % 30 - 15) * (Math.PI / 180)
+                });
+                idx++;
+            }
+        }
+    }
+
+    function resize() {
+        if (window.innerWidth <= 1024) {
+            canvas.style.display = 'none';
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
+            return;
+        }
+        canvas.style.display = 'block';
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        buildGrid();
+        drawFrame();
+    }
+
+    function drawFrame() {
+        ctx.clearRect(0, 0, width, height);
+
+        if (mouse.active) {
+            const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 175);
+            grad.addColorStop(0, 'rgba(32, 38, 130, 0.045)');
+            grad.addColorStop(0.55, 'rgba(185, 28, 28, 0.02)');
+            grad.addColorStop(1, 'rgba(32, 38, 130, 0)');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, width, height);
+        }
+
+        const radius = 170;
+        let moving = false;
+
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        for (let i = 0; i < nodes.length; i++) {
+            const n = nodes[i];
+            let targetX = n.baseX;
+            let targetY = n.baseY;
+            let alpha = 0.065;
+            let scale = 1;
+
+            if (mouse.active) {
+                const dx = mouse.x - n.baseX;
+                const dy = mouse.y - n.baseY;
+                const dist = Math.hypot(dx, dy);
+                if (dist < radius && dist > 0.01) {
+                    const factor = 1 - dist / radius;
+                    targetX = n.baseX + dx * factor * 0.14;
+                    targetY = n.baseY + dy * factor * 0.14;
+                    alpha = 0.065 + factor * 0.16;
+                    scale = 1 + factor * 0.22;
+                }
+            }
+
+            n.x += (targetX - n.x) * 0.16;
+            n.y += (targetY - n.y) * 0.16;
+            if (Math.abs(targetX - n.x) > 0.15 || Math.abs(targetY - n.y) > 0.15) {
+                moving = true;
+            }
+
+            ctx.save();
+            ctx.translate(n.x, n.y);
+            ctx.rotate(n.angle);
+            ctx.scale(scale, scale);
+            ctx.font = `700 ${n.size}px Montserrat, sans-serif`;
+            ctx.fillStyle = `rgba(${n.color}, ${alpha.toFixed(3)})`;
+            ctx.fillText(n.glyph, 0, 0);
+            ctx.restore();
+        }
+
+        if (moving) {
+            rafId = requestAnimationFrame(drawFrame);
+        } else {
+            rafId = null;
+        }
+    }
+
+    function scheduleDraw() {
+        if (!rafId && window.innerWidth > 1024) {
+            rafId = requestAnimationFrame(drawFrame);
+        }
+    }
+
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        mouse.active = true;
+        scheduleDraw();
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', () => {
+        mouse.active = false;
+        scheduleDraw();
+    });
+
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
 }
 
