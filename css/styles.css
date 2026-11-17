@@ -2195,6 +2195,8 @@ section.active { display: block; }
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
     padding: 32px;
     position: relative;
     box-shadow: 0 25px 50px rgba(0,0,0,0.4);
@@ -2219,9 +2221,15 @@ section.active { display: block; }
 
 .sede-modal-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 24px;
     margin-top: 18px;
+}
+
+.sede-modal-info,
+.sede-mapa-wrap {
+    min-width: 0;
+    max-width: 100%;
 }
 
 .sede-modal-dato {
@@ -2229,6 +2237,11 @@ section.active { display: block; }
     align-items: flex-start;
     gap: 12px;
     margin-bottom: 14px;
+}
+
+.sede-modal-dato > div {
+    min-width: 0;
+    flex: 1;
 }
 
 .sede-modal-dato i {
@@ -5949,7 +5962,39 @@ div.text-mobile-only {
     .btn-open-analytics { width: 100%; justify-content: center; }
     .sedes-filter-bar { gap: 7px; }
     .sede-filter-btn { padding: 7px 13px; font-size: 0.78rem; }
-    .sede-modal-box { padding: 22px 18px; }
+    .sede-modal-overlay { padding: 12px; }
+    .sede-modal-box { padding: 20px 14px; border-radius: 16px; }
+    .sede-modal-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+    .sede-modal-dato { gap: 10px; margin-bottom: 10px; }
+    .sede-modal-dato span {
+        font-size: 0.84rem;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+    .sede-contactos a {
+        padding: 10px 12px;
+        font-size: 0.82rem;
+        gap: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+    .sede-contactos a span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+    .sede-modal-cta-row #sede-modal-postular-btn {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 11px 14px;
+        font-size: 0.86rem;
+    }
+    .sede-mapa-wrap iframe { height: 220px; }
     .sede-modal-close {
         top: 12px;
         right: 12px;
@@ -5958,5 +6003,5 @@ div.text-mobile-only {
         font-size: 1.25rem;
     }
     .sede-modal-header-clean { padding: 4px 40px 0; }
-    .sede-modal-title-text { font-size: clamp(1.08rem, 4.4vw, 1.32rem); }
+    .sede-modal-title-text { font-size: clamp(1.05rem, 4.2vw, 1.28rem); }
 }
